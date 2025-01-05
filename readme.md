@@ -8,7 +8,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 
 **The Nexus Project** is one of my key projects, where I integrate various tools like **Nikto**, **Metasploit**, and **Three.js (2D)**, along with backend technologies like **Node.js**, to build a robust security scanning platform. The goal is to provide web developers and security analysts with a visual, interactive, and AI-driven vulnerability analysis & simulated exploitation.
 
-- 💻 **Technologies I'm working with:**
+- 💻 **Technologies I'm working on, learning & learned:**
   - **Web Technologies**: HTML, CSS, JavaScript (Node.js), React, Electron.
   - **Cybersecurity Tools**: Nikto, Metasploit, Burp Suite, Kali Linux and Other Wide Range Of Cyber-Security Field.
   - **Databases**: SQL, MongoDB.
