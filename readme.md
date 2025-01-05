@@ -6,18 +6,24 @@ Welcome to my GitHub profile! I'm a passionate Learning Developer and Cybersecur
 
 I’m currently a **2ndYear Computer Science Student**, specializing in **Cybersecurity**. I'm continuously learning and applying my knowledge to real-world challenges, especially in penetration testing, ethical hacking, and application development. Im Still Learning a Lot New Things, Technologies, Im just a student so far with intrest in wide range of things. 
 
-**The Nexus Project** is one of my key projects, where I integrate various tools like **Nikto**, **Metasploit**, and **Three.js (2D)**, along with backend technologies like **Node.js**, to build a robust security scanning platform. The goal is to provide web developers and security analysts with a visual, interactive, and AI-driven vulnerability analysis & simulated exploitation.
+*The Nexus Project* is one of my key projects, where I integrate various tools like *Nikto*, *Metasploit*, and *Three.js (2D)*, along with backend technologies like *Node.js*, to build a robust security scanning platform. The goal is to provide web developers and security analysts with a visual, interactive, and AI-driven vulnerability analysis & simulated exploitation.
 
-- 💻 **Technologies I'm working on, learning & learned:**
-  - **Web Technologies**: HTML, CSS, JavaScript (Node.js), React, Electron.
-  - **Mobile Technologies**: Java, Kotlin (Mostly Android Application Development, iOS AppDev not yet explored).
-  - **Cybersecurity Tools**: Nikto, Metasploit, Burp Suite, Kali Linux and Other Wide Range Of Cyber-Security Field.
-  - **Databases**: SQL, MongoDB.
-  - **Programming Languages**: Python, C++, C#, JavaScript, Java, Kotlin.
-  - **Tools**: Docker, Git, Visual Studio, WPF, Visual Studio Blend.
-  - **Other Tools**: Azure DevOps, GitHub.
+- 💻 *Technologies I've learning, learned and working with:*
+  - *Web Technologies*: HTML, CSS, JavaScript (Node.js), React, Electron.
+  - *Mobile Technologies*: Java, Kotlin
+    - (Mostly Android Application Development, iOS AppDev not yet explored).
+  - *Cybersecurity Tools*:
+    - Nikto, Metasploit, Burp Suite, Kali Linux and Other Wide Range Of Cyber-Security Field.
+  - *Databases*:
+    - SQL, MongoDB.
+  - *Programming Languages*:
+    - Python, C++, C#, JavaScript, Java, Kotlin.
+  - *Tools*:
+    - Docker, Git, Visual Studio, WPF, Visual Studio Blend.
+  - *Other Tools*:
+    - Azure DevOps, GitHub.
 
-- 🌱 **Currently Learning**:
+- 🌱 *Currently Learning*:
   - Basic Penetration Testing, Networking, Other Fields Of Cybersecurity
   - AI & Machine Learning for Cybersecurity
   - Cloud Security & Architecture (Azure, AWS)
@@ -54,8 +60,8 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 
 ## 💬 How to Connect with Me
 
-- ✉️ **Email**: [Outlook](mailto:pardhusrirushivarmakonduru@outlook.com)
-- 🔗 **LinkedIn**: [LinkedIn](https://www.linkedin.com/in/pardhu-sri-rushi-varma-konduru-696886279?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BU7hCfrBpSQuIdU3w8wD4nw%3D%3D)
+- ✉️ *Email*: [Outlook](mailto:pardhusrirushivarmakonduru@outlook.com)
+- 🔗 *LinkedIn*: [LinkedIn](https://www.linkedin.com/in/pardhu-sri-rushi-varma-konduru-696886279?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BU7hCfrBpSQuIdU3w8wD4nw%3D%3D)
 
 Feel free to explore my repositories, check out my projects, or get in touch if you want to collaborate, chat about cybersecurity, or discuss new opportunities!
 
