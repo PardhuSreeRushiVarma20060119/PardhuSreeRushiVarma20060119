@@ -10,6 +10,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 
 - 💻 **Technologies I'm working on, learning & learned:**
   - **Web Technologies**: HTML, CSS, JavaScript (Node.js), React, Electron.
+  - **Mobile Technologies**: Java, Kotlin (Mostly Android Application Development, iOS AppDev not yet explored).
   - **Cybersecurity Tools**: Nikto, Metasploit, Burp Suite, Kali Linux and Other Wide Range Of Cyber-Security Field.
   - **Databases**: SQL, MongoDB.
   - **Programming Languages**: Python, C++, C#, JavaScript, Java, Kotlin.
@@ -33,7 +34,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 
 ### *QUIZZ-BUZZ Android App* (1st Year, 2st Semester)
 - **Purpose**: QUIZZ-BUZZ is an interactive mobile application designed to engage users with quizzes on various topics. Users can challenge their knowledge and learn new things in a fun and engaging way.
-- **Tech Stack**: Android Development, Java/Kotlin (for native Android app development), XML (for UI Design).
+- **Tech Stack**: Android Development, Java/Kotlin (for native Android app development), XML (for UI Design), MongoDB (Database).
 - **Target Audience**: Quiz enthusiasts, Learners and educators.
 - **GitHub Repo**: [QUIZZ-BUZZ Android App](https://github.com/PardhuSreeRushiVarma20060119/QUIZZ-BUZZ-Android-App-)
 
@@ -45,8 +46,8 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 
 ### *The Nexus Project* (2st Year, 2st Semester)
 - **Purpose**: A comprehensive vulnerability analysis platform for websites and networks, featuring 2D attack simulations, security insights, and AI-driven recommendations.
-- **Tech Stack**: **WPF**, **Electron**, **Three.js**, **Node.js**, **SQL**, **Metasploit**, **Nikto**, **Git**, **Azure DevOps**
-- **Target Audience**: Web Developers, Security Analysts, Cybersecurity Students, Small Businesses
+- **Tech Stack**: C#, WPF, Electron, Three.js, Node.js, SQL, Metasploit, Nikto, Git, Azure DevOps.
+- **Target Audience**: Web Developers, Security Analysts, Cybersecurity Students, Small Businesses.
 - **GitHub Repo**: [The Nexus Project GitHub](https://github.com/PardhuSreeRushiVarma20060119/TheNexusProject)
 
 
