@@ -1,12 +1,9 @@
 # 👋 Hi, I'm PardhuVarma!
 
-Welcome to my GitHub profile! I'm a passionate Learning Developer and Cybersecurity Enthusiast with a deep focus on web security and vulnerability analysis. I'm currently working on **The Nexus Project** - an AI-driven vulnerability analysis tool aimed at securing web applications, networks etc.
-
+Welcome to my GitHub profile! I'm a passionate Learning Developer and Cybersecurity Enthusiast with a deep focus on web security and vulnerability analysis.
 ## 🚀 About Me
 
 I’m currently a **2ndYear Computer Science Student**, specializing in **Cybersecurity**. I'm continuously learning and applying my knowledge to real-world challenges, especially in penetration testing, ethical hacking, and application development. Im Still Learning a Lot New Things, Technologies, Im just a student so far with intrest in wide range of things. 
-
-*The Nexus Project* is one of my key projects, where I integrate various tools like *Nikto*, *Metasploit*, and *Three.js (2D)*, along with backend technologies like *Node.js*, to build a robust security scanning platform. The goal is to provide web developers and security analysts with a visual, interactive, and AI-driven vulnerability analysis & simulated exploitation.
 
 - 💻 *Technologies I've learning, learned and working with:*
   - *Web Technologies*: HTML, CSS, JavaScript (Node.js), React, Electron.
@@ -50,11 +47,6 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 - **Target Audience**: Cybersecurity professionals, researchers, and students interested in malware analysis.
 - **GitHub Repo**: [Void-Malware-Sandbox GitHub](https://github.com/PardhuSreeRushiVarma20060119/Void-Malware-Sandbox)
 
-### *The Nexus Project* (2st Year, 2st Semester)
-- **Purpose**: A comprehensive vulnerability analysis platform for websites and networks, featuring 2D attack simulations, security insights, and AI-driven recommendations.
-- **Tech Stack**: C#, WPF, Electron, Three.js, Node.js, SQL, Metasploit, Nikto, Git, Azure DevOps.
-- **Target Audience**: Web Developers, Security Analysts, Cybersecurity Students, Small Businesses.
-- **GitHub Repo**: [The Nexus Project GitHub](https://github.com/PardhuSreeRushiVarma20060119/TheNexusProject)
 
 
 
