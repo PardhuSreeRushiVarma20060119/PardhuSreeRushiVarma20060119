@@ -6,7 +6,7 @@ Welcome to my GitHub profile! I'm a passionate Learning Developer and Cybersecur
 I’m currently a **2ndYear Computer Science Student**, specializing in **Cybersecurity**. I'm continuously learning and applying my knowledge to real-world challenges, especially in penetration testing, ethical hacking, and application development. Im Still Learning a Lot New Things, Technologies, Im just a student so far with intrest in wide range of things. 
 
 - 💻 *Technologies I've learning, learned and working with:*
-  - *Web Technologies*: HTML, CSS, JavaScript (Node.js), React, Electron.
+  - *Web Technologies*: HTML, CSS, A Little Knowledge in JavaScript (Node.js)
   - *Mobile Technologies*: Java, Kotlin
     - (Mostly Android Application Development, iOS AppDev not yet explored).
   - *Cybersecurity Tools*:
@@ -14,11 +14,11 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
   - *Databases*:
     - SQL, MongoDB.
   - *Programming Languages*:
-    - Python, C++, C#, JavaScript, Java, Kotlin.
+    - Python, Learning C++, JavaScript, Java, Kotlin.
   - *Tools*:
-    - Docker, Git, Visual Studio, WPF, Visual Studio Blend.
+    - Docker, Git, Visual Studio Code, Android Studio.
   - *Other Tools*:
-    - Azure DevOps, GitHub.
+    - GitHub.
 
 - 🌱 *Currently Learning*:
   - Basic Penetration Testing, Networking, Other Fields Of Cybersecurity
