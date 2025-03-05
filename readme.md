@@ -21,11 +21,13 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
     - GitHub.
 
 - 🌱 *Currently Learning*:
-  - Basic Penetration Testing, Networking, Other Fields Of Cybersecurity
-  - AI & Machine Learning for Cybersecurity
-  - Cloud Security & Architecture (Azure, AWS)
-  - Mobile App Security
-  - Ui/Ux Designing (Hobby)
+  - Penetration Testing
+  - Network Security
+  - Red Teaming
+  - Privilege Escalation
+  - Splunk SIEM
+  - Palo Alto Networks Certified Cybersecurity Practitioner
+  - Palo Alto Networks Certified Next-Generation Firewall Engineer 
 
 ## 🌍 Projects
 
