@@ -1,6 +1,6 @@
 # 👋 Hi, I'm PardhuVarma!
 
-Welcome to my GitHub profile! I'm a passionate Learning Developer and Cybersecurity Enthusiast with a deep focus on web security and vulnerability analysis.
+Welcome to my GitHub profile! I'm a passionate Learning Developer and Cybersecurity Enthusiast with a deep focus on web security, red teaming and vulnerability analysis.
 ## 🚀 About Me
 
 I’m currently a **2ndYear Computer Science Student**, specializing in **Cybersecurity**. I'm continuously learning and applying my knowledge to real-world challenges, especially in penetration testing, ethical hacking, and application development. Im Still Learning a Lot New Things, Technologies, Im just a student so far with intrest in wide range of things. 
@@ -50,6 +50,9 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 - **GitHub Repo**: [Void-Malware-Sandbox GitHub](https://github.com/PardhuSreeRushiVarma20060119/Void-Malware-Sandbox)
 
 ### *Nexus Security Command Centre* (2nd Year, 2nd Semester)
+- Purpose: A comprehensive web-based platform for enhancing cybersecurity management and threat detection.
+- Tech Stack: Next.js 14.1.0, TypeScript, PostgreSQL, Prisma ORM, VirusTotal API, Tremor, Recharts.
+- Target Audience: Cybersecurity professionals, researchers, organizations, and students seeking advanced vulnerability management and threat analysis.
 - **Github Repo** : [Nexus-Security-Command-Centre](https://github.com/PardhuSreeRushiVarma20060119/NexusSecurityCommandCentre)
 
 
