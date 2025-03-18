@@ -12,11 +12,11 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
   - *Cybersecurity Tools*:
     - Nikto, Metasploit, Burp Suite, Kali Linux and Other Wide Range Of Cyber-Security Field.
   - *Databases*:
-    - SQL, MongoDB.
+    - SQL, MongoDB, Prisma ORM.
   - *Programming Languages*:
     - Python, Bash, Learning C++, JavaScript, Java, Kotlin.
   - *Tools*:
-    - Docker, Git, Visual Studio Code, Android Studio.
+    - Docker, Git, Visual Studio Code, Android Studio, Cursor Editor.
   - *Other Tools*:
     - GitHub.
 
@@ -43,11 +43,14 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 - **Target Audience**: Quiz enthusiasts, Learners and educators.
 - **GitHub Repo**: [QUIZZ-BUZZ Android App](https://github.com/PardhuSreeRushiVarma20060119/QUIZZ-BUZZ-Android-App-)
 
-### *Void-Malware-Sandbox* (2st Year, 1st Semester)
+### *Void-Malware-Sandbox* (2nd Year, 1st Semester)
 - **Purpose**: A sandbox environment designed for analyzing and studying malware behavior.
 - **Tech Stack**: Android Development, Java/Kotlin.
 - **Target Audience**: Cybersecurity professionals, researchers, and students interested in malware analysis.
 - **GitHub Repo**: [Void-Malware-Sandbox GitHub](https://github.com/PardhuSreeRushiVarma20060119/Void-Malware-Sandbox)
+
+### *Nexus Security Command Centre* (2nd Year, 2nd Semester)
+- 
 
 
 
