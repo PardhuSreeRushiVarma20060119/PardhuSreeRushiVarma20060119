@@ -50,7 +50,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 - **GitHub Repo**: [Void-Malware-Sandbox GitHub](https://github.com/PardhuSreeRushiVarma20060119/Void-Malware-Sandbox)
 
 ### *Nexus Security Command Centre* (2nd Year, 2nd Semester)
-- **Github Repo** : [Nexus-Security-Command-Centre](
+- **Github Repo** : [Nexus-Security-Command-Centre](https://github.com/PardhuSreeRushiVarma20060119/NexusSecurityCommandCentre)
 
 
 
