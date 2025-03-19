@@ -53,7 +53,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 - Purpose: A comprehensive web-based platform for enhancing cybersecurity management and threat detection.
 - Tech Stack: Next.js 14.1.0, TypeScript, PostgreSQL, Prisma ORM, VirusTotal API, Tremor, Recharts.
 - Target Audience: Cybersecurity professionals, researchers, organizations, and students seeking advanced vulnerability management and threat analysis.
-- **Github Repo** : [Nexus-Security-Command-Centre](https://github.com/PardhuSreeRushiVarma20060119/NexusSecurityCommandCentre)
+- **Github Repo** : [The-Nexus-Security](https://github.com/PardhuSreeRushiVarma20060119/The-Nexus-Security)
 
 
 
