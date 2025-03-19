@@ -70,5 +70,5 @@ This profile and the projects under it are open source and licensed under the **
 
 ---
 
-Thanks for visiting my profile! I’m always open to learning new things, and expanding my network. Let's make the web safer, together! 🔒
+Thanks for visiting my profile! I’m always open to learning new things, and expanding my network. Let's make the world safer & secure digitally, together! 🔒
 
