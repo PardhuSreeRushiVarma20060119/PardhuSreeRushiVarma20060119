@@ -16,9 +16,9 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
   - *Programming Languages*:
     - Python, Bash, Learning C++, JavaScript, Java, Kotlin.
   - *Tools*:
-    - Docker, Git, Visual Studio Code, Android Studio, Cursor Editor.
+    - Docker, Git, Visual Studio Code, Microsoft Visual Studio, Android Studio, Jetbrains Editor, Eclipse. 
   - *Other Tools*:
-    - GitHub.
+    - Git&GitHub
 
 - 🌱 *Currently Learning*:
   - Penetration Testing
