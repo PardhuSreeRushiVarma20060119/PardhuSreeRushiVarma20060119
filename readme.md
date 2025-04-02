@@ -14,7 +14,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
   - *Databases*:
     - SQL, MongoDB, Prisma ORM.
   - *Programming Languages*:
-    - Python, Bash, Learning C++, JavaScript, Java, Kotlin.
+    - Python, Bash, Learning C++, JavaScript, Java, Kotlin, GoLang
   - *Tools*:
     - Docker, Git, Visual Studio Code, Microsoft Visual Studio, Android Studio, Jetbrains Editor, Eclipse. 
   - *Other Tools*:
