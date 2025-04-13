@@ -26,8 +26,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
   - Red Teaming
   - Privilege Escalation
   - Splunk SIEM
-  - Palo Alto Networks Certified Cybersecurity Practitioner
-  - Palo Alto Networks Certified Next-Generation Firewall Engineer 
+  - Palo Alto Networks Certified Cybersecurity Practitioner 
 
 ## 🌍 Projects
 
