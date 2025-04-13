@@ -21,6 +21,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
     - Git&GitHub
 
 - 🌱 *Currently Learning*:
+  - Offensive GoLang
   - Penetration Testing
   - Network Security
   - Red Teaming
