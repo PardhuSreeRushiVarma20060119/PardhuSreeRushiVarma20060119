@@ -3,7 +3,7 @@
 Welcome to my GitHub profile! I'm a passionate Learning Developer and Cybersecurity Enthusiast with a deep focus on web security, red teaming and vulnerability analysis.
 ## 🚀 About Me
 
-I’m currently a **2ndYear Computer Science Student**, specializing in **Cybersecurity**. I'm continuously learning and applying my knowledge to real-world challenges, especially in penetration testing, ethical hacking, and application development. Im Still Learning a Lot New Things, Technologies, Im just a student so far with intrest in wide range of things. 
+I’m currently a **2ndYear Computer Science Student**, specializing in **Cybersecurity**. I'm continuously learning and applying my knowledge to real-world challenges, especially in penetration testing, ethical hacking, red-teaming and application development. Im Still Learning a Lot New Things, Technologies, Im just a student so far with intrest in wide range of things. 
 
 - 💻 *Technologies I've learning, learned and working with:*
   - *Web Technologies*: HTML, CSS, A Little Knowledge in JavaScript (Node.js), working with typescript & next.js
