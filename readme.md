@@ -55,7 +55,11 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 - Target Audience: Cybersecurity professionals, researchers, organizations, and students seeking advanced vulnerability management and threat analysis.
 - **Github Repo** : [The-Nexus-Security](https://github.com/PardhuSreeRushiVarma20060119/The-Nexus-Security)
 
-
+### *PhishTrap - Coordinating & Engineering a Realistic Phishing Simulation Event* (Add-On, Event-Project)
+- Purpose: An Immersive Phishing Simulation Challenge where participants took on the role of adversaries to ethically breach human-layer defenses through advanced phishing tactics and social engineering techniques.
+- Tech Stack: Kali Linux CLI, Python, Flask, Ngrok.
+- Target Audience: for students having fun with learning and doing, phishing challenge.
+- **Github Repo** : [The-PhishTrap](https://github.com/PardhuSreeRushiVarma20060119/PhishTrap.git)
 
 ## 💬 How to Connect with Me
 
