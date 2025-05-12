@@ -21,12 +21,9 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
     - Git&GitHub
 
 - 🌱 *Currently Learning*:
-  - Offensive GoLang
-  - Penetration Testing
-  - Network Security
-  - Red Teaming
-  - Privilege Escalation
-  - Splunk SIEM
+  - Multi Cloud Red Team Analyst (MCRTA) Certification
+  - Red Teaming 
+  - Cloud Security 
   - Palo Alto Networks Certified Cybersecurity Practitioner 
 
 ## 🌍 Projects
