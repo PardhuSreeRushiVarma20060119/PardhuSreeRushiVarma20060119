@@ -7,7 +7,7 @@ Welcome to my GitHub profile! I'm a passionate Learning Developer and Cybersecur
 ## 🚀 About Me
 
 <p align="center">
-  <em>I’m currently a **2ndYear Computer Science Student**, specializing in **Cybersecurity**. I'm continuously learning and applying my knowledge to real-world challenges, especially in penetration testing, ethical hacking, red-teaming and application development. Im Still Learning a Lot New Things, Technologies, Im just a student so far with intrest in wide range of things. </em>
+  <em>I’m currently a 2ndYear Computer Science Student, specializing in Cybersecurity. I'm continuously learning and applying my knowledge to real-world challenges, especially in penetration testing, ethical hacking, red-teaming and application development. Im Still Learning a Lot New Things, Technologies, Im just a student so far with intrest in wide range of things. </em>
 </p>
 
 <details>
