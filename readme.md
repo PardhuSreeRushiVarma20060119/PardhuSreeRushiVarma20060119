@@ -2,7 +2,7 @@
 ![Visitors](https://komarev.com/ghpvc/?username=PardhuSreeRushiVarma20060119&color=blue)
 
 <p align="center">
-  <em>Welcome to my GitHub profile! I'm a passionate Cybersecurity Enthusiast with a deep focus on cloud security, red teaming and vulnerability analysis.</em>
+  <em>Welcome to my GitHub profile! I'm a passionate Cybersecurity Enthusiast with a deep focus on Cloud Offensive Security, Red Teaming, and VAPT</em>
 </p>
 
 ## 🚀 About Me
