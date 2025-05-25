@@ -120,9 +120,9 @@ Welcome to my GitHub profile! I’m a passionate **Learning Developer** and **Cy
 ## 📊 My GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=PardhuSreeRushiVarma20060119&show_icons=true&theme=radical&count_private=true" alt="GitHub Stats" />
+  <img src="https://github-readme-stats.vercel.app/api?username=PardhuSreeRushiVarma20060119&show_icons=true&theme=radical&count_private=true&bg_color=00000000" alt="GitHub Stats" />
   &nbsp;
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=PardhuSreeRushiVarma20060119&layout=compact&theme=radical" alt="Top Langs" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=PardhuSreeRushiVarma20060119&layout=compact&theme=radical&bg_color=00000000" alt="Top Langs" />
 </p>
 
 ---
