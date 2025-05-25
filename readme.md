@@ -1,4 +1,4 @@
-# 👋 Hi, I'm PardhuVarma! 
+# 👋 Heyyy Homies, I'm PardhuVarma! 
 ![Visitors](https://komarev.com/ghpvc/?username=PardhuSreeRushiVarma20060119&color=blue)
 
 <p align="center">
