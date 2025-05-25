@@ -122,11 +122,15 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
     <img src="https://github.com/user-attachments/assets/e67da3dc-1774-44c7-8b9c-f80cf7253efc" alt="Orcid" height="40" />
   </a>
    <a href="https://tryhackme.com/p/ZenRage">
-    <img src="https://github.com/user-attachments/assets/9e17f43e-b749-4c2e-8f58-9709b179fc94" alt="Orcid" height="40" />
+    <img src="https://github.com/user-attachments/assets/9e17f43e-b749-4c2e-8f58-9709b179fc94" alt="TryHackMe" height="40" />
+  </a>
+   <a href="https://gitlab.com/PardhuSreeRushiVarma20060119">
+    <img src="https://github.com/user-attachments/assets/a9dd1fa3-64c5-41f5-9751-324a1e9f4dba" alt="Gitlab" height="40" />
   </a>
 </p>
     
 ---
+
 
 
 Feel free to explore my repositories, check out my projects, or get in touch if you want to collaborate, chat about cybersecurity, or discuss new opportunities!
