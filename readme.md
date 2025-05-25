@@ -120,7 +120,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
   <a href="https://gitlab.com/PardhuSreeRushiVarma20060119">
     <img src="https://github.com/user-attachments/assets/428a9efb-c7c6-4d44-ba19-3ccad0c59840" alt="Gitlab" height="40" />
   </a>
-   <a href="https://tryhackme.com/p/ZenRage">
+  <a href="https://tryhackme.com/p/ZenRage">
     <img src="https://github.com/user-attachments/assets/9e17f43e-b749-4c2e-8f58-9709b179fc94" alt="TryHackMe" height="40" />
   </a>
   <a>
