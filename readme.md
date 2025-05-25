@@ -118,7 +118,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
     <img src="https://github.com/user-attachments/assets/5746417b-8751-436a-810b-02da02b7e2e1" alt="Instagram" />
   </a>
   <a href="https://gitlab.com/PardhuSreeRushiVarma20060119">
-    <img src="https://github.com/user-attachments/assets/428a9efb-c7c6-4d44-ba19-3ccad0c59840" alt="Gitlab" height="60" />
+    <img src="https://github.com/user-attachments/assets/428a9efb-c7c6-4d44-ba19-3ccad0c59840" alt="Gitlab" height="30" />
   </a>
   <a href="https://tryhackme.com/p/ZenRage">
     <img src="https://github.com/user-attachments/assets/9e17f43e-b749-4c2e-8f58-9709b179fc94" alt="TryHackMe" />
