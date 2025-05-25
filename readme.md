@@ -137,3 +137,7 @@ This profile and the projects under it are open source and licensed under the **
   <em>Thanks for stopping by! Let’s make the digital world safer together 🔒✨</em>
 </p>
 
+---
+
+### 🎧 Now Playing on Spotify
+![Spotify](https://novatorem.pardhusreerushivarma20060119.vercel.app/api/spotify)
