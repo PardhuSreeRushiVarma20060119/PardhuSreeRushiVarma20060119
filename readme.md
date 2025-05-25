@@ -141,5 +141,4 @@ This profile and the projects under it are open source and licensed under the **
 </p>
 
 ---
-![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=merko)
 
