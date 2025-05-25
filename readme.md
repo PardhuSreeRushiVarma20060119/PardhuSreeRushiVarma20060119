@@ -1,5 +1,6 @@
 # 👋 Hi, I'm PardhuVarma! 
-![Visitors](https://komarev.com/ghpvc/?username=PardhuSreeRushiVarma20060119&color=brightgreen)
+![Visitors](https://komarev.com/ghpvc/?username=PardhuSreeRushiVarma20060119&label=👁️%20Profile%20Views&color=ff69b4&label_color=000000&style=flat-square)
+
 
 Welcome to my GitHub profile! I'm a passionate Learning Developer and Cybersecurity Enthusiast with a deep focus on cloud security, red teaming and vulnerability analysis.
 ## 🚀 About Me
