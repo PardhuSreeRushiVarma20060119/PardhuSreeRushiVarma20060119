@@ -48,12 +48,13 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 
 ## 🌍 Projects
 
-
+<details>
 <summary> ### *Food Finder Website* (1st Year, 1st Semester) </summary>
 - **Purpose**: The Food Finder Website helps users discover food options based on location, cuisine, and other preferences. It is designed to make finding food easier and faster.
 - **Tech Stack**: HTML, CSS, JavaScript
 - **Target Audience**: Foodies, People looking for nearby restaurants, Users interested in food delivery options
 - **GitHub Repo**: [Food-Finder Website](https://github.com/PardhuSreeRushiVarma20060119/Food-Finder-Website)
+</details>
 
 ### *QUIZZ-BUZZ Android App* (1st Year, 2st Semester)
 - **Purpose**: QUIZZ-BUZZ is an interactive mobile application designed to engage users with quizzes on various topics. Users can challenge their knowledge and learn new things in a fun and engaging way.
