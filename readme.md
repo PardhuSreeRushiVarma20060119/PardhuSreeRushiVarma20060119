@@ -17,7 +17,6 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
   ![Java](https://img.shields.io/badge/-Java-007396?logo=java&style=flat-square)
   ![Kotlin](https://img.shields.io/badge/-Kotlin-0095D5?logo=kotlin&style=flat-square)
   ![Go](https://img.shields.io/badge/-Go-00ADD8?logo=go&style=flat-square)
-  ![C++](https://img.shields.io/badge/-C++-00599C?logo=c%2B%2B&style=flat-square)
 
 - **Web & Mobile**  
   ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?logo=html5&style=flat-square)
