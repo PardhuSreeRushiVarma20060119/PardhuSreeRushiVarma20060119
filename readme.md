@@ -1,6 +1,5 @@
 # 👋 Hi, I'm PardhuVarma! 
 ![Visitors](https://komarev.com/ghpvc/?username=PardhuSreeRushiVarma20060119&color=blue)
-![GitHub Streak](https://streak-stats.demolab.com/?user=YourUsername&theme=dark&hide_border=true)
 
 
 
