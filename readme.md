@@ -121,8 +121,11 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
   <a href="https://orcid.org/0009-0005-3251-9944">
     <img src="https://github.com/user-attachments/assets/e67da3dc-1774-44c7-8b9c-f80cf7253efc" alt="Orcid" height="40" />
   </a>
+   <a href="https://tryhackme.com/p/ZenRage">
+    <img src="https://github.com/user-attachments/assets/9e17f43e-b749-4c2e-8f58-9709b179fc94" alt="Orcid" height="40" />
+  </a>
 </p>
-
+    
 ---
 
 
