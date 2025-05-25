@@ -111,12 +111,9 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
   </a>
   &nbsp;
   <a href="https://github.com/PardhuSreeRushiVarma20060119">
-    <img src="https://github.com/user-attachments/assets/86482c72-9e27-4e4d-8800-63226c13667e" alt="GitHub Follow" height="40" />
+    <img src="https://github.com/user-attachments/assets/0a5526f5-7959-41cc-a9a1-31524bbc88bc" alt="GitHub Follow" height="40" />
   </a>
 </p>
-
-)
-
 
 ---
 
