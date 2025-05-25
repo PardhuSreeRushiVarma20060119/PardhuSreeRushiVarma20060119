@@ -116,11 +116,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
   <a>
   <a href="https://www.instagram.com/pardhu.varma_x/">
     <img src="https://github.com/user-attachments/assets/5746417b-8751-436a-810b-02da02b7e2e1" alt="Instagram" />
-  </a>  
-  <a>
-  <a href="https://tryhackme.com/p/ZenRage">
-    <img src="https://github.com/user-attachments/assets/e15eecfe-cb22-4b42-9e18-941681d5e3d7" alt="TryHackMe" height="100" />
-  </a>
+  </a> 
   <a>
   <a href="https://orcid.org/0009-0005-3251-9944">
     <img src="https://github.com/user-attachments/assets/e67da3dc-1774-44c7-8b9c-f80cf7253efc" alt="Orcid" />
