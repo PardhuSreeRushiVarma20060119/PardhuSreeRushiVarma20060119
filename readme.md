@@ -1,7 +1,8 @@
 <!-- Banner -->
 <p align="center">
-  <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Welcome GIF" width="100%" />
+  <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Welcome GIF" width="600" height="150" />
 </p>
+
 
 # 👋 Hi, I’m PardhuVarma!
 
