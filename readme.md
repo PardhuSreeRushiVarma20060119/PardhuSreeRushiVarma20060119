@@ -5,20 +5,40 @@ Welcome to my GitHub profile! I'm a passionate Learning Developer and Cybersecur
 
 I’m currently a **2ndYear Computer Science Student**, specializing in **Cybersecurity**. I'm continuously learning and applying my knowledge to real-world challenges, especially in penetration testing, ethical hacking, red-teaming and application development. Im Still Learning a Lot New Things, Technologies, Im just a student so far with intrest in wide range of things. 
 
-- 💻 *Technologies I've learning, learned and working with:*
-  - *Web Technologies*: HTML, CSS, A Little Knowledge in JavaScript (Node.js), working with typescript & next.js
-  - *Mobile Technologies*: Java, Kotlin
-    - (Mostly Android Application Development, iOS AppDev not yet explored).
-  - *Cybersecurity Tools*:
-    - Nikto, Metasploit, Burp Suite, Kali Linux and Other Wide Range Of Cyber-Security Field.
-  - *Databases*:
-    - SQL, MongoDB, Prisma ORM.
-  - *Programming Languages*:
-    - Python, Bash, Learning C++, JavaScript, Java, Kotlin, GoLang
-  - *Tools*:
-    - Docker, Virtualization Software, Git, Visual Studio Code, Microsoft Visual Studio, Android Studio.
-  - *Other Tools*:
-    - Git&GitHub
+<details>
+<summary>💻 Tech Stack & Tools</summary>
+
+- **Languages & Frameworks**  
+  ![Python](https://img.shields.io/badge/-Python-3670A0?logo=python&style=flat-square)
+  ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&style=flat-square)
+  ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&style=flat-square)
+  ![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&style=flat-square)
+  ![Next.js](https://img.shields.io/badge/-Next.js-000000?logo=next.js&style=flat-square)
+  ![Java](https://img.shields.io/badge/-Java-007396?logo=java&style=flat-square)
+  ![Kotlin](https://img.shields.io/badge/-Kotlin-0095D5?logo=kotlin&style=flat-square)
+  ![Go](https://img.shields.io/badge/-Go-00ADD8?logo=go&style=flat-square)
+  ![C++](https://img.shields.io/badge/-C++-00599C?logo=c%2B%2B&style=flat-square)
+
+- **Web & Mobile**  
+  ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?logo=html5&style=flat-square)
+  ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?logo=css3&style=flat-square)
+  ![Android](https://img.shields.io/badge/-Android-3DDC84?logo=android&style=flat-square)
+
+- **Databases & ORMs**  
+  ![MongoDB](https://img.shields.io/badge/-MongoDB-47A248?logo=mongodb&style=flat-square)
+  ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-316192?logo=postgresql&style=flat-square)
+  ![Prisma](https://img.shields.io/badge/-Prisma-2D3748?logo=prisma&style=flat-square)
+
+- **Dev & Sec Tools**  
+  ![Docker](https://img.shields.io/badge/-Docker-2496ED?logo=docker&style=flat-square)
+  ![Kubernetes](https://img.shields.io/badge/-Kubernetes-326CE5?logo=kubernetes&style=flat-square)
+  ![Git](https://img.shields.io/badge/-Git-F05032?logo=git&style=flat-square)
+  ![VS Code](https://img.shields.io/badge/-VS%20Code-007ACC?logo=visual-studio-code&style=flat-square)
+  ![Android Studio](https://img.shields.io/badge/-Android%20Studio-3DDC84?logo=android-studio&style=flat-square)
+  ![Burp Suite](https://img.shields.io/badge/-Burp%20Suite-FF5C00?logo=portswigger&style=flat-square)
+  ![Metasploit](https://img.shields.io/badge/-Metasploit-6A2C70?logo=metasploit&style=flat-square)
+  ![Kali Linux](https://img.shields.io/badge/-Kali%20Linux-557C94?logo=kali-linux&style=flat-square)
+</details>
 
 - 🌱 *Currently Learning*:
   - Multi Cloud Red Team Analyst (MCRTA) Certification
@@ -28,7 +48,8 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 
 ## 🌍 Projects
 
-### *Food Finder Website* (1st Year, 1st Semester)
+
+<summary> ### *Food Finder Website* (1st Year, 1st Semester) </summary>
 - **Purpose**: The Food Finder Website helps users discover food options based on location, cuisine, and other preferences. It is designed to make finding food easier and faster.
 - **Tech Stack**: HTML, CSS, JavaScript
 - **Target Audience**: Foodies, People looking for nearby restaurants, Users interested in food delivery options
