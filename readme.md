@@ -1,5 +1,5 @@
 # 👋 Hi, I'm PardhuVarma! 
-![Visitors](https://shields.io/endpoint?url=https://visitor-badge.laobi.icu/badge?page_id=PardhuSreeRushiVarma20060119)
+![Profile Views](https://komarev.com/ghpvc/?username=PardhuSreeRushiVarma20060119&color=brightgreen)
 
 Welcome to my GitHub profile! I'm a passionate Learning Developer and Cybersecurity Enthusiast with a deep focus on cloud security, red teaming and vulnerability analysis.
 ## 🚀 About Me
