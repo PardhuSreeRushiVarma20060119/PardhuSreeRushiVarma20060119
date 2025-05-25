@@ -50,7 +50,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 
 <details>
   <summary><strong>🍽️ Food Finder Website (1st Year, 1st Semester)</strong></summary>
-
+---
   - **📌 Purpose**: The Food Finder Website helps users discover food options based on location, cuisine, and other preferences. It is designed to make finding food easier and faster.
   - **🛠️ Tech Stack**: HTML, CSS, JavaScript
   - **🎯 Target Audience**: Foodies, people looking for nearby restaurants, users interested in food delivery options
@@ -61,7 +61,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 
 <details>
   <summary><strong>📱 QUIZZ-BUZZ Android App (1st Year, 2nd Semester)</strong></summary>
-
+---
   - **📌 Purpose**: QUIZZ-BUZZ is an interactive mobile application designed to engage users with quizzes on various topics. Users can challenge their knowledge and learn new things in a fun and engaging way.
   - **🛠️ Tech Stack**: Android Development, Java/Kotlin (for native Android app development), XML (for UI Design), MongoDB (Database)
   - **🎯 Target Audience**: Quiz enthusiasts, Learners, and educators
@@ -71,7 +71,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 
 <details>
   <summary><strong>🧪 Void-Malware-Sandbox (2nd Year, 1st Semester)</strong></summary>
-
+---
   - **📌 Purpose**: A sandbox environment designed for analyzing and studying malware behavior.
   - **🛠️ Tech Stack**: Android Development, Java/Kotlin
   - **🎯 Target Audience**: Cybersecurity professionals, researchers, and students interested in malware analysis
@@ -81,7 +81,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 
 <details>
   <summary><strong>🛡️ Nexus Security Command Centre (2nd Year, 2nd Semester)</strong></summary>
-
+---
   - **📌 Purpose**: A comprehensive web-based platform for enhancing cybersecurity management and threat detection.
   - **🛠️ Tech Stack**: Next.js 14.1.0, TypeScript, PostgreSQL, Prisma ORM, VirusTotal API, Tremor, Recharts
   - **🎯 Target Audience**: Cybersecurity professionals, researchers, organizations, and students seeking advanced vulnerability management and threat analysis
