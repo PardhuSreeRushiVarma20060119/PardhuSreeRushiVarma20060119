@@ -59,10 +59,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 - **Github Repo** : [The-PhishTrap](https://github.com/PardhuSreeRushiVarma20060119/PhishTrap.git)
 
 ## 💬 How to Connect with Me
-
-- ✉️ *Email*: [Gmail](mailto:pardhusreerushivarma@gmail.com) *(Active, Not-Frequent)*
-- 🔗 *LinkedIn*: [![LinkedIn](https://github.com/user-attachments/assets/58a0a278-1591-4da0-9494-9f50a78493df)](https://www.linkedin.com/in/pardhu-sri-rushi-varma-konduru-696886279) *(Mostly Active)*
-
+[![Gmail](https://github.com/user-attachments/assets/82986961-5723-4a41-bc12-b7a7263a48a1)](mailto:pardhusreerushivarma@gmail.com) [![LinkedIn](https://github.com/user-attachments/assets/58a0a278-1591-4da0-9494-9f50a78493df)](https://www.linkedin.com/in/pardhu-sri-rushi-varma-konduru-696886279)
 
 
 Feel free to explore my repositories, check out my projects, or get in touch if you want to collaborate, chat about cybersecurity, or discuss new opportunities!
