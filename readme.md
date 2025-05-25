@@ -117,6 +117,10 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
   <a href="https://www.instagram.com/pardhu.varma_x/">
     <img src="https://github.com/user-attachments/assets/5746417b-8751-436a-810b-02da02b7e2e1" alt="Instagram" height="40" />
   </a>
+  <a>
+  <a href="https://orcid.org/0009-0005-3251-9944">
+    <img src="" alt="Orcid" height="40" />
+  </a>
 </p>
 
 ---
