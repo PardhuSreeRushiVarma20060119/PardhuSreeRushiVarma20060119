@@ -119,7 +119,7 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
   </a>
   <a>
   <a href="https://orcid.org/0009-0005-3251-9944">
-    <img src="" alt="Orcid" height="40" />
+    <img src="https://github.com/user-attachments/assets/e67da3dc-1774-44c7-8b9c-f80cf7253efc" alt="Orcid" height="40" />
   </a>
 </p>
 
