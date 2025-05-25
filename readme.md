@@ -61,7 +61,9 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
 ## 💬 How to Connect with Me
 
 - ✉️ *Email*: [Gmail](mailto:pardhusreerushivarma@gmail.com) *(Active, Not-Frequent)*
-- 🔗 *LinkedIn*: [![LinkedIn](https://media.giphy.com/media/kH1DBkPNyZPOk0BxrM/giphy.gif)](https://www.linkedin.com/in/pardhu-sri-rushi-varma-konduru-696886279) *(Mostly Active)*
+- 🔗 *LinkedIn*: [![LinkedIn](https://github.com/user-attachments/assets/58a0a278-1591-4da0-9494-9f50a78493df)](https://www.linkedin.com/in/pardhu-sri-rushi-varma-konduru-696886279) *(Mostly Active)*
+
+
 
 Feel free to explore my repositories, check out my projects, or get in touch if you want to collaborate, chat about cybersecurity, or discuss new opportunities!
 
