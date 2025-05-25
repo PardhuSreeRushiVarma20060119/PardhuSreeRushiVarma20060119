@@ -117,15 +117,15 @@ I’m currently a **2ndYear Computer Science Student**, specializing in **Cybers
   <a href="https://www.instagram.com/pardhu.varma_x/">
     <img src="https://github.com/user-attachments/assets/5746417b-8751-436a-810b-02da02b7e2e1" alt="Instagram" height="40" />
   </a>
-  <a>
-  <a href="https://orcid.org/0009-0005-3251-9944">
-    <img src="https://github.com/user-attachments/assets/e67da3dc-1774-44c7-8b9c-f80cf7253efc" alt="Orcid" height="40" />
+  <a href="https://gitlab.com/PardhuSreeRushiVarma20060119">
+    <img src="https://github.com/user-attachments/assets/428a9efb-c7c6-4d44-ba19-3ccad0c59840" alt="Gitlab" height="40" />
   </a>
    <a href="https://tryhackme.com/p/ZenRage">
     <img src="https://github.com/user-attachments/assets/9e17f43e-b749-4c2e-8f58-9709b179fc94" alt="TryHackMe" height="40" />
   </a>
-   <a href="https://gitlab.com/PardhuSreeRushiVarma20060119">
-    <img src="https://github.com/user-attachments/assets/428a9efb-c7c6-4d44-ba19-3ccad0c59840" alt="Gitlab" height="40" />
+  <a>
+  <a href="https://orcid.org/0009-0005-3251-9944">
+    <img src="https://github.com/user-attachments/assets/e67da3dc-1774-44c7-8b9c-f80cf7253efc" alt="Orcid" height="40" />
   </a>
 </p>
     
