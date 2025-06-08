@@ -52,7 +52,7 @@
   - Cloud Security 
   - Palo Alto Netwks Certified Cybersecurity Practitioner 
 
-## 🌍 Projects
+## 🌍 Project Repo's
 
 <details>
   <summary><strong>🍽️ Food Finder Website (1st Year, 1st Semester)</strong></summary>
@@ -101,6 +101,110 @@
   - **🛠️ Tech Stack**: Kali Linux CLI, Python, Flask, Ngrok
   - **🎯 Target Audience**: Students having fun with learning and doing phishing challenges
   - **🔗 GitHub Repo**: [The-PhishTrap](https://github.com/PardhuSreeRushiVarma20060119/PhishTrap.git)
+
+</details>
+
+## Blog Repo's
+<details>
+  <summary><strong>Life Around CyberSecurity</strong></summary>
+
+  - **📌 Purpose**: A living repository documenting my journey through Cybersecurity.
+  - **🛠️ Tech Stack**: 
+    
+> A breakdown of technologies I actively use across my cybersecurity journey — from offense to cloud, RE, and infrastructure.
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">🧩 Category</th>
+      <th align="left">🔧 Tools & Technologies (with icons)</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <tr>
+      <td><strong>💻 Languages</strong></td>
+      <td>
+        <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" title="Scripting & Automation"/>
+        <img src="https://img.shields.io/badge/Bash-4EAA25?style=flat&logo=gnu-bash&logoColor=white" title="Shell scripting"/>
+        <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" title="Web-based scripting"/>
+        <img src="https://img.shields.io/badge/PowerShell-5391FE?style=flat&logo=powershell&logoColor=white" title="Windows automation & payloads"/>
+        <img src="https://img.shields.io/badge/C-00599C?style=flat&logo=c&logoColor=white" title="Low-level programming & RE"/>
+      </td>
+    </tr>
+
+  <tr>
+      <td><strong>☁️ Cloud</strong></td>
+      <td>
+        <img src="https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazon-aws&logoColor=white" title="IAM, CloudTrail, EC2 Attacks"/>
+        <img src="https://img.shields.io/badge/Azure-0078D4?style=flat&logo=microsoft-azure&logoColor=white" title="Defender, Sentinel, PrivEsc"/>
+        <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat&logo=kubernetes&logoColor=white" title="Container orchestration & attacks"/>
+      </td>
+    </tr>
+
+  <tr>
+      <td><strong>🛡️ Offensive Security</strong></td>
+      <td>
+        <img src="https://img.shields.io/badge/Metasploit-000000?style=flat&logo=data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCA0ODAgNDgwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxwYXRoIGQ9Ik0yMzkgMzdMMTYzIDY2djMyTDEyMCA5OGwzMyA2NXYzOGw2OCAzOWgxNzJsNjYtMzd2LTQzbDI4LTQ4LTUxLTNWMzdsLTk4LTIwLTYwIDIweiIvPgogIDxwYXRoIGQ9Ik0yMzIgMjY5bC02MiA0M2wtMyA3M2g1NmwxNi02M3oiLz4KICA8cGF0aCBkPSJNMTgyIDIxOGg3NnY1MGgtNzZ6Ii8+Cjwvc3ZnPg==&label=Metasploit" title="Exploit Framework"/>
+        <img src="https://img.shields.io/badge/Cobalt_Strike-333?style=flat&logo=cobaltstrike&logoColor=blue" title="Red Team C2"/>
+        <img src="https://img.shields.io/badge/Nmap-0088cc?style=flat&logo=gnupg&logoColor=white" title="Network mapping & recon"/>
+        <img src="https://img.shields.io/badge/BloodHound-red?style=flat&logo=bloodhound&logoColor=white" title="Active Directory Enumeration"/>
+      </td>
+    </tr>
+
+  <tr>
+      <td><strong>🧬 Reverse Engineering</strong></td>
+      <td>
+        <img src="https://img.shields.io/badge/Ghidra-E60000?style=flat&logo=ghidra&logoColor=white" title="Static Analysis, Decompiler"/>
+        <img src="https://img.shields.io/badge/IDA--Free-000000?style=flat&logo=hexo&logoColor=white" title="Disassembler"/>
+        <img src="https://img.shields.io/badge/x64dbg-black?style=flat&logo=windows&logoColor=white" title="Dynamic Debugging"/>
+        <img src="https://img.shields.io/badge/Radare2-cc0000?style=flat&logo=redhat&logoColor=white" title="Binary analysis at hex-level"/>
+      </td>
+    </tr>
+
+  <tr>
+      <td><strong>📦 Containerization</strong></td>
+      <td>
+        <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white" title="Container runtime"/>
+        <img src="https://img.shields.io/badge/Podman-892CA0?style=flat&logo=podman&logoColor=white" title="Docker alternative"/>
+        <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat&logo=kubernetes&logoColor=white" title="Cluster management"/>
+      </td>
+    </tr>
+
+  <tr>
+      <td><strong>📈 Monitoring & Logging</strong></td>
+      <td>
+        <img src="https://img.shields.io/badge/Wazuh-0054A6?style=flat&logo=wazuh&logoColor=white" title="SIEM & endpoint monitoring"/>
+        <img src="https://img.shields.io/badge/Sysmon-000000?style=flat&logo=windows&logoColor=white" title="Windows Event Monitoring"/>
+        <img src="https://img.shields.io/badge/ELK_Stack-005571?style=flat&logo=elasticstack&logoColor=white" title="Log collection & visualization"/>
+      </td>
+    </tr>
+
+  <tr>
+      <td><strong>🧪 Custom Stack</strong></td>
+      <td>
+        <img src="https://img.shields.io/badge/Fastify-20232A?style=flat&logo=node.js&logoColor=white" title="Minimal & Fast Backend (Node.js)"/>
+        <img src="https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB" title="Frontend UI"/>
+        <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=flat&logo=mongodb&logoColor=white" title="NoSQL Database"/>
+      </td>
+    </tr>
+
+  <tr>
+  <td><strong>🖥️ Operating Systems</strong></td>
+  <td>
+    <img src="https://img.shields.io/badge/Kali_Linux-557C94?style=flat&logo=kalilinux&logoColor=white" title="Kali Linux (Debian-based)"/>
+    <img src="https://img.shields.io/badge/Parrot_OS-1F1F1F?style=flat&logo=linux&logoColor=white" title="Parrot OS (Debian-based)"/>
+    <img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat&logo=ubuntu&logoColor=white" title="Ubuntu (Debian-based)"/>
+    <img src="https://img.shields.io/badge/Rocky_Linux-10B981?style=flat&logo=rockylinux&logoColor=white" title="Rocky Linux (Fedora/RHEL-based)"/>
+    <img src="https://img.shields.io/badge/REMnux-4B286D?style=flat&logo=ubuntu&logoColor=white" title="REMnux (Ubuntu-based)"/>
+    <img src="https://img.shields.io/badge/-FlareVM-0078D4?style=flat&logo=windows&logoColor=white" title="FlareVM (Windows-based)"/>
+  </td>
+</tr>
+  </tbody>
+</table>
+
+  - **🎯 Target Audience**: Cybersecurity Students, Professionals etc.
+  - **🔗 GitHub Repo**: [Life Around Cyber Security](https://github.com/PardhuSreeRushiVarma20060119/LifeAroundCybersecurity-Repo/tree/main)
 
 </details>
 
