@@ -208,6 +208,15 @@
 
 </details>
 
+<details>
+  <summary><strong>💀 MA-and-RE-Madness</strong></summary>
+
+  - **📌 Purpose**: Malware Analysis & Reverse Engineering Repository
+  - **🛠️ Tech Stack**: -
+  - **🎯 Target Audience**: Cybersucurity Students, Malware Analysts, RE Experts and etc.
+  - **🔗 GitHub Repo**: [MA-and-RE-Madness](https://github.com/PardhuSreeRushiVarma20060119/MA-and-RE-Madness)
+
+</details>
 
 ## 💬 How to Connect with Me
 <!-- Social / Contact -->
