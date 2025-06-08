@@ -117,7 +117,7 @@
   <thead>
     <tr>
       <th align="left">🧩 Category</th>
-      <th align="left">🔧 Tools & Technologies (with icons)</th>
+      <th align="left">🔧 Tools & Technologies</th>
     </tr>
   </thead>
   <tbody>
