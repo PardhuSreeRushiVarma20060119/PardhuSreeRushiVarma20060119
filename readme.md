@@ -221,10 +221,10 @@
 <details>
   <summary><strong> ☁️ Cloud-Computing With Cybersecurity </strong></summary>
 
-  - **📌 Purpose**: Malware Analysis & Reverse Engineering Repository
+  - **📌 Purpose**: Cloud Security & Computing
   - **🛠️ Tech Stack**: -
   - **🎯 Target Audience**: Cybersucurity Students, Cloud Analyst, Cloud Offensive Security & RE Experts and etc.
-  - **🔗 GitHub Repo**: [MA-and-RE-Madness](https://github.com/PardhuSreeRushiVarma20060119/MA-and-RE-Madness)
+  - **🔗 GitHub Repo**: [Cloud Computiing With Cybersecurity](https://github.com/PardhuSreeRushiVarma20060119/Cloud-Computing-With-Cybersecurity)
 
 </details>
 
