@@ -106,7 +106,7 @@
 
 ## Blog Repo's
 <details>
-  <summary><strong>Life Around CyberSecurity</strong></summary>
+  <summary><strong>💻 Life Around CyberSecurity</strong></summary>
 
   - **📌 Purpose**: A living repository documenting my journey through Cybersecurity.
   - **🛠️ Tech Stack**: 
