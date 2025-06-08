@@ -223,7 +223,7 @@
 
   - **📌 Purpose**: Cloud Security & Computing
   - **🛠️ Tech Stack**: -
-  - **🎯 Target Audience**: Cybersucurity Students, Cloud Analyst, Cloud Offensive Security & RE Experts and etc.
+  - **🎯 Target Audience**: Cybersucurity Students, Cloud Analyst, Cloud Offensive Security etc.
   - **🔗 GitHub Repo**: [Cloud Computiing With Cybersecurity](https://github.com/PardhuSreeRushiVarma20060119/Cloud-Computing-With-Cybersecurity)
 
 </details>
