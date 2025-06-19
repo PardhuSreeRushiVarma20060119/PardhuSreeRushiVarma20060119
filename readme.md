@@ -47,9 +47,9 @@
 <a target="_blank" href="https://github.com/user-attachments/assets/a5952035-c500-4e7e-9ae7-cdffaccdb5c0" style="display: inline-block;"><img src="https://github.com/user-attachments/assets/a5952035-c500-4e7e-9ae7-cdffaccdb5c0" alt="linux" width="42" height="42" /></a></p>
 
 - 🌱 *Currently Learning*:
-  - Multi Cloud Red Team Analyst (MCRTA) Certification
-  - Red Teaming 
+  - Red Teaming
   - Cloud Security 
+  - Multi Cloud Red Team Analyst (MCRTA) Certification
   - Palo Alto Netwks Certified Cybersecurity Practitioner 
 
 ## 🌍 Project Repo's
