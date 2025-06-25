@@ -47,19 +47,16 @@
 <a target="_blank" href="https://github.com/user-attachments/assets/a5952035-c500-4e7e-9ae7-cdffaccdb5c0" style="display: inline-block;"><img src="https://github.com/user-attachments/assets/a5952035-c500-4e7e-9ae7-cdffaccdb5c0" alt="linux" width="42" height="42" /></a>
 <!-- Ollama -->
 <a target="_blank" href="https://ollama.com">
-  <img src="https://raw.githubusercontent.com/tinygrad/tinygrad/main/docs/img/ollama.png" alt="Ollama" width="42" height="42" />
+  <img src="https://github.com/user-attachments/assets/c495b7e3-5365-41f1-b1ab-07092b335f7c" alt="Ollama" width="42" height="42" />
 </a>
-
 <!-- Open WebUI -->
 <a target="_blank" href="https://github.com/open-webui/open-webui">
-  <img src="https://avatars.githubusercontent.com/u/152817058?s=200&v=4" alt="Open WebUI" width="42" height="42" />
+  <img src="https://github.com/user-attachments/assets/96f8780d-0fc5-4a10-baf4-7a09e9c35bb1" alt="Open WebUI" width="42" height="42" />
 </a>
-
 <!-- HuggingFace/LLM -->
 <a target="_blank" href="https://huggingface.co">
   <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" width="42" height="42" />
 </a>
-
 <!-- LoRA / PEFT (Generic ML Icon) -->
 <a target="_blank" href="https://github.com/huggingface/peft">
   <img src="https://www.svgrepo.com/show/340628/machine-learning-model.svg" alt="LoRA" width="42" height="42" />
