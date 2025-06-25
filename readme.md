@@ -45,21 +45,24 @@
 <a target="_blank" href="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" style="display: inline-block;"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="42" height="42" /></a>
 <a target="_blank" href="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" style="display: inline-block;"><img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="42" height="42" /></a>
 <a target="_blank" href="https://github.com/user-attachments/assets/a5952035-c500-4e7e-9ae7-cdffaccdb5c0" style="display: inline-block;"><img src="https://github.com/user-attachments/assets/a5952035-c500-4e7e-9ae7-cdffaccdb5c0" alt="linux" width="42" height="42" /></a>
+<!-- Ollama -->
 <a target="_blank" href="https://ollama.com">
-  <img src="https://seeklogo.com/images/O/ollama-logo-055B4E1A08-seeklogo.com.svg" alt="Ollama" width="42" height="42" />
+  <img src="https://raw.githubusercontent.com/tinygrad/tinygrad/main/docs/img/ollama.png" alt="Ollama" width="42" height="42" />
 </a>
 
-<a target="_blank" href="https://openwebui.com">
-  <img src="https://lobehub.com/icon-src/openwebui.svg" alt="Open WebUI" width="42" height="42" />
+<!-- Open WebUI -->
+<a target="_blank" href="https://github.com/open-webui/open-webui">
+  <img src="https://avatars.githubusercontent.com/u/152817058?s=200&v=4" alt="Open WebUI" width="42" height="42" />
 </a>
 
-<a target="_blank" href="https://github.com/huggingface/transformers">
-  <img src="https://icons8.com/icons/preview/llm.svg" alt="LLM" width="42" height="42" />
+<!-- HuggingFace/LLM -->
+<a target="_blank" href="https://huggingface.co">
+  <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" width="42" height="42" />
 </a>
 
-<!-- Unfortunately, there's no official “LoRA” icon—using generic ML icon -->
+<!-- LoRA / PEFT (Generic ML Icon) -->
 <a target="_blank" href="https://github.com/huggingface/peft">
-  <img src="https://www.svgrepo.com/show/340628/machine-learning-model.svg" alt="LoRA / PEFT" width="42" height="42" />
+  <img src="https://www.svgrepo.com/show/340628/machine-learning-model.svg" alt="LoRA" width="42" height="42" />
 </a>
 </p>
 
