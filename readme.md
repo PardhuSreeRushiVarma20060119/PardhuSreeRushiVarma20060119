@@ -64,6 +64,7 @@
 </p>
 
 - 🌱 *Currently Learning*:
+  - LLMs and LoRA
   - Red Teaming
   - Cloud Security 
   - Multi Cloud Red Team Analyst (MCRTA) Certification
