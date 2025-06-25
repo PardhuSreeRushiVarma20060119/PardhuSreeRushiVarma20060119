@@ -44,7 +44,24 @@
 <a target="_blank" href="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" style="display: inline-block;"><img src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="nextjs" width="42" height="42" /></a>
 <a target="_blank" href="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" style="display: inline-block;"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="42" height="42" /></a>
 <a target="_blank" href="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" style="display: inline-block;"><img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="42" height="42" /></a>
-<a target="_blank" href="https://github.com/user-attachments/assets/a5952035-c500-4e7e-9ae7-cdffaccdb5c0" style="display: inline-block;"><img src="https://github.com/user-attachments/assets/a5952035-c500-4e7e-9ae7-cdffaccdb5c0" alt="linux" width="42" height="42" /></a></p>
+<a target="_blank" href="https://github.com/user-attachments/assets/a5952035-c500-4e7e-9ae7-cdffaccdb5c0" style="display: inline-block;"><img src="https://github.com/user-attachments/assets/a5952035-c500-4e7e-9ae7-cdffaccdb5c0" alt="linux" width="42" height="42" /></a>
+<a target="_blank" href="https://ollama.com">
+  <img src="https://seeklogo.com/images/O/ollama-logo-055B4E1A08-seeklogo.com.svg" alt="Ollama" width="42" height="42" />
+</a>
+
+<a target="_blank" href="https://openwebui.com">
+  <img src="https://lobehub.com/icon-src/openwebui.svg" alt="Open WebUI" width="42" height="42" />
+</a>
+
+<a target="_blank" href="https://github.com/huggingface/transformers">
+  <img src="https://icons8.com/icons/preview/llm.svg" alt="LLM" width="42" height="42" />
+</a>
+
+<!-- Unfortunately, there's no official “LoRA” icon—using generic ML icon -->
+<a target="_blank" href="https://github.com/huggingface/peft">
+  <img src="https://www.svgrepo.com/show/340628/machine-learning-model.svg" alt="LoRA / PEFT" width="42" height="42" />
+</a>
+</p>
 
 - 🌱 *Currently Learning*:
   - Red Teaming
