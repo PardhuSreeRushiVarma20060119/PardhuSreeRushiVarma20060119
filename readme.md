@@ -119,13 +119,109 @@
   - **📌 Purpose**: An Immersive Phishing Simulation Challenge where participants took on the role of adversaries to ethically breach human-layer defenses through advanced phishing tactics and social engineering techniques.
   - **🛠️ Tech Stack**: Kali Linux CLI, Python, Flask, Ngrok
   - **🎯 Target Audience**: Students having fun with learning and doing phishing challenges
-  - **🔗 GitHub Repo**: [The-PhishTrap](https://github.com/PardhuSreeRushiVarma20060119/PhishTrap.git)
+  - **🔗 GitHub Repo**: [The-PhishTrap](https://github.com/PardhuSreeRushiVarma20060119/PhishTrap)
+
+</details>
+
+<details>
+  <summary><strong> 🧪 Exile SafeWork – Red Team Framework Emulator </strong></summary>
+
+  - **📌 Purpose**: A completely safe, educational red team framework emulator to understand the structure and flow of staged compromises — from droppers to post-exploitation — with no real exploits or payloads.
+  - **🛠️ Tech Stack**: Python 3.8+, CLI-based modules, Linux (no external dependencies)
+  - **🎯 Target Audience**: Red Team learners, cybersecurity students, CTF designers, emulation framework developers
+  - **🔗 GitHub Repo**: [Exile SafeWork](https://github.com/PardhuSreeRushiVarma20060119/Exile)
+
+</details>
+
+<details>
+  <summary><strong> 🌫 MirageC2 – Ethical Command & Control (C2) Framework </strong></summary>
+
+  - **📌 Purpose**: To build a modular, cloud-native C2 backend for ethical red teaming, adversary simulation, and botnet behavior research — fully legal and lab-safe.
+  - **🛠️ Tech Stack**: Fastify (Node.js), MongoDB, Docker, Kubernetes, Tor, AES, REST API
+  - **🎯 Target Audience**: Red teamers, adversary simulation architects, cybersecurity researchers
+
+  ⚠️ **Disclaimer**:  
+  This tool is under **active development** and is intended **only for legal, ethical, and educational purposes**.  
+  Do **not** deploy on unauthorized systems. Misuse may be illegal and unethical.
+
+  - **🔐 Features So Far**:
+    - AES-encrypted bot communication over Tor/HTTP
+    - Real-time bot health monitoring (CPU, RAM, Last Seen)
+    - RogueRiskController (RRc): anomaly & rogue detection
+    - IP auto-blacklisting
+    - Command result logging + bot tagging
+    - Blacklist management API
+
+  - **🔗 GitHub Repo**: [MirageC2 Backend](https://github.com/PardhuSreeRushiVarma20060119/MirageC2.git)
+
+</details>
+
+<details>
+  <summary><strong> 🛡️ PhishVault – Secure URL Threat Intelligence Platform </strong></summary>
+
+  - **📌 Purpose**: PhishVault is a collaborative platform for investigating, storing, and analyzing potentially malicious URLs. Designed for researchers, analysts, and threat hunters to manage phishing intelligence with clarity and precision.
+  - **🛠️ Tech Stack**: React.js (frontend), Fastify (Node.js backend), MongoDB, Docker
+  - **🎯 Target Audience**: SOC teams, threat analysts, cybersecurity students, phishing detection trainers
+
+  ⚠️ **Disclaimer**:  
+  PhishVault is built strictly for **ethical cybersecurity research** and **educational threat analysis**.  
+  It must **not** be used for malicious purposes or on unauthorized networks.
+
+  - **🔐 Key Features**:
+    - Submit & analyze suspicious URLs
+    - Verdict tagging: Safe / Suspicious / Malicious
+    - Full scan history & CRUD operations
+    - REST API with Fastify
+    - Summary dashboard for threat insights
+
+  - **👥 Team**:
+    - 🎨 **[Tejaswini](https://github.com/Tejaswini4119)** – Frontend Dev & Project Lead  
+    - 🛠️ **[PardhuVarma](https://github.com/PardhuSreeRushiVarma20060119)** – Backend Dev, API Designer, Security Architect, Docker Deployment.
+
+  - **🔗 GitHub Repo**: [PhishVault](https://github.com/PardhuSreeRushiVarma20060119/PhishVault)
+
+</details>
+
+<details>
+  <summary><strong> 🚨 Undershell – Women’s Safety Redefined </strong></summary>
+
+  - **📌 Purpose**: Undershell is a proactive women’s safety platform combining real-time SOS, voice activation, signal-less communication, and hardware support to ensure no woman is left alone in danger — even offline.
+  - **🛠️ Tech Stack**: React Native, Node.js/Fastify, MongoDB, Firebase, SMS APIs, TensorFlow Lite, AES Encryption, Bluetooth/GSM hardware
+  - **🎯 Target Audience**: Women in vulnerable environments, emergency responders, law enforcement, NGOs
+
+  - **🔐 Key Features**:
+    - SOS alerts via button or voice trigger
+    - Signal-less fallback SMS alerts
+    - Live & last-known location sharing
+    - Stealth mode for discreet emergency triggering
+    - In-app training, therapy, and legal aid guidance
+    - Wristband hardware companion for emergencies
+    - Police integration: dashboard, route logs, and evidence auto-logging
+
+  - **👥 Core Team**:
+    - 👩‍💻 [K. Rupa Yeshvitha](https://github.com/Rupakaredla)
+    - 🧑‍💻 [K. Pardhu Sree Rushi Varma](https://github.com/PardhuSreeRushiVarma20060119)
+    - 👨‍🔧 E. Arun Goud
+    - 👨‍💼 K. Veera Babu
+
+  - **🔗 GitHub Repo**: *(Internal)*
+  - 📬 Contact: undershell24@gmail.com
+
+</details>
+
+<details>
+  <summary><strong> 🧠 OpenLoRA – Self-Adaptive LoRA Training Engine </strong></summary>
+
+  - **📌 Purpose**: OpenLoRA transforms local environments into intelligent fine-tuning engines for large language models (LLMs), with AI-guided feedback, persistent training memory, and modular CLI/UI interfaces.
+  - **🛠️ Tech Stack**: Python, HuggingFace, bitsandbytes, Streamlit/Gradio, Prometheus, Grafana
+  - **🎯 Target Audience**: AI researchers, developers, educators, creative writers, cybersecurity experts
+  - **🔗 GitHub Repo**: [OpenLoRA](https://github.com/PardhuSreeRushiVarma20060119/OpenLoRA)
 
 </details>
 
 ## Blog Repo's
 <details>
-  <summary><strong>💻 Life Around CyberSecurity</strong></summary>
+  <summary><strong>💻 Cybersecurity & Development </strong></summary>
 
   - **📌 Purpose**: A living repository documenting my journey through Cybersecurity.
   - **🛠️ Tech Stack**: 
