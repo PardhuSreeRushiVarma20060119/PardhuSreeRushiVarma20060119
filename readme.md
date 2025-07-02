@@ -68,7 +68,8 @@
   - Red Teaming
   - Cloud Security 
   - Multi Cloud Red Team Analyst (MCRTA) Certification
-  - Palo Alto Netwks Certified Cybersecurity Practitioner 
+  - Palo Alto Netwks Certified Cybersecurity Practitioner
+  - Powershell & Bash Scripting
 
 ## 🌍 Project Repo's
 
@@ -222,12 +223,12 @@
 </table>
 
   - **🎯 Target Audience**: Cybersecurity Students, Professionals etc.
-  - **🔗 GitHub Repo**: [Life Around Cyber Security](https://github.com/PardhuSreeRushiVarma20060119/LifeAroundCybersecurity-Repo/tree/main)
+  - **🔗 GitHub Repo**: [Cybersecurity & Development](https://github.com/PardhuSreeRushiVarma20060119/CybersecurityAndDevelopment/tree/main)
 
 </details>
 
 <details>
-  <summary><strong>💀 MA-and-RE-Madness</strong></summary>
+  <summary><strong>💀 MA & RE Madness </strong></summary>
 
   - **📌 Purpose**: Malware Analysis & Reverse Engineering Repository
   - **🛠️ Tech Stack**: -
@@ -245,6 +246,19 @@
   - **🔗 GitHub Repo**: [Cloud Computiing With Cybersecurity](https://github.com/PardhuSreeRushiVarma20060119/Cloud-Computing-With-Cybersecurity)
 
 </details>
+
+## Script Libraries
+
+<details>
+  <summary><strong> 🧰 PowerShell Scripts for Cybersecurity </strong></summary>
+
+  - **📌 Purpose**: A categorized collection of PowerShell scripts for Red Teaming, Blue Teaming, Recon, and System Auditing.
+  - **🛠️ Tech Stack**: PowerShell, Windows APIs, Registry, Event Logs, etc.
+  - **🎯 Target Audience**: Cybersecurity learners, Pentesters, SOC analysts, Red/Blue/Purple teams
+  - **🔗 GitHub Repo**: [PowerShell Scripts for Cybersecurity](https://github.com/PardhuSreeRushiVarma20060119/Powershell-Scripts-For-Cybersecurity)
+
+</details>
+
 
 
 ## 💬 How to Connect with Me
