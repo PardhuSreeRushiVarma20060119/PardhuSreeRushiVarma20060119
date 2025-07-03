@@ -68,7 +68,7 @@
   - Red Teaming
   - Cloud Security 
   - Multi Cloud Red Team Analyst (MCRTA) Certification
-  - Palo Alto Netwks Certified Cybersecurity Practitioner
+  - Palo Alto Networks Certified Cybersecurity Practitioner
   - Powershell & Bash Scripting
 
 ## 🌍 Project Repo's
