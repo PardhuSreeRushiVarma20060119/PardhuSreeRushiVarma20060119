@@ -356,7 +356,7 @@
 </details>
 
 <details>
-  <summary><strong> 🧰 Web3Lab </strong></summary>
+  <summary><strong> 🪙 Web3Lab </strong></summary>
 
   - **📌 Purpose**: A personal collection of smart contract practice scripts and CTF challenge solutions focused on Ethereum-based blockchain environments. Includes exercises from platforms like Capture The Ether, Ethernaut, and custom exploit scenarios built using Solidity, Remix, and Hardhat.
   - **🛠️ Tech Stack**: Solididty, Javascript, Typescript
