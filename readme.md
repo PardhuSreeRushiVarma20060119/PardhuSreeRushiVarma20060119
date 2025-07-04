@@ -178,7 +178,7 @@
     - 🎨 **[Tejaswini](https://github.com/Tejaswini4119)** – Frontend Dev & Project Lead  
     - 🛠️ **[PardhuVarma](https://github.com/PardhuSreeRushiVarma20060119)** – Backend Dev, API Designer, Security Architect, Docker Deployment.
 
-  - **🔗 GitHub Repo**: [PhishVault](https://github.com/PardhuSreeRushiVarma20060119/PhishVault)
+  - **🔗 GitHub Repo**: [PhishVault](https://github.com/Tejaswini4119/PhishVault)
 
 </details>
 
