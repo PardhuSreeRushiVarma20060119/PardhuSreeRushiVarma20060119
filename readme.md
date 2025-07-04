@@ -183,6 +183,16 @@
 </details>
 
 <details>
+  <summary><strong> 🏗️ Loadiscator – Red Team Payload Generation & Obfuscation Tool </strong></summary>
+
+  - **📌 Purpose**: **Loadiscator** is a modular, extensible framework for generating, obfuscating, and delivering payloads for red team operations, adversary simulation, and AV/EDR evasion research. It supports multiple languages, advanced obfuscation, encryption, fileless execution, and C2 integrations. The framework is designed for CLI usage, with a focus on research, education, and authorized security testing.
+  - **🛠️ Tech Stack**: Python 3.11+, CLI-based modules - Typer & Rich, cryptography & pycryptodome, Jinja2, openai, requests. 
+  - **🎯 Target Audience**: Red Teamers, learners, cybersecurity students, CTF players, pentesters, and bug-bounty hunters. 
+  - **🔗 GitHub Repo**: [Loadiscator](https://github.com/PardhuSreeRushiVarma20060119/loadiscator)
+
+</details>
+
+<details>
   <summary><strong> 🚨 Undershell – Women’s Safety Redefined </strong></summary>
 
   - **📌 Purpose**: Undershell is a proactive women’s safety platform combining real-time SOS, voice activation, signal-less communication, and hardware support to ensure no woman is left alone in danger — even offline.
