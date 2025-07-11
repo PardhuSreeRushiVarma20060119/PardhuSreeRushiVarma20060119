@@ -375,6 +375,19 @@
 
 </details>
 
+## Learning Repo's
+
+<details>
+  <summary><strong>💀 Exploit Engineering with x86-64 Assembly </strong></summary>
+
+  - **📌 Purpose**: Welcome to the definitive record of my journey into x86-64 Assembly Language, System-Level Programming, Reverse Engineering, and Exploit Development.
+  - **🛠️ Tech Stack**: - C, Assembly, NASM, GCC etc.
+  - **🎯 Target Audience**: Hardcore Cybersucurity Students, Exploit Developers, RE Experts and etc.
+  - **🔗 GitHub Repo**: [MA-and-RE-Madness](https://github.com/PardhuSreeRushiVarma20060119/ExploitEngineering-With-x86-64-Assembly)
+
+</details>
+
+
 ## 💬 How to Connect with Me
 <!-- Social / Contact -->
 <p align="center">
