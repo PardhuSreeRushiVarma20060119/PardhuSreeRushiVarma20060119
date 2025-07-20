@@ -221,7 +221,7 @@
   <summary><strong>💀 Exploit Engineering with x86-64 Assembly </strong></summary>
 
   - **📌 Purpose**: Welcome to the definitive record of my journey into x86-64 Assembly Language, System-Level Programming, Reverse Engineering, and Exploit Development.
-  - **🔗 GitHub Repo**: [MA-and-RE-Madness](https://github.com/PardhuSreeRushiVarma20060119/ExploitEngineering-With-x86-64-Assembly)
+  - **🔗 GitHub Repo**: [Exploit Engineering with x86-64 Assembly](https://github.com/PardhuSreeRushiVarma20060119/ExploitEngineering-With-x86-64-Assembly)
 
 </details>
 
