@@ -73,7 +73,7 @@
 ## 🌍 Project Repo's
 
 <details>
-  <summary><strong>🍽️ Food Finder Website (1st Year, 1st Semester)</strong></summary>
+  <summary><strong>🍽️ Food Finder Website (1st Year, 1st Semester) (ARCHIVED) </strong></summary>
 
   - **📌 Purpose**: The Food Finder Website helps users discover food options based on location, cuisine, and other preferences. It is designed to make finding food easier and faster.
   - **🔗 GitHub Repo**: [Food-Finder Website](https://github.com/PardhuSreeRushiVarma20060119/Food-Finder-Website)
@@ -81,7 +81,7 @@
 </details>
 
 <details>
-  <summary><strong>📱 QUIZZ-BUZZ Android App (1st Year, 2nd Semester)</strong></summary>
+  <summary><strong>📱 QUIZZ-BUZZ Android App (1st Year, 2nd Semester) (ARCHIVED) </strong></summary>
 
   - **📌 Purpose**: QUIZZ-BUZZ is an interactive mobile application designed to engage users with quizzes on various topics. Users can challenge their knowledge and learn new things in a fun and engaging way.
   - **🔗 GitHub Repo**: [QUIZZ-BUZZ Android App](https://github.com/PardhuSreeRushiVarma20060119/QUIZZ-BUZZ-Android-App-)
