@@ -89,7 +89,7 @@
 </details>
 
 <details>
-  <summary><strong>🧪 Void-Malware-Sandbox (2nd Year, 1st Semester)</strong></summary>
+  <summary><strong>🧪 Void-Malware-Sandbox (2nd Year, 1st Semester) (ARCHIVED) </strong></summary>
 
   - **📌 Purpose**: A sandbox environment designed for analyzing and studying malware behavior.
   - **🔗 GitHub Repo**: [Void-Malware-Sandbox GitHub](https://github.com/PardhuSreeRushiVarma20060119/Void-Malware-Sandbox)
