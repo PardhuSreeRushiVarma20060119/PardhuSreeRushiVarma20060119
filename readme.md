@@ -56,10 +56,6 @@
 <a target="_blank">
   <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" width="42" height="42" />
 </a>
-<!-- LoRA / PEFT (Generic ML Icon) -->
-<a target="_blank">
-  <img src="https://www.svgrepo.com/show/340628/machine-learning-model.svg" alt="LoRA" width="42" height="42" />
-</a>
 </p>
 
 - 🌱 *Currently Learning*:
