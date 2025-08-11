@@ -223,23 +223,45 @@
 
 ## 💬 How to Connect with Me
 <!-- Social / Contact -->
-<p align="center" style="margin: 20px 0;">
-  <a href="mailto:pardhusreerushivarma@gmail.com" target="_blank" style="margin: 0 10px; text-decoration: none;">
-    <img src="https://github.com/user-attachments/assets/82986961-5723-4a41-bc12-b7a7263a48a1" alt="Gmail" width="50" height="50" style="border-radius: 8px; border: 1px solid #ddd; padding: 6px; background-color: #fff;">
+<div align="center" style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+
+  <a href="mailto:pardhusreerushivarma@gmail.com" target="_blank" style="text-decoration: none;">
+    <div style="border: 1px solid #ddd; border-radius: 10px; padding: 15px; width: 100px; text-align: center; background: #fff;">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Gmail" width="40">
+      <p style="margin: 10px 0 0; font-size: 14px; color: #000;">Gmail</p>
+    </div>
   </a>
-  <a href="https://www.linkedin.com/in/pardhu-sri-rushi-varma-konduru-696886279" target="_blank" style="margin: 0 10px; text-decoration: none;">
-    <img src="https://github.com/user-attachments/assets/58a0a278-1591-4da0-9494-9f50a78493df" alt="LinkedIn" width="50" height="50" style="border-radius: 8px; border: 1px solid #ddd; padding: 6px; background-color: #fff;">
+
+  <a href="https://www.linkedin.com/in/pardhu-sri-rushi-varma-konduru-696886279" target="_blank" style="text-decoration: none;">
+    <div style="border: 1px solid #ddd; border-radius: 10px; padding: 15px; width: 100px; text-align: center; background: #fff;">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="40">
+      <p style="margin: 10px 0 0; font-size: 14px; color: #000;">LinkedIn</p>
+    </div>
   </a>
-  <a href="https://github.com/PardhuSreeRushiVarma20060119" target="_blank" style="margin: 0 10px; text-decoration: none;">
-    <img src="https://github.com/user-attachments/assets/0a5526f5-7959-41cc-a9a1-31524bbc88bc" alt="GitHub" width="50" height="50" style="border-radius: 8px; border: 1px solid #ddd; padding: 6px; background-color: #fff;">
+
+  <a href="https://github.com/PardhuSreeRushiVarma20060119" target="_blank" style="text-decoration: none;">
+    <div style="border: 1px solid #ddd; border-radius: 10px; padding: 15px; width: 100px; text-align: center; background: #fff;">
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" width="40">
+      <p style="margin: 10px 0 0; font-size: 14px; color: #000;">GitHub</p>
+    </div>
   </a>
-  <a href="https://www.instagram.com/pardhu.varma_x/" target="_blank" style="margin: 0 10px; text-decoration: none;">
-    <img src="https://github.com/user-attachments/assets/5746417b-8751-436a-810b-02da02b7e2e1" alt="Instagram" width="50" height="50" style="border-radius: 8px; border: 1px solid #ddd; padding: 6px; background-color: #fff;">
+
+  <a href="https://www.instagram.com/pardhu.varma_x/" target="_blank" style="text-decoration: none;">
+    <div style="border: 1px solid #ddd; border-radius: 10px; padding: 15px; width: 100px; text-align: center; background: #fff;">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="40">
+      <p style="margin: 10px 0 0; font-size: 14px; color: #000;">Instagram</p>
+    </div>
   </a>
-  <a href="https://orcid.org/0009-0005-3251-9944" target="_blank" style="margin: 0 10px; text-decoration: none;">
-    <img src="https://github.com/user-attachments/assets/e67da3dc-1774-44c7-8b9c-f80cf7253efc" alt="Orcid" width="50" height="50" style="border-radius: 8px; border: 1px solid #ddd; padding: 6px; background-color: #fff;">
+
+  <a href="https://orcid.org/0009-0005-3251-9944" target="_blank" style="text-decoration: none;">
+    <div style="border: 1px solid #ddd; border-radius: 10px; padding: 15px; width: 100px; text-align: center; background: #fff;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="Orcid" width="40">
+      <p style="margin: 10px 0 0; font-size: 14px; color: #000;">Orcid</p>
+    </div>
   </a>
-</p>
+
+</div>
+
 
 ---
 Feel free to explore my repositories, check out my projects, or get in touch if you want to collaborate, chat about cybersecurity, or discuss new opportunities!
