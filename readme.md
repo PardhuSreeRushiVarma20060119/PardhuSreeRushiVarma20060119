@@ -223,43 +223,22 @@
 
 ## 💬 How to Connect with Me
 <!-- Social / Contact -->
-<div align="center" style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
-
+<div style="display: flex; gap: 12px; align-items: center;">
   <a href="mailto:pardhusreerushivarma@gmail.com" target="_blank" style="text-decoration: none;">
-    <div style="border: 1px solid #ddd; border-radius: 10px; padding: 15px; width: 100px; text-align: center; background: #fff;">
-      <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Gmail" width="40">
-      <p style="margin: 10px 0 0; font-size: 14px; color: #000;">Gmail</p>
-    </div>
+    <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Gmail" width="40" style="border-radius: 8px; border: 1px solid #ddd; padding: 6px; background-color: #fff;">
   </a>
-
   <a href="https://www.linkedin.com/in/pardhu-sri-rushi-varma-konduru-696886279" target="_blank" style="text-decoration: none;">
-    <div style="border: 1px solid #ddd; border-radius: 10px; padding: 15px; width: 100px; text-align: center; background: #fff;">
-      <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="40">
-      <p style="margin: 10px 0 0; font-size: 14px; color: #000;">LinkedIn</p>
-    </div>
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="40" style="border-radius: 8px; border: 1px solid #ddd; padding: 6px; background-color: #fff;">
   </a>
-
   <a href="https://github.com/PardhuSreeRushiVarma20060119" target="_blank" style="text-decoration: none;">
-    <div style="border: 1px solid #ddd; border-radius: 10px; padding: 15px; width: 100px; text-align: center; background: #fff;">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" width="40">
-      <p style="margin: 10px 0 0; font-size: 14px; color: #000;">GitHub</p>
-    </div>
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" width="40" style="border-radius: 8px; border: 1px solid #ddd; padding: 6px; background-color: #fff;">
   </a>
-
   <a href="https://www.instagram.com/pardhu.varma_x/" target="_blank" style="text-decoration: none;">
-    <div style="border: 1px solid #ddd; border-radius: 10px; padding: 15px; width: 100px; text-align: center; background: #fff;">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="40">
-      <p style="margin: 10px 0 0; font-size: 14px; color: #000;">Instagram</p>
-    </div>
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="40" style="border-radius: 8px; border: 1px solid #ddd; padding: 6px; background-color: #fff;">
   </a>
-
   <a href="https://orcid.org/0009-0005-3251-9944" target="_blank" style="text-decoration: none;">
-    <div style="border: 1px solid #ddd; border-radius: 10px; padding: 15px; width: 100px; text-align: center; background: #fff;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="Orcid" width="40">
-      <p style="margin: 10px 0 0; font-size: 14px; color: #000;">Orcid</p>
-    </div>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/ORCID_iD.svg" alt="Orcid" width="40" style="border-radius: 8px; border: 1px solid #ddd; padding: 6px; background-color: #fff;">
   </a>
-
 </div>
 
 
