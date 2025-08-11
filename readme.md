@@ -252,7 +252,7 @@ This profile and the projects under it are open source and licensed under the **
 
 ## 💖 Sponsor Me
 
-I'm actively building open-source cybersecurity tools like MirageC2, PhishVault, and OpenLoRa.  
+I'm actively building open-source ai & security tools like MirageC2, PhishVault, OpenLoRa and much more.  
 If you find my work valuable, consider supporting it:
 
 [![Sponsor](https://img.shields.io/badge/Sponsor-PardhuVarma-blue?style=for-the-badge&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/PardhuSreeRushiVarma20060119)
