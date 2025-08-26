@@ -178,14 +178,6 @@
 </details>
 
 <details>
-  <summary><strong>💀 MA & RE Madness </strong></summary>
-
-  - **📌 Purpose**: Malware Analysis & Reverse Engineering Repository
- - **🔗 GitHub Repo**: [MA-and-RE-Madness](https://github.com/PardhuSreeRushiVarma20060119/MA-and-RE-Madness)
-
-</details>
-
-<details>
   <summary><strong> ☁️ Cloud-Computing With Cybersecurity </strong></summary>
 
   - **📌 Purpose**: Cloud Security & Computing
@@ -218,6 +210,14 @@
 
   - **📌 Purpose**: Welcome to the definitive record of my journey into x86-64 Assembly Language, System-Level Programming, Reverse Engineering, and Exploit Development.
   - **🔗 GitHub Repo**: [Exploit Engineering with x86-64 Assembly](https://github.com/PardhuSreeRushiVarma20060119/ExploitEngineering-With-x86-64-Assembly)
+
+</details>
+
+<details>
+  <summary><strong>💀 Malware Analysis & Reverse Engineering </strong></summary>
+
+  - **📌 Purpose**: Malware Analysis & Reverse Engineering Repository
+ - **🔗 GitHub Repo**: [MA-and-RE-Madness](https://github.com/PardhuSreeRushiVarma20060119/How-To-Survive-Malware-Analysis-And-Reverse-Engineering)
 
 </details>
 
