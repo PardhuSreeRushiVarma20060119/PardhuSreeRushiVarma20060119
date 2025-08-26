@@ -60,10 +60,11 @@
 
 - 🌱 *Currently Learning*:
   - LLMs and LoRA FineTuning
+  - Agentic AI
   - Red Teaming
   - Cloud Security 
-  - Multi Cloud Red Team Analyst (MCRTA) Certification
-  - Palo Alto Networks Certified Cybersecurity Practitioner
+  - Certified Red Team Analyst Certification
+  - Certified Red Team Infra Developer Certification
   - Powershell & Bash Scripting
 
 ## 🌍 Project Repo's
