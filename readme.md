@@ -1,6 +1,6 @@
 # *Hi, I'm PardhuVarma!* 
 <p>
-  <em>I’m currently a 3rdYear Computer Science Student, specializing in Cybersecurity. I'm continuously learning and applying my knowledge to real-world challenges, especially in penetration testing, red-teaming and application development. Im Still Learning a Lot New Things, Technologies, Im just a student so far with intrest in wide range of things. </em>
+  <em>“I’m a 3rd-year Computer Science student, diving deep into Cybersecurity and Adversarial AI. Right now, I’m especially into Rust and offensive security — but honestly, I just love exploring anything that helps me understand how systems can be broken or defended. I’m still learning a lot, experimenting, and building projects as I go. At this stage, I see myself more as a researcher and explorer than anything else, driven by curiosity and the goal of pushing myself towards advanced research in Cybersecurity and AI Security.” </em>
 </p>
 
 ## 🛠️ Tools and Frameworks
