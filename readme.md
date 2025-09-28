@@ -48,7 +48,7 @@ Right now, I’m knee-deep in Rust, offensive security, and experiments with art
 - Running hands-on research and infrastructure experiments while questioning every life choice and habit I’ve ever had
 - Grinding through CRTA and CRTID prep between chaos, coffee, and minor existential collapse
 - Maintaining my own hell of repos — messy, obsessive, occasionally brilliant, often abandoned for a day or two
-- Cross-collaborating with peers on too many projects at once & occasionally forgetting that humans are supposed to sleep, & breathe lol
+- Cross-collaborating with peers on too many projects at once & occasionally forgetting that humans are supposed to eat, sleep, & breathe lol
 - Creative madness powered by insomnia, curiosity, caffeine, and a borderline crisis that whispers “why bruhhhhh?” at 3AM
 
 ## 💬 How to Connect with Me
