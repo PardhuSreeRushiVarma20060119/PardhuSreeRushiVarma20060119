@@ -49,7 +49,7 @@ Right now, I’m knee-deep in Rust, offensive security, and experiments with art
 - Grinding through CRTA and CRTID prep between chaos, coffee, and minor existential collapse
 - Maintaining my own hell of repos — messy, obsessive, occasionally brilliant, often abandoned for a day or two
 - Cross-collaborating with peers on too many projects at once & occasionally forgetting that humans are supposed to eat, sleep, & breathe lol
-- Creative madness powered by insomnia, curiosity, caffeine, and a borderline crisis that whispers “why bruhhhhh?” at 3AM
+- Creative madness powered by insomnia with caffeine, and a crisis that whispers “why bruhhhhh?” at 3AM
 
 ## 💬 How to Connect with Me
 Wanna join me in caffeine-fueled chaos, AI experiments? or laugh at the existential horror of being alive?, drop a message. Peek at my repos, poke at projects, or just exist together — I might reply before I spiral again.
