@@ -31,8 +31,7 @@ systems engineering using **Rust**, **Golang**, and **Kubernetes**.
 - **Developing the REVA4 Runtime** — RL-LoRA behavioural runtime for modular, controllable AI behaviours  
 - **Engineering runtime safety systems in Rust** — kill-switches, isolation layers, fault boundaries  
 - **Creating distributed multi-agent runtimes in Go/K8s** — CRDs, gossip systems, orchestration logic  
-- **Designing adversarial stress-tests** for MARL agents and behavioural LoRA modules  
-- **Researching CPS vulnerability models** and cyber-physical anomaly detection  
+- **Designing adversarial stress-tests** for MARL agents and behavioural LoRA modules.
 - **Prototyping GNIM** — cyber-geospatial intelligence mapping and RF-aware situational awareness  
 - **Writing research** in AI Security, Swarm Intelligence, Runtime Safety, and CPS  
 
