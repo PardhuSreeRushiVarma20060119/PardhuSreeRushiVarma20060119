@@ -1,6 +1,6 @@
 # Hi, I'm PardhuVarma!
 
-I’m a 3rd-year Cybersecurity student working at the intersection of **AI Security**,**Autonomous Systems**, and **Distributed Safety Engineering**.
+I’m a 3rd-year Cybersecurity student working at the intersection of **AI Security**, **Autonomous Systems**, and **Distributed Safety Engineering**.
 
 My research focuses on how **agentic and multi-agent AI systems behave under **adversarial pressure**, how secure **runtime architectures** can be designed for them, and how to engineer **resilient, explainable, and trustworthy autonomous intelligence**.
 
