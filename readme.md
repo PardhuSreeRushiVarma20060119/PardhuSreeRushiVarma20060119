@@ -1,46 +1,54 @@
 # Hi, I'm PardhuVarma!
 
-I’m a 3rd-year Cybersecurity student with a growing research focus on **Adversarial Machine Learning**, **Cyber-Physical Systems (CPS) Security**, and **Robust ML**. My work centers on understanding how intelligent systems fail under adversarial stress, how attackers exploit vulnerabilities in AI-driven environments, and how resilient, trustworthy learning systems can be engineered.
+I’m a 3rd-year Cybersecurity student working at the intersection of **AI Security**,  
+**Autonomous Systems**, and **Distributed Safety Engineering**.
 
-I’m broadly interested in the scientific foundations of **AI Security**, the dynamics of attacker–defender interactions, and the behavior of ML systems in safety-critical or uncertainty-heavy environments. Much of my exploration combines theory, systems engineering, and practical offensive security to uncover failure modes that traditional ML evaluation pipelines often overlook.
+My research focuses on how **agentic and multi-agent AI systems behave under adversarial
+pressure**, how secure **runtime architectures** can be designed for them, and how to
+engineer **resilient, explainable, and trustworthy autonomous intelligence**.
+
+I work across adversarial ML, multi-agent systems, and runtime safety—combining theory with
+systems engineering using **Rust**, **Golang**, and **Kubernetes**.
+  
 
 ---
 
 ## 🔬 Research Interests
-- **Adversarial Machine Learning:** attacks, defenses, robustness analysis, model reliability  
-- **CPS & IoT Security:** secure perception, anomaly detection, physical-world adversarial behavior  
-- **Trustworthy ML:** robustness, uncertainty modeling, distributional shifts, evaluation frameworks  
-- **Autonomous & Multi-Agent Systems:** coordination, resilience, adversarial MARL  
-- **AI-Driven Defense Mechanisms:** autonomous agents, swarms, proactive cyber defense  
-- **Systems Security Research:** red-teaming of intelligent systems, secure infrastructure, Rust/Golang tooling
 
-I care deeply about the interplay between **artificial intelligence**, **physical systems**, and **security guarantees**, particularly in high-stakes environments involving autonomy, sensing, and adversarial pressure.
-
----
-
-## 🧪 What I’m Working On Now
-- Designing and evaluating **adversarial ML experiments** targeting perception models and sequential decision-making systems  
-- Exploring **MARL-based agent behavior** under adversarial manipulation and environmental uncertainty  
-- Prototyping secure tools in **Rust** and **Golang** for research workflows and CPS simulations  
-- Running infrastructure experiments using **Docker** and **Kubernetes** for distributed ML workloads  
-- Conducting red-team style analysis of AI-driven systems to study robustness and systemic failure modes  
-- Preparing for certifications (CRTA, CRTID) to deepen practical offensive security skills  
-- Working on **research papers** in Adversarial AI/ML, Swarm Intelligence, and CPS Security
-
-My work aims to merge **scientific rigor**, **security engineering**, and **AI experimentation** into a coherent research direction.
+- **Agentic Swarm Intelligence** — autonomous defense agents, role-switching, emergent coordination  
+- **AI Runtime Security** — kill-switches, governance modules, safety-critical constraints  
+- **Adversarial Machine Learning** — robustness, poisoning/evasion, red-team AI  
+- **RL-LoRA Behaviour Systems** — modular behavioural LoRA patches, dynamic skill composition  
+- **Cyber-Physical & CPS Security** — secure sensing, anomaly detection, physical-world adversaries  
+- **Distributed Systems for AI** — Kubernetes-orchestrated agents, fault-tolerant multi-agent infrastructure  
+- **Trustworthy ML** — explainability, uncertainty, distribution shifts  
 
 ---
 
-## 📚 Long-Term Research Goals
-I aim to contribute to foundational work in:
+## 🧪 What I’m Working On
 
-- Adversarial robustness  
-- Secure autonomous systems  
-- ML trustworthiness in real-world deployments  
-- Intelligent CPS defense mechanisms  
-- Safety, reliability, and resilience in AI-driven environments  
+- **Building AADS** — Agentic AI Defense Swarms with safe governance and swarm-level autonomy  
+- **Developing the REVA4 Runtime** — RL-LoRA behavioural runtime for modular, controllable AI behaviours  
+- **Engineering runtime safety systems in Rust** — kill-switches, isolation layers, fault boundaries  
+- **Creating distributed multi-agent runtimes in Go/K8s** — CRDs, gossip systems, orchestration logic  
+- **Designing adversarial stress-tests** for MARL agents and behavioural LoRA modules  
+- **Researching CPS vulnerability models** and cyber-physical anomaly detection  
+- **Prototyping GNIM** — cyber-geospatial intelligence mapping and RF-aware situational awareness  
+- **Writing research** in AI Security, Swarm Intelligence, Runtime Safety, and CPS  
 
-I am particularly interested in pursuing research pathways at institutes like **CISPA**, **Max Planck**, or **Helmholtz**, leading toward an MSc + PhD focused on AI Security and CPS.
+---
+
+## 🎯 Long-Term Goals
+
+To contribute foundational work in:
+
+- Safe autonomous systems  
+- Agentic AI runtime design  
+- Swarm intelligence for cyber defense  
+- High-assurance ML and runtime safety  
+- Secure cyber-physical intelligence  
+
+I am particularly interested in pursuing research pathways & research careers at institutes like CISPA, Max Planck, or Helmholtz, leading toward an MSc + PhD focused on AI Security & Research Development and CPS.
 
 ---
 
