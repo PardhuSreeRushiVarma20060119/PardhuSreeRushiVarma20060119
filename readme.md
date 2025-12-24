@@ -1,12 +1,13 @@
 # Hi, I'm PardhuVarma!
 
-I’m a 3rd-year Cybersecurity student working at the intersection of **AI Security**, **Autonomous Systems**, and **Distributed Safety Engineering**.
+I am a 3rd-year cybersecurity student with strong research interests in Adversarial AI, Cyber-Physical Systems, Systems Security Research, and Robust Machine Learning. My research focus involves understanding attacker–defender dynamics within intelligent systems and analyzing and constraining AI behavior under adversarial influence through runtime-governed architectures.
 
-My research focuses on how **agentic and multi-agent AI systems** behave under **adversarial pressure**, how secure **runtime architectures** can be designed for them, and how to engineer **resilient, explainable, and trustworthy autonomous intelligence**.
+I explore areas such as adversarial ML attacks and defenses, cyber-physical threat modeling, robust learning architectures, and the reliability of AI-enabled systems in real-world settings. I’m particularly drawn to research at the intersection of AI, systems security, and cyber-physical infrastructures, reflecting a broader interest in designing intelligent, resilient security systems.
 
-I work across adversarial ML, multi-agent systems, and runtime safety—combining theory with systems engineering using **Rust**, **Golang**, and **Kubernetes**.
+I aim to pursue advanced research at CISPA – Helmholtz Center for Information Security / Saarland University, and eventually a PhD or long-term research career in AI security and systems security research. My primary interests lie in trustworthy and robust machine learning, runtime-governed intelligent systems, and adversarial resilience, with particular motivation drawn from high-stakes domains such as cyber-physical infrastructures, autonomous systems, intelligent swarms, and next-generation defense architectures.
+
+I am actively strengthening my academic foundation in AI, security, and systems engineering, and remain committed to advancing through rigorous study, research immersion, and scientifically grounded exploration.
   
-
 ---
 
 ## 🔬 Research Interests
@@ -29,7 +30,7 @@ I work across adversarial ML, multi-agent systems, and runtime safety—combinin
 - **Creating distributed multi-agent runtimes in Go/K8s** — CRDs, gossip systems, orchestration logic  
 - **Designing adversarial stress-tests** for MARL agents and behavioural LoRA modules.
 - **Prototyping GNIM** — cyber-geospatial intelligence mapping and RF-aware situational awareness  
-- **Writing research** in AI Security, Swarm Intelligence, Runtime Safety, and CPS  
+- **Writing research papers** in AI Security, Swarm Intelligence, Runtime Safety, and CPS  
 
 ---
 
