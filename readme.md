@@ -38,11 +38,12 @@ I am actively strengthening my academic foundation in AI, security, and systems 
 
 To contribute foundational work in:
 
-- Safe autonomous systems  
-- Agentic AI runtime design  
-- Swarm intelligence for cyber defense  
-- High-assurance ML and runtime safety  
-- Secure cyber-physical intelligence  
+- Safe Autonomous Systems 
+- Systems Security Research
+- Agentic AI Runtime Design  
+- Swarm Intelligence for Cyber Defense  
+- High-assurance ML and Runtime Safety  
+- Secure Cyber-Physical Intelligence  
 
 I am particularly interested in pursuing research pathways & research careers at institutes like CISPA, Max Planck, or Helmholtz, leading toward an MSc + PhD focused on AI Security & Research Development and CPS.
 
