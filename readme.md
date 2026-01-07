@@ -30,7 +30,8 @@ I am actively strengthening my academic foundation in AI, security, and systems 
 - **Creating distributed multi-agent runtimes in Go/K8s** — CRDs, gossip systems, orchestration logic  
 - **Designing adversarial stress-tests** for MARL agents and behavioural LoRA modules.
 - **Prototyping GNIM** — cyber-geospatial intelligence mapping and RF-aware situational awareness  
-- **Writing research papers** in AI Security, Swarm Intelligence, Runtime Safety, and CPS  
+- **Writing research papers** in AI/ML Experiments & AI Security etc.
+- Currently Drafting A ArXiv Research Paper - **"On the Structural Limitations of Weight-Based Neural Adaptation and the Role of Reversible Behavioral Learning"**
 
 ---
 
