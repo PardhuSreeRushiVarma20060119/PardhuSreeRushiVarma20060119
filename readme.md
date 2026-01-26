@@ -1,6 +1,6 @@
 # Hi, I'm PardhuVarma!
 
-I am a 3rd-year cybersecurity student with strong research interests in Adversarial AI, Cyber-Physical Systems, Systems Security Research, and Robust Machine Learning. My research focus involves understanding attacker–defender dynamics within intelligent systems and analyzing and constraining AI behavior under adversarial influence through runtime-governed architectures.
+I am a 3rd-year cybersecurity student with strong research interests in CyberSecurity, Adversarial AI, Systems Security Research, and Robust Machine Learning. My research focus involves understanding attacker–defender dynamics within intelligent systems and analyzing and constraining AI behavior under adversarial influence through runtime-governed architectures.
 
 I explore areas such as adversarial ML attacks and defenses, cyber-physical threat modeling, robust learning architectures, and the reliability of AI-enabled systems in real-world settings. I’m particularly drawn to research at the intersection of AI, systems security, and cyber-physical infrastructures, reflecting a broader interest in designing intelligent, resilient security systems.
 
