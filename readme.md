@@ -73,7 +73,7 @@ I am particularly interested in pursuing research pathways & research careers at
 ---
 
 ## ❤️ Sponsor My Work
-If my research tools or experiments contribute to your projects or spark ideas, you can support my work here:
+If my research or experiments contribute to your projects or spark ideas, you can support my work here:
 
 [![Sponsor](https://img.shields.io/badge/Sponsor-PardhuVarma-blue?style=for-the-badge&logo=github-sponsors&logoColor=white)](https://github.com/sponsors/PardhuSreeRushiVarma20060119)
 
