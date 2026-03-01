@@ -6,7 +6,8 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (password === 'admin') {
+        const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD;
+        if (password === adminPassword) {
             onLogin();
         } else {
             setError(true);
