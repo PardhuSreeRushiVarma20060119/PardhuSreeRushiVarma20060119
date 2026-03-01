@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Analytics } from "@vercel/analytics/next"
 import { BackgroundVectors } from './components/BackgroundVectors';
 import { SystemDiagrams } from './components/SystemDiagrams';
 import { AdminBar } from './components/AdminBar';
