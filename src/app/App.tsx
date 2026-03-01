@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 import { BackgroundVectors } from './components/BackgroundVectors';
 import { SystemDiagrams } from './components/SystemDiagrams';
 import { AdminBar } from './components/AdminBar';
@@ -569,6 +569,7 @@ export default function App() {
       {showLogin && <LoginModal onLogin={() => { setIsAdmin(true); setShowLogin(false); }} onCancel={() => setShowLogin(false)} />}
       {isAdmin && <AdminBar editMode={editMode} onToggleEdit={() => setEditMode(!editMode)} onSave={exportJSON} onReset={handleResetData} onLogout={() => { setIsAdmin(false); setEditMode(false); }} />}
       {editingItem && <EditModal title={editingItem.title} data={editingItem.data} fields={editingItem.fields} onSave={handleUpdateItem} onCancel={() => setEditingItem(null)} />}
+      <Analytics />
     </div>
   );
 }
