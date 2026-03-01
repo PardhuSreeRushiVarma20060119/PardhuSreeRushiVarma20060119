@@ -1,0 +1,143 @@
+{
+    "version": "1.0.2",
+    "profile": {
+        "name": "Pardhu Sri Rushi Varma Konduru",
+        "title": "Cybersecurity & ML Security Researcher",
+        "subtitle": "Runtime-Governed Intelligence Systems",
+        "location": "Hyderabad, India",
+        "email": "pardhuvarma.cs@gmail.com",
+        "bio": "Exploring adversarial AI, systems security, and runtime-governed architectures. Building modular, reversible, and compositionally safe intelligence systems for adversarial resilience.",
+        "links": [
+            {
+                "label": "ORCID",
+                "href": "https://orcid.org/0009-0005-3251-9944"
+            },
+            {
+                "label": "GitHub",
+                "href": "https://github.com/PardhuSreeRushiVarma20060119"
+            },
+            {
+                "label": "LinkedIn",
+                "href": "https://www.linkedin.com/in/pardhu-sri-rushi-varma-konduru-696886279"
+            }
+        ]
+    },
+    "about": {
+        "title": "Research Philosophy",
+        "paragraphs": [
+            "Modern neural models are typically adapted through weight updates—procedures like fine-tuning or alignment that modify shared parameters. While effective for task performance, such updates can degrade reasoning, overwrite capabilities, and alter the model's functional identity. This is a structural limitation I term structural irreversibility.",
+            "My research explores reversible adaptation frameworks that isolate learned behaviors from core model parameters. By externalizing adaptation into separable, removable components—treating them as governed runtime units—we enable deterministic rollback without identity loss. This approach prioritizes recoverability and structural robustness as first-class system properties.",
+            "This work sits at the intersection of adversarial AI, systems security, and runtime-governed architectures. I aim to design intelligence systems that are not opaque artifacts, but structured, modular, and compositionally safe—capable of operating under adversarial conditions while maintaining transparent governance and deterministic control."
+        ]
+    },
+    "researchAreas": [
+        {
+            "title": "Reversible Behavioral Learning",
+            "subtitle": "Structural Identity Preservation",
+            "description": "Investigating parameter isolation techniques that enable deterministic rollback without model identity corruption or capability degradation.",
+            "keywords": "reversibility • identity preservation • recoverability"
+        },
+        {
+            "title": "Adversarial AI Security",
+            "subtitle": "Red-Team ML & Robustness",
+            "description": "Exploring attack-defense dynamics in intelligent systems through adversarial stress-testing, poisoning attacks, and evasion techniques.",
+            "keywords": "adversarial ml • red-teaming • robustness testing"
+        },
+        {
+            "title": "Runtime Governance",
+            "subtitle": "Safe AI Control Mechanisms",
+            "description": "Designing kill-switches, constraint layers, and runtime safety systems for high-stakes autonomous agents and swarm intelligence.",
+            "keywords": "runtime safety • kill-switches • governance protocols"
+        },
+        {
+            "title": "Agentic Swarm Intelligence",
+            "subtitle": "Distributed Defense Systems",
+            "description": "Autonomous multi-agent coordination for cyber defense with role-switching, emergent behavior, and collective decision-making.",
+            "keywords": "swarm agents • distributed systems • autonomous defense"
+        },
+        {
+            "title": "RL-LoRA Behavior Systems",
+            "subtitle": "Modular Skill Composition",
+            "description": "Dynamic behavioral patching through low-rank adaptation modules that enable compositional skill assembly and runtime reconfiguration.",
+            "keywords": "low-rank adaptation • behavioral modules • skill composition"
+        },
+        {
+            "title": "Cyber-Physical Security",
+            "subtitle": "CPS Threat Modeling",
+            "description": "Secure sensing, anomaly detection, and adversarial resilience in physical-world AI-enabled systems and cyber-physical infrastructures.",
+            "keywords": "cps security • threat modeling • physical adversaries"
+        }
+    ],
+    "publications": [
+        {
+            "title": "On the Structural Limitations of Weight-Based Neural Adaptation and the Role of Reversible Behavioral Learning",
+            "metadata": "Preprint • DOI: 10.5281/zenodo.18761938 • 2024 • AI Safety / Machine Learning",
+            "abstract": "Modern neural models are typically adapted by updating parameters through fine-tuning or alignment. While effective for task performance, such updates can degrade reasoning, overwrite capabilities, or alter functional identity. We examine this as structural irreversibility and propose reversible adaptation frameworks that isolate learned behaviors from core parameters, enabling deterministic rollback with measurable recoverability guarantees.",
+            "links": [
+                {
+                    "label": "DOI",
+                    "href": "https://doi.org/10.5281/zenodo.18761938"
+                },
+                {
+                    "label": "PDF",
+                    "href": "https://pardhusreerushivarma20060119.github.io/rlae-research/papers/RLAE-Preprint.pdf"
+                }
+            ]
+        }
+    ],
+    "systems": [
+        {
+            "name": "AADS",
+            "description": "Agentic AI Defense Swarms with safe governance and swarm-level autonomy. Multi-agent system designed for autonomous cyber defense operations with role-switching capabilities, emergent coordination, and runtime safety constraints. Built with distributed architecture and fault-tolerant infrastructure.",
+            "diagram": true,
+            "repoUrl": "https://github.com/PardhuSreeRushiVarma20060119/AADS"
+        },
+        {
+            "name": "RLAE (REVA4)",
+            "description": "Runtime-Governed Intelligence Systems for modular, reversible, and compositionally safe behaviors. Enables dynamic loading of behavioral LoRA patches with deterministic rollback capabilities. Implements behavioral governance and runtime safety constraints for adversarial resilience.",
+            "diagram": true,
+            "repoUrl": "https://github.com/PardhuSreeRushiVarma20060119/rlae-research"
+        },
+        {
+            "name": "GNIM",
+            "description": "Geospatial Network Imaging & Mapping: A software-defined spatial intelligence framework for coordinate-aware network observability. Fuses logical network behavior with physical deployment context, enabling dynamic visualization of traffic patterns, anomaly density, and zone-level activity.",
+            "diagram": true,
+            "repoUrl": "https://github.com/PardhuSreeRushiVarma20060119/GNIM"
+        },
+        {
+            "name": "OpenLoRA",
+            "description": "Open-source framework for streamlined LLM fine-tuning using Low-Rank Adaptation. Transforms local environments into intelligent, self-adaptive LoRA training infrastructure with Prometheus monitoring and Grafana visualization. Features dataset synthesis and evaluation engines.",
+            "diagram": true,
+            "repoUrl": "https://github.com/PardhuSreeRushiVarma20060119/OpenLoRA"
+        },
+        {
+            "name": "Project Ouroboros",
+            "description": "Modular ESP32-based cybersecurity platform for wireless defense, monitoring, and controlled research. Hardware and firmware modules for cyber-physical security experimentation, featuring embedded systems integration and real-time RF threat response capabilities.",
+            "diagram": true,
+            "repoUrl": "https://github.com/PardhuSreeRushiVarma20060119/Project-Ouroboros"
+        }
+    ],
+    "notes": [],
+    "contact": {
+        "collaborationText": "Open to research collaboration, academic discussion, and systems-oriented AI security dialogue. Aspiring toward graduate research at CISPA, Max Planck, or Helmholtz centers. Interested in AI safety, adversarial resilience, and runtime-governed systems.",
+        "links": [
+            {
+                "label": "Email",
+                "href": "mailto:pardhuvarma.cs@gmail.com"
+            },
+            {
+                "label": "ORCID",
+                "href": "https://orcid.org/0009-0005-3251-9944"
+            },
+            {
+                "label": "GitHub",
+                "href": "https://github.com/PardhuSreeRushiVarma20060119"
+            },
+            {
+                "label": "LinkedIn",
+                "href": "https://www.linkedin.com/in/pardhu-sri-rushi-varma-konduru-696886279"
+            }
+        ],
+        "footerNote": "Available for research collaboration and academic partnerships."
+    }
+}
