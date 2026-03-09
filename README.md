@@ -31,7 +31,7 @@ I am actively strengthening my academic foundation in AI, security, and systems 
 - **Designing adversarial stress-tests** for MARL agents and behavioural LoRA modules.
 - **Prototyping GNIM** — cyber-geospatial intelligence mapping and RF-aware situational awareness  
 - **Writing research papers** in AI/ML Experiments & AI Security etc.
-- **"On the Structural Limitations of Weight-Based Neural Adaptation and the Role of Reversible Behavioral Learning"** : [Zenodo DOI](https://doi.org/10.5281/zenodo.18761938)
+- **"On the Structural Limitations of Weight-Based Neural Adaptation and the Role of Reversible Behavioral Learning"** : [arXiv](https://arxiv.org/abs/2603.02934)
 
 ---
 
