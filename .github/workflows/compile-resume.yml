@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'resume/pardhu.tex'
+      - "resume/pardhu.tex"
   workflow_dispatch:
 
 permissions:
@@ -22,11 +22,13 @@ jobs:
         with:
           root_file: resume/pardhu.tex
 
-      - name: Move compiled PDF
-        run: mv pardhu.pdf resume/pardhu.pdf
+      - name: Copy compiled PDF to public
+        run: |
+          mkdir -p public/resume
+          mv pardhu.pdf public/resume/pardhu.pdf
 
       - name: Commit compiled PDF
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "ci: auto-compile resume PDF"
-          file_pattern: resume/pardhu.pdf
+          file_pattern: public/resume/pardhu.pdf
