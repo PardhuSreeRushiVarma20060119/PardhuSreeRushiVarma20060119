@@ -233,7 +233,7 @@ export default function App() {
               <span>•</span>
               <span style={{ color: 'var(--text-muted)' }}>{data.profile.email}</span>
               {data.profile.links.map((link: any, i: number) => (
-                <span key={i} style={{ color: 'var(--text-muted)' }}>
+                <span key={i} style={{ display: 'contents' }}>
                   <span>•</span>
                   <a href={link.href} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>{link.label}</a>
                 </span>
