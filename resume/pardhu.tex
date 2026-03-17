@@ -1,0 +1,194 @@
+\documentclass[a4paper,20pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.530in}
+\addtolength{\evensidemargin}{-0.375in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.45in}
+\addtolength{\textheight}{1in}
+
+\urlstyle{rm}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-10pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
+
+\newcommand{\resumeSubheadingNoItem}[4]{
+	\vspace{-1pt}
+	\begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+		\textbf{#1} & #2 \\
+		\textit{#3} & \textit{#4} \\
+	\end{tabular*}\vspace{-5pt}
+}
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeItemWithoutTitle}[1]{
+  \item\small{
+    {\vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{#3} & \textit{#4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-3pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-----------------------------
+%%%%%%  CV STARTS HERE  %%%%%%
+
+\begin{document}
+
+%----------HEADING-----------------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{{\LARGE Pardhu Sri Rushi Varma Konduru}} & Email: \href{mailto:}{pardhuvarma.cs@gmail.com} \\
+  \href{https://pardhuvarma.tech}{Portfolio: pardhuvarma.tech} & Mobile: +91-8522934092 \\
+  \href{https://scholar.google.com/citations?user=Chrj-G0AAAAJ}{Google Scholar,}
+  \href{https://github.com/PardhuSreeRushiVarma20060119}{Github: github.com/PardhuSreeRushiVarma20060119} \\
+\end{tabular*}
+
+%-----------EDUCATION-----------------
+\section{Education}
+	\resumeSubheadingNoItem
+		{Malla Reddy University Hyderabad}{Hyderabad, India}
+		{Bachelor of Technology - Computer Science \& Engineering (Cybersecurity); CGPA: 7.69}{August 2023 - April 2027}
+		%{\scriptsize \textit{ \footnotesize{\newline{}\textbf{Courses:} Operating Systems, Data Structures, Analysis Of Algorithms, Artificial Intelligence, Machine Learning, Networking, Databases}}}
+	    
+\vspace{4pt}
+\section{Skills Summary}
+\resumeSubHeadingListStart
+\resumeSubItem{Languages}{Python, Rust, C++, JavaScript, SQL, Bash}
+\resumeSubItem{Cybersecurity}{Network Security, Web Security, Vulnerability Assessment \& Penetration Testing (VAPT), Threat Modeling}
+\resumeSubItem{Machine Learning}{PyTorch, TensorFlow, Scikit-learn, NLP, Reinforcement Learning, Trustworthy ML}
+\resumeSubItem{Systems \& Embedded}{Embedded Systems (ESP32), Microcontroller Programming, Firmware Basics}
+\resumeSubItem{Infrastructure \& DevOps}{Docker, Kubernetes, CI/CD Pipelines, Git, Linux Networking, Containerization, Virtualization}
+\resumeSubItem{Cloud \& Platforms}{AWS, GCP, Linux, Arduino, ESP32}
+\resumeSubItem{Research}{ML Research, Embedded \& Wireless Security Research}
+\resumeSubHeadingListEnd
+
+\vspace{-5pt}
+\section{Experience}
+\resumeSubHeadingListStart
+
+\resumeSubheading{Breachpoint CTF 2026}{Online \& Offline}
+{Technical Challenge Author \& Cloud Deployment Operations}{Jan 2026 - Mar 2026}
+\resumeItemListStart
+\resumeItem{Security Challenge Development}
+{Designed challenges across Binary Exploitation, Cryptography, Reverse Engineering, Blockchain, Mobile Security, and Steganography.}
+\resumeItem{Low-Level Exploitation}
+{Engineered vulnerabilities involving memory corruption, race conditions, and adversarial binaries using C/C++ and Assembly.}
+\resumeItem{Reverse Engineering \& Analysis}
+{Applied static and dynamic analysis techniques using disassembly, debugging, and binary inspection tools.}
+\resumeItem{Cross-Language Systems}
+{Developed challenges in Python, C/C++, Rust, Go, Kotlin, Solidity, and x86 Assembly to explore attack surfaces.}
+\resumeItem{Infrastructure \& Deployment}
+{Deployed and managed containerized CTF infrastructure on GCP using Docker, CI/CD pipelines, and GitHub workflows for scalable and reproducible environments.}
+\resumeItem{Operational Reliability}
+{Maintained infrastructure stability and access control during live competitive environments.}
+\resumeItemListEnd
+
+\vspace{1pt}
+
+\resumeSubheading
+{Independent ML Research}{Self-Employed}
+{Independent ML Researcher}{Dec 2025 - Present}
+\resumeItemListStart
+\resumeItem{Research Focus}
+{Investigating structural robustness, reversible behavioral learning, and parameter-efficient adaptation in neural systems.}
+\resumeItem{LoRA-Based Systems}
+{Exploring modular low-rank adaptation (LoRA) for controllable, reversible, and safety-oriented AI architectures.}
+\resumeItem{Theoretical \& Experimental Work}
+{Developing frameworks for reversible adaptation, lifecycle governance, and stability analysis of learned behaviors.}
+\resumeItem{Publications \& Prototypes}
+{Publishing preprints and building experimental prototypes to evaluate limitations of weight-based learning and emergent behavior control.}
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------------
+\vspace{-5pt}
+\section{Projects}
+\resumeSubHeadingListStart
+
+\resumeSubItem{RLAE Research — Runtime Low-Rank Adaptive Environments}
+{Exploring reversible, modular learning systems with externalized behavioral adaptation for controllable and auditable AI architectures.}
+
+\vspace{2pt}
+
+\resumeSubItem{Project Ouroboros (Ouromini) — Embedded Wireless Security Research}
+{Designed a modular ESP32-based system for real-time wireless monitoring, analysis, and controlled security experimentation across Wi-Fi and BLE. Developed as a dual-use research testbed for cyber-physical systems and wireless security.}
+
+\vspace{2pt}
+
+\resumeSubItem{EpsilonShift — Adversarial Fingerprint Obfuscation}
+{Built a research prototype injecting deterministic adversarial perturbations into browser fingerprinting APIs (Canvas, WebGL, Audio) using Python and Playwright to evaluate privacy defenses.}
+
+\vspace{2pt}
+
+\resumeSubItem{PhishVault — Containerized Phishing Analysis Platform}
+{Developed a scalable platform for analyzing and managing malicious URLs with automated reporting and classification. Built using Node.js, MongoDB, Puppeteer, and Docker.}
+
+\vspace{2pt}
+
+\resumeSubHeadingListEnd
+
+\vspace{-5pt}
+\section{Publications}
+\resumeSubHeadingListStart
+
+\resumeSubItem{On the Structural Limitations of Weight-Based Neural Adaptation and the Role of Reversible Behavioral Learning}
+{Pardhu Sri Rushi Varma Konduru. \textit{arXiv preprint - arXiv:2603.02934 (cs.LG, cs.AI), 2026}. Introduces structural irreversibility in weight-based adaptation and proposes reversible behavioral learning with a Recoverability Factor for deterministic rollback. \href{https://arxiv.org/abs/2603.02934}{arXiv} \;|\; \href{https://arxiv.org/pdf/2603.02934}{PDF}}
+
+\resumeSubHeadingListEnd
+\vspace{-5pt}
+%-----------Awards-----------------
+\section{Honors and Awards}
+\begin{description}[font=$\bullet$]
+	
+	\item {2\textsuperscript{nd} Place — GrowthNinja Hackathon (IIT Hyderabad, Tinkers Lab IITH) \hfill Mar 2025}
+	\vspace{-3pt}
+	\item {15\textsuperscript{th} Place — CY4TF Cyber Fortress CTF (Team Captain, ZenRage; 15/50 teams, 1200 pts) \hfill Mar 2025}
+	
+\end{description}
+
+\end{document}
