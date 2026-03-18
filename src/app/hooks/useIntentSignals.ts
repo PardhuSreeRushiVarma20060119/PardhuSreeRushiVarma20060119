@@ -5,6 +5,19 @@ const MAX_MAGNETISM_DISTANCE = 170;
 const INTERSECTION_THRESHOLD_MIN = 0.35;
 const INTERSECTION_THRESHOLD_MAX = 0.6;
 const DEEP_ENGAGEMENT_THRESHOLD = 0.62;
+const BASE_DURATIONS = {
+  filter: 120,
+  transform: 240,
+  opacityShort: 160,
+  opacityLong: 240,
+  padding: 240,
+  border: 200,
+  gap: 220,
+  text: 180,
+  targetTransform: 220,
+  targetBorder: 200,
+  targetFilter: 160,
+};
 
 type AdaptiveLabels = {
   publications: string;
@@ -25,6 +38,8 @@ export function useIntentSignals(sectionIds: string[]) {
   const revisitRef = useRef(0);
   const velocityRef = useRef(0);
 
+  // sectionIds is expected to be memoized by the caller to avoid reattaching listeners and observers on every render;
+  // recreating the array each render would continually detach/attach listeners and observers, harming performance and risking leaks.
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -55,7 +70,7 @@ export function useIntentSignals(sectionIds: string[]) {
 
     const decayTimers = new Map<HTMLElement, number>();
     const visitedCounts = new Map<string, number>();
-    const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-intent-target]'));
+    let targets = new Set<HTMLElement>();
 
     const refreshEngagement = (scrollFocus: number) => {
       const combined = Math.min(
@@ -124,7 +139,7 @@ export function useIntentSignals(sectionIds: string[]) {
       setRecent(current);
       const group = current.getAttribute('data-attention-group');
       if (group) {
-        const grouped = targets.filter(
+        const grouped = Array.from(targets).filter(
           (el) => el !== current && el.getAttribute('data-attention-group') === group
         );
         echoMap.set(group, grouped);
@@ -143,6 +158,41 @@ export function useIntentSignals(sectionIds: string[]) {
         });
       }
     };
+
+    const handleRecentClick = (event: Event) => setRecent(event.currentTarget as HTMLElement);
+
+    const attachTargetListeners = (el: HTMLElement) => {
+      el.addEventListener('pointerenter', handleTargetEnter);
+      el.addEventListener('pointerleave', handleTargetLeave);
+      el.addEventListener('click', handleRecentClick);
+    };
+
+    const detachTargetListeners = (el: HTMLElement) => {
+      el.removeEventListener('pointerenter', handleTargetEnter);
+      el.removeEventListener('pointerleave', handleTargetLeave);
+      el.removeEventListener('click', handleRecentClick);
+    };
+
+    const refreshTargets = () => {
+      const latest = new Set(document.querySelectorAll<HTMLElement>('[data-intent-target]'));
+      latest.forEach((el) => {
+        if (!targets.has(el)) attachTargetListeners(el);
+      });
+      targets.forEach((el) => {
+        if (!latest.has(el)) detachTargetListeners(el);
+      });
+      targets = latest;
+    };
+
+    refreshTargets();
+
+    const targetObserver = new MutationObserver(() => refreshTargets());
+    targetObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['data-intent-target'],
+    });
 
     const handlePointerMove = (event: PointerEvent) => {
       const now = performance.now();
@@ -189,13 +239,7 @@ export function useIntentSignals(sectionIds: string[]) {
       pointerState = { x: event.clientX, y: event.clientY, t: now };
     };
 
-    const handleRecentClick = (event: Event) => setRecent(event.currentTarget as HTMLElement);
-
-    targets.forEach((el) => {
-      el.addEventListener('pointerenter', handleTargetEnter);
-      el.addEventListener('pointerleave', handleTargetLeave);
-      el.addEventListener('click', handleRecentClick);
-    });
+    const visibilityState = new Map<string, boolean>();
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -203,13 +247,19 @@ export function useIntentSignals(sectionIds: string[]) {
           const target = entry.target as HTMLElement;
           const id = target.dataset.sectionId || target.id;
           if (!id) return;
-          if (entry.isIntersecting && entry.intersectionRatio > 0.35) {
+          const wasVisible = visibilityState.get(id) ?? false;
+          const isVisible = entry.isIntersecting && entry.intersectionRatio > INTERSECTION_THRESHOLD_MIN;
+          if (isVisible && !wasVisible) {
             const prevCount = visitedCounts.get(id) ?? 0;
             const nextCount = prevCount + 1;
             visitedCounts.set(id, nextCount);
+            visibilityState.set(id, true);
             if (nextCount > 1) {
               target.classList.add('is-revisited');
             }
+          } else if (!isVisible && wasVisible) {
+            visibilityState.set(id, false);
+            target.classList.remove('is-revisited');
           }
         });
         const revisited = Array.from(visitedCounts.values()).filter((v) => v > 1).length;
@@ -220,7 +270,13 @@ export function useIntentSignals(sectionIds: string[]) {
     );
 
     const sectionElements = sectionIds
-      .map((id) => document.getElementById(id))
+      .map((id) => {
+        const element = document.getElementById(id);
+        if (!element) {
+          console.warn(`[intent] Section with id "${id}" not found in DOM. Ensure the element exists and has the correct id attribute.`);
+        }
+        return element;
+      })
       .filter((el): el is HTMLElement => Boolean(el));
 
     sectionElements.forEach((el) => observer.observe(el));
@@ -235,6 +291,7 @@ export function useIntentSignals(sectionIds: string[]) {
       if (pauseTimeout) window.clearTimeout(pauseTimeout);
       sectionElements.forEach((el) => observer.unobserve(el));
       observer.disconnect();
+      targetObserver.disconnect();
       targets.forEach((el) => {
         el.removeEventListener('pointerenter', handleTargetEnter);
         el.removeEventListener('pointerleave', handleTargetLeave);
@@ -246,7 +303,24 @@ export function useIntentSignals(sectionIds: string[]) {
 
   useEffect(() => {
     const deepEngagement = engagementLevel > DEEP_ENGAGEMENT_THRESHOLD;
-    document.documentElement.style.setProperty('--tempo-shift', deepEngagement ? '1.2' : '1');
+    const tempo = deepEngagement ? 1.2 : 1;
+    const root = document.documentElement;
+    const setVar = (name: string, value: string) => root.style.setProperty(name, value);
+    const setTempoDurations = (factor: number) => {
+      setVar('--tempo-shift', factor.toString());
+      setVar('--t-filter-ms', `${BASE_DURATIONS.filter * factor}ms`);
+      setVar('--t-transform-ms', `${BASE_DURATIONS.transform * factor}ms`);
+      setVar('--t-opacity-short', `${BASE_DURATIONS.opacityShort * factor}ms`);
+      setVar('--t-opacity-long', `${BASE_DURATIONS.opacityLong * factor}ms`);
+      setVar('--t-padding', `${BASE_DURATIONS.padding * factor}ms`);
+      setVar('--t-border', `${BASE_DURATIONS.border * factor}ms`);
+      setVar('--t-gap', `${BASE_DURATIONS.gap * factor}ms`);
+      setVar('--t-text', `${BASE_DURATIONS.text * factor}ms`);
+      setVar('--t-target-transform', `${BASE_DURATIONS.targetTransform * factor}ms`);
+      setVar('--t-target-border', `${BASE_DURATIONS.targetBorder * factor}ms`);
+      setVar('--t-target-filter', `${BASE_DURATIONS.targetFilter * factor}ms`);
+    };
+    setTempoDurations(tempo);
     setAdaptiveLabels(
       deepEngagement
         ? {

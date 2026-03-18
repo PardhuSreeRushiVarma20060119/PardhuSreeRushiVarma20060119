@@ -26,6 +26,17 @@ const isSafeHref = (href: string) => {
 
 const getSafeHref = (href: string) => (isSafeHref(href) ? href : '#');
 const isLocalPdfPath = (href: string) => /^\/(?:[^/]+\/)*[^/]+\.pdf(?:[?#].*)?$/i.test(href);
+const makeGroupId = (prefix: string, value: string, fallback: number | string) => {
+  const slug = value
+    ? value
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .slice(0, 32)
+    : '';
+  const finalId = slug ? `${slug}-${fallback}` : String(fallback);
+  return `${prefix}-${finalId}`;
+};
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('');
@@ -51,7 +62,7 @@ export default function App() {
   const [editMode, setEditMode] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [editingItem, setEditingItem] = useState<{ title: string; data: any; fields: any[]; path: string; index?: number } | null>(null);
-  const trackedSections = useMemo(() => ['about', 'research', 'publications', 'systems', 'notes', 'contact'], []);
+  const trackedSections = useMemo(() => ['hero', 'about', 'research', 'publications', 'systems', 'notes', 'contact'], []);
   const { adaptiveLabels } = useIntentSignals(trackedSections);
 
   useEffect(() => {
@@ -174,7 +185,7 @@ export default function App() {
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
-                  className="transition-all intent-target"
+                  className="transition-all"
                   data-intent-target
                   data-attention-group="nav"
                   style={{
@@ -195,7 +206,7 @@ export default function App() {
         </nav>
 
         {/* Hero Section */}
-        <section className="min-h-[75vh] flex items-center" data-section-id="hero">
+        <section id="hero" className="min-h-[75vh] flex items-center" data-section-id="hero">
           <div className="max-w-[1200px] mx-auto px-6 md:px-12 lg:px-20 py-20 w-full">
             <h1 style={{
               fontFamily: 'var(--font-heading)',
@@ -398,7 +409,7 @@ export default function App() {
                   key={index}
                   className="intent-card"
                   data-intent-target
-                  data-attention-group={`pub-${index}`}
+                  data-attention-group={makeGroupId('pub', pub.title, index)}
                   style={{ paddingBottom: '2rem', position: 'relative' }}>
                   {editMode && (
                     <div className="absolute top-0 right-0 flex gap-2">
@@ -426,7 +437,7 @@ export default function App() {
                   <p className="intent-rich-text" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--text-muted)', marginBottom: '0.75rem' }}>{pub.metadata}</p>
                   <p className="intent-rich-text" style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '0.75rem' }}>{pub.abstract}</p>
                   <div style={{ display: 'flex', gap: '1rem' }}>
-                    {pub.links.map((link: any, i: number) => <a key={i} href={getSafeHref(link.href)} data-intent-target data-attention-group={`pub-${index}`} className="text-muted no-underline hover:text-accent hover:underline text-[15px]">{link.label}</a>)}
+                    {pub.links.map((link: any, i: number) => <a key={i} href={getSafeHref(link.href)} data-intent-target data-attention-group={makeGroupId('pub', pub.title, index)} className="text-muted no-underline hover:text-accent hover:underline text-[15px]">{link.label}</a>)}
                   </div>
                 </div>
               ))}
@@ -462,7 +473,7 @@ export default function App() {
                   key={index}
                   className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative intent-card"
                   data-intent-target
-                  data-attention-group={`system-${index}`}>
+                  data-attention-group={makeGroupId('system', system.name, index)}>
                   {editMode && (
                     <div className="absolute top-0 right-0 flex gap-2 z-10">
                       <button
@@ -494,7 +505,7 @@ export default function App() {
                         target="_blank"
                         rel="noopener noreferrer"
                         data-intent-target
-                        data-attention-group={`system-${index}`}
+                        data-attention-group={makeGroupId('system', system.name, index)}
                         style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--accent-color)' }}
                         className="no-underline hover:underline flex items-center gap-2"
                       >
@@ -541,7 +552,7 @@ export default function App() {
                   key={index}
                   className="intent-card"
                   data-intent-target
-                  data-attention-group={`note-${index}`}
+                  data-attention-group={makeGroupId('note', note.title, index)}
                   style={{ paddingBottom: '1rem', position: 'relative' }}>
                   {editMode && (
                     <div className="absolute top-0 right-0 flex gap-2">
@@ -566,7 +577,7 @@ export default function App() {
                     </div>
                   )}
                   <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.125rem', fontWeight: 700, marginBottom: '0.25rem' }}>
-                    <a href={getSafeHref(note.href)} data-intent-target data-attention-group={`note-${index}`} style={{ color: 'white' }} className="no-underline hover:text-accent hover:underline">{note.title}</a>
+                    <a href={getSafeHref(note.href)} data-intent-target data-attention-group={makeGroupId('note', note.title, index)} style={{ color: 'white' }} className="no-underline hover:text-accent hover:underline">{note.title}</a>
                   </h3>
                   <p className="intent-rich-text" style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>{note.description}</p>
                   <p className="intent-rich-text" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>{note.date}</p>

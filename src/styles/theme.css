@@ -217,11 +217,22 @@
   --cursor-x: 50%;
   --cursor-y: 50%;
   --tempo-shift: 1;
+  --t-filter-ms: 120ms;
+  --t-transform-ms: 240ms;
+  --t-opacity-short: 160ms;
+  --t-opacity-long: 240ms;
+  --t-padding: 240ms;
+  --t-border: 200ms;
+  --t-gap: 220ms;
+  --t-text: 180ms;
+  --t-target-transform: 220ms;
+  --t-target-border: 200ms;
+  --t-target-filter: 160ms;
 }
 
 .intent-shell {
   isolation: isolate;
-  transition: filter calc(120ms * var(--tempo-shift)) linear, transform calc(240ms * var(--tempo-shift)) ease;
+  transition: filter var(--t-filter-ms) linear, transform var(--t-transform-ms) ease;
   filter: blur(var(--motion-blur)) saturate(calc(0.9 + var(--focus-clarity) * 0.15));
 }
 
@@ -242,7 +253,7 @@
     );
   opacity: calc(var(--cursor-velocity) * 0.45);
   filter: blur(12px);
-  transition: opacity calc(160ms * var(--tempo-shift)) ease;
+  transition: opacity var(--t-opacity-short) ease;
 }
 
 .intent-shell::after {
@@ -257,22 +268,22 @@
       transparent 50%
     );
   opacity: calc(var(--ambient-energy) * 0.08);
-  transition: opacity calc(240ms * var(--tempo-shift)) ease;
+  transition: opacity var(--t-opacity-long) ease;
 }
 
 .intent-section {
-  transition: padding calc(240ms * var(--tempo-shift)) ease, border-color calc(200ms * var(--tempo-shift)) ease;
+  transition: padding var(--t-padding) ease, border-color var(--t-border) ease;
   scroll-margin-top: 90px;
 }
 
 .intent-grid {
-  transition: gap calc(220ms * var(--tempo-shift)) ease, row-gap calc(220ms * var(--tempo-shift)) ease;
+  transition: gap var(--t-gap) ease, row-gap var(--t-gap) ease;
 }
 
 .intent-rich-text {
   line-height: calc(1.55 - (var(--density-level) - 1) * 0.22);
   letter-spacing: calc(0.003em - var(--engagement-level) * 0.0015em);
-  transition: line-height calc(180ms * var(--tempo-shift)) ease, letter-spacing calc(180ms * var(--tempo-shift)) ease, color calc(180ms * var(--tempo-shift)) ease;
+  transition: line-height var(--t-text) ease, letter-spacing var(--t-text) ease, color var(--t-text) ease;
 }
 
 [data-section-id].is-revisited .intent-rich-text {
@@ -280,7 +291,7 @@
 }
 
 .intent-shell [data-intent-target] {
-  transition: transform calc(220ms * var(--tempo-shift)) ease, box-shadow calc(220ms * var(--tempo-shift)) ease, border-color calc(200ms * var(--tempo-shift)) ease, filter calc(160ms * var(--tempo-shift)) ease, color calc(160ms * var(--tempo-shift)) ease;
+  transition: transform var(--t-target-transform) ease, box-shadow var(--t-target-transform) ease, border-color var(--t-target-border) ease, filter var(--t-target-filter) ease, color var(--t-target-filter) ease;
   transform: translateZ(0);
 }
 
