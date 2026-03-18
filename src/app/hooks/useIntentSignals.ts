@@ -1,5 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
+const INITIAL_ENGAGEMENT_LEVEL = 0.45;
+const MAX_MAGNETISM_DISTANCE = 170;
+const INTERSECTION_THRESHOLD_MIN = 0.35;
+const INTERSECTION_THRESHOLD_MAX = 0.6;
+const DEEP_ENGAGEMENT_THRESHOLD = 0.62;
+
 type AdaptiveLabels = {
   publications: string;
   systems: string;
@@ -13,7 +19,7 @@ const defaultLabels: AdaptiveLabels = {
 };
 
 export function useIntentSignals(sectionIds: string[]) {
-  const [engagementLevel, setEngagementLevel] = useState(0.45);
+  const [engagementLevel, setEngagementLevel] = useState(INITIAL_ENGAGEMENT_LEVEL);
   const [adaptiveLabels, setAdaptiveLabels] = useState<AdaptiveLabels>(defaultLabels);
   const engagementRef = useRef(engagementLevel);
   const revisitRef = useRef(0);
@@ -163,9 +169,8 @@ export function useIntentSignals(sectionIds: string[]) {
         }
       }
 
-      const maxDistance = 170;
-      if (nearest && best < maxDistance) {
-        const pull = 1 - best / maxDistance;
+      if (nearest && best < MAX_MAGNETISM_DISTANCE) {
+        const pull = 1 - best / MAX_MAGNETISM_DISTANCE;
         if (magnetTarget && magnetTarget !== nearest) {
           magnetTarget.classList.remove('is-magnetized');
           magnetTarget.style.removeProperty('--magnet-pull');
@@ -211,7 +216,7 @@ export function useIntentSignals(sectionIds: string[]) {
         revisitRef.current = sectionIds.length ? revisited / sectionIds.length : 0;
         refreshEngagement(velocityRef.current);
       },
-      { threshold: [0.35, 0.6] }
+      { threshold: [INTERSECTION_THRESHOLD_MIN, INTERSECTION_THRESHOLD_MAX] }
     );
 
     const sectionElements = sectionIds
@@ -240,7 +245,7 @@ export function useIntentSignals(sectionIds: string[]) {
   }, [sectionIds]);
 
   useEffect(() => {
-    const deepEngagement = engagementLevel > 0.62;
+    const deepEngagement = engagementLevel > DEEP_ENGAGEMENT_THRESHOLD;
     document.documentElement.style.setProperty('--tempo-shift', deepEngagement ? '1.2' : '1');
     setAdaptiveLabels(
       deepEngagement
