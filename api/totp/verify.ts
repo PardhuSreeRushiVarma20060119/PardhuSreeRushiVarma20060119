@@ -1,7 +1,9 @@
 import crypto from 'node:crypto';
+import { getCookieValue, shouldUseSecureCookie } from './utils.ts';
 
 const BASE32_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
 const COOKIE_MAX_AGE = 31_536_000;
+const EPHEMERAL_SECRET_COOKIE = 'totp_ephemeral_secret';
 
 interface TotpVerifyRequestBody {
     code?: string;
@@ -28,6 +30,14 @@ interface ApiResponse {
 
 function normalizeBase32(value: string): string {
     return value.trim().toUpperCase().replace(/\s+/g, '').replace(/=+$/g, '');
+}
+
+function resolveSecret(headers: Record<string, string | undefined>): string {
+    const configuredSecret = normalizeBase32(process.env.TOTP_SECRET ?? '');
+    if (configuredSecret) {
+        return configuredSecret;
+    }
+    return normalizeBase32(getCookieValue(headers.cookie, EPHEMERAL_SECRET_COOKIE));
 }
 
 function decodeBase32(secret: string): Buffer | null {
@@ -90,7 +100,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
         return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
-    const secret = normalizeBase32(process.env.TOTP_SECRET ?? '');
+    const secret = resolveSecret(req.headers);
     if (!secret) {
         return res.status(500).json({ error: 'TOTP server secret is not configured.' });
     }
@@ -105,10 +115,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
     const authorized = verifyTotp(secret, code);
 
     if (authorized) {
-        const secure =
-            req.headers['x-forwarded-proto'] === 'https' ||
-            req.socket?.encrypted === true ||
-            req.connection?.encrypted === true;
+        const secure = shouldUseSecureCookie(req);
         const cookie = `totp_setup_complete=1; Path=/; HttpOnly; SameSite=Lax${secure ? '; Secure' : ''}; Max-Age=${COOKIE_MAX_AGE}`;
         res.setHeader('Set-Cookie', cookie);
     }
