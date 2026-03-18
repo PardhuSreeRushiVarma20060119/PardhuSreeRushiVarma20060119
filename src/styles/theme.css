@@ -143,6 +143,7 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --focus-ring-color: color-mix(in srgb, var(--text-primary) 95%, transparent);
   --focus-ring-glow: color-mix(in srgb, var(--text-primary) 50%, transparent);
+  --focus-ring-width: 3px;
 }
 
 @layer base {
@@ -158,17 +159,17 @@
   }
 
   *:focus-visible {
-    outline: 4px solid var(--focus-ring-color);
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
     box-shadow:
-      0 0 0 4px var(--focus-ring-glow),
+      0 0 0 var(--focus-ring-width) var(--focus-ring-glow),
       0 10px 30px rgba(0, 0, 0, 0.12);
   }
 
   @supports not selector(:focus-visible) {
     *:focus {
-      outline: 4px solid var(--focus-ring-color);
+      outline: var(--focus-ring-width) solid var(--focus-ring-color);
       box-shadow:
-        0 0 0 4px var(--focus-ring-glow),
+        0 0 0 var(--focus-ring-width) var(--focus-ring-glow),
         0 10px 30px rgba(0, 0, 0, 0.12);
     }
   }
@@ -265,8 +266,6 @@
   --t-target-transform: 220ms;
   --t-target-border: 200ms;
   --t-target-filter: 160ms;
-  --focus-ring-color: color-mix(in srgb, var(--text-primary) 80%, transparent);
-  --focus-ring-glow: color-mix(in srgb, var(--text-primary) 40%, transparent);
 }
 
 .intent-shell {
