@@ -24,7 +24,7 @@ const isSafeHref = (href: string) => {
 };
 
 const getSafeHref = (href: string) => (isSafeHref(href) ? href : '#');
-const isLocalPdfPath = (href: string) => /^\/(?!\/).+\.pdf(?:[?#].*)?$/i.test(href);
+const isLocalPdfPath = (href: string) => /^\/(?:[^/]+\/)*[^/]+\.pdf(?:[?#].*)?$/i.test(href);
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('');
@@ -254,18 +254,15 @@ export default function App() {
               {data.profile.links.map((link: ProfileLink, i: number) => (
                 (() => {
                   const safeHref = getSafeHref(link.href);
-                  const safeDownload = Boolean(link.download) && isLocalPdfPath(safeHref);
-                  const isPdfLink = isLocalPdfPath(safeHref);
+                  const safeDownload = typeof link.download === 'string' && link.download.trim() !== '' && isLocalPdfPath(safeHref);
                   return (
                     <span key={i} style={{ display: 'contents' }}>
                       <span>•</span>
                       <a
                         href={safeHref}
-                        target={safeDownload ? undefined : "_blank"}
-                        rel={safeDownload ? undefined : "noopener noreferrer"}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         download={safeDownload ? link.download : undefined}
-                        type={isPdfLink ? "application/pdf" : undefined}
-                        referrerPolicy={isPdfLink ? "no-referrer" : undefined}
                         style={{ color: 'var(--text-muted)', textDecoration: 'none' }}
                       >
                         {link.label}

@@ -13,35 +13,19 @@ declare global {
     }
 }
 
-type GooglePayload = {
-    iss?: string;
-    aud?: string;
-    exp?: number;
-    email?: string;
-    email_verified?: boolean;
-};
-
-const parseGooglePayload = (token: string): GooglePayload | null => {
-    try {
-        const [, payload] = token.split('.');
-        if (!payload) return null;
-        const normalized = payload.replace(/-/g, '+').replace(/_/g, '/');
-        const json = decodeURIComponent(atob(normalized).split('').map((c) => `%${(`00${c.charCodeAt(0).toString(16)}`).slice(-2)}`).join(''));
-        return JSON.parse(json) as GooglePayload;
-    } catch {
-        return null;
-    }
-};
-
 export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCancel: () => void }) {
     const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-    const allowedEmails = useMemo(
-        () => (import.meta.env.VITE_ALLOWED_RESEARCHER_EMAILS || '')
-            .split(',')
-            .map((email) => email.trim().toLowerCase())
-            .filter(Boolean),
-        []
-    );
+    const verifyUrl = import.meta.env.VITE_GOOGLE_AUTH_VERIFY_URL;
+    const resolvedVerifyUrl = useMemo(() => {
+        if (!verifyUrl) return null;
+        try {
+            const parsed = new URL(verifyUrl, window.location.origin);
+            return parsed.origin === window.location.origin ? parsed.toString() : null;
+        } catch {
+            return null;
+        }
+    }, [verifyUrl]);
+    const hasVerificationEndpoint = useMemo(() => Boolean(resolvedVerifyUrl), [resolvedVerifyUrl]);
     const buttonRef = useRef<HTMLDivElement>(null);
     const [error, setError] = useState<string>('');
 
@@ -50,8 +34,8 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
             setError('Google auth is not configured.');
             return;
         }
-        if (allowedEmails.length === 0) {
-            setError('Researcher allowlist is not configured.');
+        if (!hasVerificationEndpoint) {
+            setError('Google auth verification endpoint must be same-origin and configured.');
             return;
         }
 
@@ -59,29 +43,39 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
             if (!window.google?.accounts?.id || !buttonRef.current) return;
             window.google.accounts.id.initialize({
                 client_id: clientId,
-                callback: (response) => {
+                callback: async (response) => {
                     if (!response.credential) {
                         setError('Google login failed. Please retry.');
                         return;
                     }
 
-                    const payload = parseGooglePayload(response.credential);
-                    const issuerValid = payload?.iss === 'https://accounts.google.com' || payload?.iss === 'accounts.google.com';
-                    const audienceValid = payload?.aud === clientId;
-                    const tokenValid = typeof payload?.exp === 'number' && payload.exp * 1000 > Date.now();
-                    const email = payload?.email?.toLowerCase() || '';
-                    const emailVerified = payload?.email_verified === true;
-                    const allowlisted = allowedEmails.includes(email);
-
-                    if (!issuerValid || !audienceValid || !tokenValid || !emailVerified || !allowlisted) {
-                        setError('Unauthorized Google account.');
+                    try {
+                        const verificationResponse = await fetch(resolvedVerifyUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            credentials: 'include',
+                            body: JSON.stringify({ credential: response.credential }),
+                        });
+                        if (!verificationResponse.ok) {
+                            setError('Unable to verify Google sign-in.');
+                            return;
+                        }
+                        const verification = await verificationResponse.json();
+                        if (verification?.authorized !== true) {
+                            setError('Unauthorized Google account.');
+                            return;
+                        }
+                        onLogin();
+                    } catch (error) {
+                        if (import.meta.env.DEV) {
+                            console.error('Google sign-in verification failed:', error);
+                        }
+                        setError('Unable to verify Google sign-in.');
                         return;
                     }
-
-                    onLogin();
                 },
             });
-            buttonRef.current.innerHTML = '';
+            buttonRef.current.replaceChildren();
             window.google.accounts.id.renderButton(buttonRef.current, {
                 theme: 'outline',
                 size: 'large',
@@ -106,7 +100,7 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
         script.onload = initButton;
         script.onerror = () => setError('Could not load Google auth script.');
         document.head.appendChild(script);
-    }, [allowedEmails, clientId, onLogin]);
+    }, [clientId, hasVerificationEndpoint, onLogin, resolvedVerifyUrl]);
 
     return (
         <div style={{
