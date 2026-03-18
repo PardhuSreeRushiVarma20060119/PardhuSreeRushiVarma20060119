@@ -1,4 +1,5 @@
 import crypto from 'node:crypto';
+import { getCookieValue, shouldUseSecureCookie } from './utils.ts';
 
 const BASE32_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
 const COOKIE_MAX_AGE = 31_536_000;
@@ -29,18 +30,6 @@ interface ApiResponse {
 
 function normalizeBase32(value: string): string {
     return value.trim().toUpperCase().replace(/\s+/g, '').replace(/=+$/g, '');
-}
-
-function getCookieValue(cookieHeader: string | undefined, name: string): string {
-    if (!cookieHeader) return '';
-    const cookies = cookieHeader.split(';');
-    for (const cookie of cookies) {
-        const [cookieName, ...valueParts] = cookie.split('=');
-        if (cookieName?.trim() === name) {
-            return valueParts.join('=').trim();
-        }
-    }
-    return '';
 }
 
 function resolveSecret(headers: Record<string, string | undefined>): string {
@@ -126,10 +115,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
     const authorized = verifyTotp(secret, code);
 
     if (authorized) {
-        const secure =
-            req.headers['x-forwarded-proto'] === 'https' ||
-            req.socket?.encrypted === true ||
-            req.connection?.encrypted === true;
+        const secure = shouldUseSecureCookie(req);
         const cookie = `totp_setup_complete=1; Path=/; HttpOnly; SameSite=Lax${secure ? '; Secure' : ''}; Max-Age=${COOKIE_MAX_AGE}`;
         res.setHeader('Set-Cookie', cookie);
     }

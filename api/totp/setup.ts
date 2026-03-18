@@ -1,5 +1,6 @@
 import QRCode from 'qrcode';
 import crypto from 'node:crypto';
+import { getCookieValue, shouldUseSecureCookie } from './utils.ts';
 
 interface ApiRequest {
     method?: string;
@@ -25,19 +26,8 @@ function normalizeBase32(value: string): string {
 
 const BASE32_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
 const EPHEMERAL_SECRET_COOKIE = 'totp_ephemeral_secret';
+// 10 minutes (in seconds) to limit ephemeral fallback secret lifetime.
 const EPHEMERAL_SECRET_MAX_AGE = 600;
-
-function getCookieValue(cookieHeader: string | undefined, name: string): string {
-    if (!cookieHeader) return '';
-    const cookies = cookieHeader.split(';');
-    for (const cookie of cookies) {
-        const [cookieName, ...valueParts] = cookie.split('=');
-        if (cookieName?.trim() === name) {
-            return valueParts.join('=').trim();
-        }
-    }
-    return '';
-}
 
 function encodeBase32(bytes: Buffer): string {
     let bits = 0;
@@ -67,11 +57,12 @@ function resolveSecret(req: ApiRequest): { secret: string; shouldPersistEphemera
         return { secret: configuredSecret, shouldPersistEphemeralSecret: false };
     }
 
-    const cookieSecret = normalizeBase32(getCookieValue(req.headers?.cookie, EPHEMERAL_SECRET_COOKIE));
+    const cookieSecret = normalizeBase32(getCookieValue(req.headers.cookie, EPHEMERAL_SECRET_COOKIE));
     if (cookieSecret) {
         return { secret: cookieSecret, shouldPersistEphemeralSecret: false };
     }
 
+    // 20 random bytes (~160 bits) aligns with common TOTP secret entropy guidance.
     const generatedSecret = encodeBase32(crypto.randomBytes(20));
     return { secret: generatedSecret, shouldPersistEphemeralSecret: true };
 }
@@ -94,10 +85,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
     const qrDataUrl = await QRCode.toDataURL(setupUri, { width: 220, margin: 1 });
 
     if (shouldPersistEphemeralSecret) {
-        const secure =
-            req.headers['x-forwarded-proto'] === 'https' ||
-            req.socket?.encrypted === true ||
-            req.connection?.encrypted === true;
+        const secure = shouldUseSecureCookie(req);
         const secretCookie = `${EPHEMERAL_SECRET_COOKIE}=${secret}; Path=/; HttpOnly; SameSite=Lax${secure ? '; Secure' : ''}; Max-Age=${EPHEMERAL_SECRET_MAX_AGE}`;
         res.setHeader('Set-Cookie', secretCookie);
     }
