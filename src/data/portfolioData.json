@@ -1,11 +1,11 @@
 {
-    "version": "1.0.7",
+    "version": "1.0.8",
     "profile": {
         "name": "Pardhu Sri Rushi Varma Konduru",
         "title": "Cybersecurity & ML Security Researcher",
         "subtitle": "Runtime-Governed Intelligence Systems",
         "location": "Hyderabad, India",
-        "email": "pardhuvarma.cs@gmail.com",
+        "email": "pardhuvarma.cs [at] gmail [dot] com",
         "bio": "Exploring adversarial AI, systems security, and runtime-governed architectures. Building modular, reversible, and compositionally safe intelligence systems for adversarial resilience.",
         "links": [
             {
@@ -23,6 +23,11 @@
             {
                 "label": "Resume",
                 "href": "/resume/pardhu.pdf"
+            },
+            {
+                "label": "Download Resume",
+                "href": "/resume/pardhu.pdf",
+                "download": "pardhu.pdf"
             }
         ]
     },
@@ -148,8 +153,8 @@
         "collaborationText": "Open to research collaboration, academic discussion, and systems-oriented AI security dialogue. Aspiring toward graduate research at CISPA, Max Planck, or Helmholtz centers. Interested in AI safety, adversarial resilience, and runtime-governed systems.",
         "links": [
             {
-                "label": "Email",
-                "href": "mailto:pardhuvarma.cs@gmail.com"
+                "label": "pardhuvarma.cs [at] gmail [dot] com",
+                "href": "#"
             },
             {
                 "label": "ORCID",

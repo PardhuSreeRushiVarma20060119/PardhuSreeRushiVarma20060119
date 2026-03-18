@@ -18,7 +18,7 @@ education
 Personal information
 Emails & domains
 Verified email addresses
-pardhuvarma.cs@gmail.com
+pardhuvarma.cs [at] gmail [dot] com
 Websites & social links
 Github
 LinkedIn
