@@ -82,3 +82,25 @@ If my research or experiments contribute to your projects or spark ideas, you ca
 <p align="center">
   <em>"To emulate the adversary is to embody every doubt that was never tested enough."</em>
 </p>
+
+---
+
+## 🔐 Researcher Login (Google Authenticator) Configuration
+
+Researcher login uses a local TOTP flow:
+
+- On first login, click **Setup Google Authenticator**
+- Scan the QR in Google Authenticator
+- Enter the 6-digit code to complete setup and login
+- On future logins, only the authenticator code is required
+
+Set these values in your local `.env` (or copy from `.env.example`):
+
+- `TOTP_SECRET` (server-side Base32 secret used for verification)
+- `TOTP_ISSUER` (display name in authenticator app)
+- `TOTP_ACCOUNT` (account label in authenticator app)
+- `VITE_TOTP_SETUP_URL` (defaults to `/api/totp/setup`)
+- `VITE_TOTP_STATUS_URL` (defaults to `/api/totp/status`)
+- `VITE_TOTP_VERIFY_URL` (defaults to `/api/totp/verify`)
+
+The TOTP secret stays server-side in API routes (`/api/totp/*`) and is never exposed to the client bundle.

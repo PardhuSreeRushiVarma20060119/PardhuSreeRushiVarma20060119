@@ -1,23 +1,18 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-
-declare global {
-    interface Window {
-        google?: {
-            accounts: {
-                id: {
-                    initialize: (config: { client_id: string; callback: (response: { credential?: string }) => void }) => void;
-                    renderButton: (parent: HTMLElement, options: Record<string, unknown>) => void;
-                };
-            };
-        };
-    }
-}
+import { FormEvent, useEffect, useMemo, useState } from 'react';
 
 export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCancel: () => void }) {
-    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-    const verifyUrl = import.meta.env.VITE_GOOGLE_AUTH_VERIFY_URL;
+    const setupUrl = import.meta.env.VITE_TOTP_SETUP_URL ?? '/api/totp/setup';
+    const statusUrl = import.meta.env.VITE_TOTP_STATUS_URL ?? '/api/totp/status';
+    const verifyUrl = import.meta.env.VITE_TOTP_VERIFY_URL ?? '/api/totp/verify';
+    const resolvedSetupUrl = useMemo(() => {
+        try {
+            const parsed = new URL(setupUrl, window.location.origin);
+            return parsed.origin === window.location.origin ? parsed.toString() : null;
+        } catch {
+            return null;
+        }
+    }, [setupUrl]);
     const resolvedVerifyUrl = useMemo(() => {
-        if (!verifyUrl) return null;
         try {
             const parsed = new URL(verifyUrl, window.location.origin);
             return parsed.origin === window.location.origin ? parsed.toString() : null;
@@ -25,82 +20,146 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
             return null;
         }
     }, [verifyUrl]);
-    const hasVerificationEndpoint = useMemo(() => Boolean(resolvedVerifyUrl), [resolvedVerifyUrl]);
-    const buttonRef = useRef<HTMLDivElement>(null);
+    const resolvedStatusUrl = useMemo(() => {
+        try {
+            const parsed = new URL(statusUrl, window.location.origin);
+            return parsed.origin === window.location.origin ? parsed.toString() : null;
+        } catch {
+            return null;
+        }
+    }, [statusUrl]);
+    const [code, setCode] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isPreparingSetup, setIsPreparingSetup] = useState(false);
+    const [showSetup, setShowSetup] = useState(false);
+    const [qrDataUrl, setQrDataUrl] = useState('');
+    const [isLoadingStatus, setIsLoadingStatus] = useState(true);
     const [error, setError] = useState<string>('');
+    const [setupComplete, setSetupComplete] = useState(false);
 
     useEffect(() => {
-        if (!clientId) {
-            setError('Google auth is not configured.');
-            return;
-        }
-        if (!hasVerificationEndpoint) {
-            setError('Google auth verification endpoint must be same-origin and configured.');
-            return;
-        }
-
-        const initButton = () => {
-            if (!window.google?.accounts?.id || !buttonRef.current) return;
-            window.google.accounts.id.initialize({
-                client_id: clientId,
-                callback: async (response) => {
-                    if (!response.credential) {
-                        setError('Google login failed. Please retry.');
-                        return;
+        let isCancelled = false;
+        const loadStatus = async () => {
+            if (!resolvedStatusUrl) {
+                if (!isCancelled) {
+                    setError('Authenticator status endpoint must be same-origin and configured.');
+                    setIsLoadingStatus(false);
+                }
+                return;
+            }
+            try {
+                const response = await fetch(resolvedStatusUrl, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: { Accept: 'application/json' },
+                });
+                if (!response.ok) {
+                    if (!isCancelled) {
+                        setError('Unable to load authenticator setup status.');
                     }
-
-                    try {
-                        const verificationResponse = await fetch(resolvedVerifyUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            credentials: 'include',
-                            body: JSON.stringify({ credential: response.credential }),
-                        });
-                        if (!verificationResponse.ok) {
-                            setError('Unable to verify Google sign-in.');
-                            return;
-                        }
-                        const verification = await verificationResponse.json();
-                        if (verification?.authorized !== true) {
-                            setError('Unauthorized Google account.');
-                            return;
-                        }
-                        onLogin();
-                    } catch (error) {
-                        if (import.meta.env.DEV) {
-                            console.error('Google sign-in verification failed:', error);
-                        }
-                        setError('Unable to verify Google sign-in.');
-                        return;
-                    }
-                },
-            });
-            buttonRef.current.replaceChildren();
-            window.google.accounts.id.renderButton(buttonRef.current, {
-                theme: 'outline',
-                size: 'large',
-                text: 'continue_with',
-                shape: 'pill',
-                width: 320,
-            });
+                    return;
+                }
+                const payload = await response.json();
+                if (!isCancelled) {
+                    setSetupComplete(payload?.setupComplete === true);
+                }
+            } catch (statusError) {
+                if (import.meta.env.DEV) {
+                    console.error('Authenticator status load failed:', statusError);
+                }
+                if (!isCancelled) {
+                    setError('Unable to load authenticator setup status.');
+                }
+            } finally {
+                if (!isCancelled) {
+                    setIsLoadingStatus(false);
+                }
+            }
         };
+        void loadStatus();
+        return () => {
+            isCancelled = true;
+        };
+    }, [resolvedStatusUrl]);
 
-        const scriptId = 'google-gsi-client';
-        const existing = document.getElementById(scriptId) as HTMLScriptElement | null;
-        if (existing) {
-            if (window.google?.accounts?.id) initButton();
+    const handlePrepareSetup = async () => {
+        setError('');
+        setIsPreparingSetup(true);
+        try {
+            if (!resolvedSetupUrl) {
+                setError('Authenticator setup endpoint must be same-origin and configured.');
+                return;
+            }
+            const response = await fetch(resolvedSetupUrl, {
+                method: 'GET',
+                credentials: 'include',
+                headers: { Accept: 'application/json' },
+            });
+            if (!response.ok) {
+                setError('Unable to prepare authenticator setup.');
+                return;
+            }
+            const payload = await response.json();
+            if (typeof payload?.qrDataUrl !== 'string' || !payload.qrDataUrl.startsWith('data:image/')) {
+                setError('Invalid setup response from authenticator endpoint.');
+                return;
+            }
+            setQrDataUrl(payload.qrDataUrl);
+            setShowSetup(true);
+        } catch (prepareError) {
+            if (import.meta.env.DEV) {
+                console.error('Authenticator setup failed:', prepareError);
+            }
+            setError('Unable to prepare authenticator setup.');
+        } finally {
+            setIsPreparingSetup(false);
+        }
+    };
+
+    const handleSubmit = async (event: FormEvent) => {
+        event.preventDefault();
+        setError('');
+
+        const normalizedCode = code.trim();
+        if (!/^\d{6}$/.test(normalizedCode)) {
+            setError('Enter a valid 6-digit authenticator code.');
             return;
         }
-
-        const script = document.createElement('script');
-        script.id = scriptId;
-        script.src = 'https://accounts.google.com/gsi/client';
-        script.async = true;
-        script.defer = true;
-        script.onload = initButton;
-        script.onerror = () => setError('Could not load Google auth script.');
-        document.head.appendChild(script);
-    }, [clientId, hasVerificationEndpoint, onLogin, resolvedVerifyUrl]);
+        if (!resolvedVerifyUrl) {
+            setError('Authenticator verification endpoint must be same-origin and configured.');
+            return;
+        }
+        setIsSubmitting(true);
+        try {
+            const response = await fetch(resolvedVerifyUrl, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify({ code: normalizedCode }),
+            });
+            if (!response.ok) {
+                setError('Unable to verify authenticator code.');
+                return;
+            }
+            const payload = await response.json();
+            if (payload?.authorized !== true) {
+                setError('Invalid authenticator code. Please try again.');
+                return;
+            }
+            setSetupComplete(true);
+            onLogin();
+        } catch (submitError) {
+            if (import.meta.env.DEV) {
+                console.error('Authenticator verification failed:', submitError);
+            }
+            setError('Unable to verify authenticator code.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <div style={{
@@ -141,11 +200,86 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                     marginBottom: '1.25rem',
                     fontFamily: 'var(--font-mono)'
                 }}>
-                    Google account sign-in only
+                    Google Authenticator code required
                 </p>
-                <div className="flex justify-center mb-4">
-                    <div ref={buttonRef} />
-                </div>
+                {!setupComplete && !isLoadingStatus && (
+                    <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>
+                        <button
+                            type="button"
+                            onClick={handlePrepareSetup}
+                            disabled={isPreparingSetup}
+                            style={{
+                                width: '100%',
+                                maxWidth: '320px',
+                                padding: '0.75rem',
+                                border: '1px solid var(--border-color)',
+                                borderRadius: '4px',
+                                background: 'none',
+                                color: 'var(--text-secondary)',
+                                cursor: isPreparingSetup ? 'not-allowed' : 'pointer',
+                                fontFamily: 'var(--font-mono)',
+                                fontSize: '0.875rem',
+                                opacity: isPreparingSetup ? 0.7 : 1,
+                            }}
+                        >
+                            {isPreparingSetup ? 'Preparing Setup...' : 'Setup Google Authenticator'}
+                        </button>
+                    </div>
+                )}
+                {!setupComplete && showSetup && qrDataUrl && (
+                    <div style={{ marginBottom: '1rem', textAlign: 'center' }}>
+                        <img src={qrDataUrl} alt="Google Authenticator QR setup code" style={{ width: 220, height: 220, borderRadius: '8px', margin: '0 auto 0.75rem auto' }} />
+                        <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>
+                            Scan once, then enter the 6-digit code below.
+                        </p>
+                    </div>
+                )}
+                <form onSubmit={handleSubmit} style={{ marginBottom: '1rem' }}>
+                    <input
+                        type="text"
+                        inputMode="numeric"
+                        maxLength={6}
+                        value={code}
+                        onChange={(event) => {
+                            setCode(event.target.value.replace(/\D/g, ''));
+                            setError('');
+                        }}
+                        placeholder="Enter 6-digit code"
+                        aria-label="Authenticator code"
+                        style={{
+                            width: '100%',
+                            padding: '0.75rem',
+                            border: '1px solid var(--border-color)',
+                            borderRadius: '4px',
+                            background: 'transparent',
+                            color: 'var(--text-primary)',
+                            fontFamily: 'var(--font-mono)',
+                            marginBottom: '0.75rem',
+                        }}
+                    />
+                    <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        style={{
+                            width: '100%',
+                            padding: '0.75rem',
+                            border: '1px solid var(--border-color)',
+                            borderRadius: '4px',
+                            background: 'none',
+                            color: 'var(--text-secondary)',
+                            cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                            fontFamily: 'var(--font-mono)',
+                            opacity: isSubmitting ? 0.7 : 1,
+                        }}
+                    >
+                        {isSubmitting ? 'Verifying...' : 'Verify & Login'}
+                    </button>
+                </form>
+                {isLoadingStatus && (
+                    <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', textAlign: 'center', fontFamily: 'var(--font-mono)', marginBottom: '1rem' }}>
+                        Loading authenticator status...
+                    </p>
+                )}
                 {error && (
                     <p style={{ color: '#D4183D', fontSize: '0.75rem', textAlign: 'center', fontFamily: 'var(--font-mono)', marginBottom: '1rem' }}>
                         {error}
