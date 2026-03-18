@@ -345,16 +345,18 @@
 
 .intent-card.is-magnetized {
   transform: translateZ(0) scale(calc(1.01 + var(--magnet-pull, 0) * 0.08));
-  box-shadow: none;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.18);
   border-color: var(--border-color);
 }
 
 [data-intent-target][data-echo="true"] {
-  box-shadow: none;
+  box-shadow:
+    0 0 0 1px var(--border-color),
+    0 12px 36px rgba(0, 0, 0, 0.14);
 }
 
 [data-intent-target][data-recent="true"] {
-  outline: none;
+  outline: 1px solid var(--border-color);
 }
 
 .intent-shell [data-intent-target]:hover {
