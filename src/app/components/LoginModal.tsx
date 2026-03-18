@@ -1,120 +1,155 @@
-import { FormEvent, useMemo, useState } from 'react';
-
-const SETUP_COMPLETE_KEY = 'researcher_totp_setup_complete';
-const BASE32_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
-
-function normalizeBase32(value: string): string {
-    return value.trim().toUpperCase().replace(/\s+/g, '').replace(/=+$/g, '');
-}
-
-function decodeBase32(secret: string): Uint8Array | null {
-    const normalized = normalizeBase32(secret);
-    if (!normalized) return null;
-
-    let bits = 0;
-    let value = 0;
-    const output: number[] = [];
-
-    for (const char of normalized) {
-        const index = BASE32_ALPHABET.indexOf(char);
-        if (index < 0) return null;
-        value = (value << 5) | index;
-        bits += 5;
-        if (bits >= 8) {
-            bits -= 8;
-            output.push((value >> bits) & 0xff);
-        }
-    }
-
-    return output.length > 0 ? new Uint8Array(output) : null;
-}
-
-async function generateTotpCode(secretBytes: Uint8Array, timeStep: number): Promise<string> {
-    if (!crypto?.subtle) {
-        throw new Error('Web Crypto API unavailable');
-    }
-
-    const counterBytes = new Uint8Array(8);
-    let counter = timeStep;
-    for (let i = 7; i >= 0; i--) {
-        counterBytes[i] = counter & 0xff;
-        counter = Math.floor(counter / 256);
-    }
-
-    const key = await crypto.subtle.importKey('raw', secretBytes, { name: 'HMAC', hash: 'SHA-1' }, false, ['sign']);
-    const signature = new Uint8Array(await crypto.subtle.sign('HMAC', key, counterBytes));
-    const offset = signature[signature.length - 1] & 0x0f;
-    const binary =
-        ((signature[offset] & 0x7f) << 24) |
-        ((signature[offset + 1] & 0xff) << 16) |
-        ((signature[offset + 2] & 0xff) << 8) |
-        (signature[offset + 3] & 0xff);
-    return (binary % 1_000_000).toString().padStart(6, '0');
-}
-
-async function verifyTotp(secret: string, inputCode: string): Promise<boolean> {
-    const normalizedCode = inputCode.trim();
-    if (!/^\d{6}$/.test(normalizedCode)) return false;
-
-    const secretBytes = decodeBase32(secret);
-    if (!secretBytes) return false;
-
-    const currentStep = Math.floor(Date.now() / 1000 / 30);
-    for (const drift of [-1, 0, 1]) {
-        const expected = await generateTotpCode(secretBytes, currentStep + drift);
-        if (expected === normalizedCode) return true;
-    }
-    return false;
-}
+import { FormEvent, useEffect, useMemo, useState } from 'react';
 
 export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCancel: () => void }) {
-    const secret = normalizeBase32(import.meta.env.VITE_TOTP_SECRET ?? '');
-    const issuer = (import.meta.env.VITE_TOTP_ISSUER ?? 'Researcher Portfolio').trim() || 'Researcher Portfolio';
-    const account = (import.meta.env.VITE_TOTP_ACCOUNT ?? 'researcher').trim() || 'researcher';
+    const setupUrl = import.meta.env.VITE_TOTP_SETUP_URL ?? '/api/totp/setup';
+    const statusUrl = import.meta.env.VITE_TOTP_STATUS_URL ?? '/api/totp/status';
+    const verifyUrl = import.meta.env.VITE_TOTP_VERIFY_URL ?? '/api/totp/verify';
+    const resolvedSetupUrl = useMemo(() => {
+        try {
+            const parsed = new URL(setupUrl, window.location.origin);
+            return parsed.origin === window.location.origin ? parsed.toString() : null;
+        } catch {
+            return null;
+        }
+    }, [setupUrl]);
+    const resolvedVerifyUrl = useMemo(() => {
+        try {
+            const parsed = new URL(verifyUrl, window.location.origin);
+            return parsed.origin === window.location.origin ? parsed.toString() : null;
+        } catch {
+            return null;
+        }
+    }, [verifyUrl]);
+    const resolvedStatusUrl = useMemo(() => {
+        try {
+            const parsed = new URL(statusUrl, window.location.origin);
+            return parsed.origin === window.location.origin ? parsed.toString() : null;
+        } catch {
+            return null;
+        }
+    }, [statusUrl]);
     const [code, setCode] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isPreparingSetup, setIsPreparingSetup] = useState(false);
     const [showSetup, setShowSetup] = useState(false);
+    const [qrDataUrl, setQrDataUrl] = useState('');
+    const [isLoadingStatus, setIsLoadingStatus] = useState(true);
     const [error, setError] = useState<string>('');
-    const [setupComplete, setSetupComplete] = useState<boolean>(() => {
-        if (typeof window === 'undefined') return false;
-        return window.localStorage.getItem(SETUP_COMPLETE_KEY) === 'true';
-    });
+    const [setupComplete, setSetupComplete] = useState(false);
 
-    const setupUri = useMemo(() => {
-        if (!secret) return null;
-        const label = `${issuer}:${account}`;
-        return `otpauth://totp/${encodeURIComponent(label)}?secret=${secret}&issuer=${encodeURIComponent(issuer)}&algorithm=SHA1&digits=6&period=30`;
-    }, [account, issuer, secret]);
+    useEffect(() => {
+        let isCancelled = false;
+        const loadStatus = async () => {
+            if (!resolvedStatusUrl) {
+                if (!isCancelled) {
+                    setError('Authenticator status endpoint must be same-origin and configured.');
+                    setIsLoadingStatus(false);
+                }
+                return;
+            }
+            try {
+                const response = await fetch(resolvedStatusUrl, {
+                    method: 'GET',
+                    credentials: 'include',
+                    headers: { Accept: 'application/json' },
+                });
+                if (!response.ok) {
+                    if (!isCancelled) {
+                        setError('Unable to load authenticator setup status.');
+                    }
+                    return;
+                }
+                const payload = await response.json();
+                if (!isCancelled) {
+                    setSetupComplete(payload?.setupComplete === true);
+                }
+            } catch (statusError) {
+                if (import.meta.env.DEV) {
+                    console.error('Authenticator status load failed:', statusError);
+                }
+                if (!isCancelled) {
+                    setError('Unable to load authenticator setup status.');
+                }
+            } finally {
+                if (!isCancelled) {
+                    setIsLoadingStatus(false);
+                }
+            }
+        };
+        void loadStatus();
+        return () => {
+            isCancelled = true;
+        };
+    }, [resolvedStatusUrl]);
 
-    const qrUrl = useMemo(() => {
-        if (!setupUri) return null;
-        return `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(setupUri)}`;
-    }, [setupUri]);
+    const handlePrepareSetup = async () => {
+        setError('');
+        setIsPreparingSetup(true);
+        try {
+            if (!resolvedSetupUrl) {
+                setError('Authenticator setup endpoint must be same-origin and configured.');
+                return;
+            }
+            const response = await fetch(resolvedSetupUrl, {
+                method: 'GET',
+                credentials: 'include',
+                headers: { Accept: 'application/json' },
+            });
+            if (!response.ok) {
+                setError('Unable to prepare authenticator setup.');
+                return;
+            }
+            const payload = await response.json();
+            if (typeof payload?.qrDataUrl !== 'string' || !payload.qrDataUrl.startsWith('data:image/')) {
+                setError('Invalid setup response from authenticator endpoint.');
+                return;
+            }
+            setQrDataUrl(payload.qrDataUrl);
+            setShowSetup(true);
+        } catch (prepareError) {
+            if (import.meta.env.DEV) {
+                console.error('Authenticator setup failed:', prepareError);
+            }
+            setError('Unable to prepare authenticator setup.');
+        } finally {
+            setIsPreparingSetup(false);
+        }
+    };
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         setError('');
 
-        if (!secret) {
-            setError('Authenticator is not configured. Set VITE_TOTP_SECRET in your .env file.');
+        const normalizedCode = code.trim();
+        if (!/^\d{6}$/.test(normalizedCode)) {
+            setError('Enter a valid 6-digit authenticator code.');
             return;
         }
-        if (!setupComplete && !showSetup) {
-            setError('First-time setup required. Click Setup to generate your Google Authenticator QR code.');
+        if (!resolvedVerifyUrl) {
+            setError('Authenticator verification endpoint must be same-origin and configured.');
             return;
         }
-
         setIsSubmitting(true);
         try {
-            const valid = await verifyTotp(secret, code);
-            if (!valid) {
+            const response = await fetch(resolvedVerifyUrl, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify({ code: normalizedCode }),
+            });
+            if (!response.ok) {
+                setError('Unable to verify authenticator code.');
+                return;
+            }
+            const payload = await response.json();
+            if (payload?.authorized !== true) {
                 setError('Invalid authenticator code. Please try again.');
                 return;
             }
-            if (!setupComplete) {
-                window.localStorage.setItem(SETUP_COMPLETE_KEY, 'true');
-                setSetupComplete(true);
-            }
+            setSetupComplete(true);
             onLogin();
         } catch (submitError) {
             if (import.meta.env.DEV) {
@@ -167,14 +202,12 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                 }}>
                     Google Authenticator code required
                 </p>
-                {!setupComplete && (
+                {!setupComplete && !isLoadingStatus && (
                     <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>
                         <button
                             type="button"
-                            onClick={() => {
-                                setShowSetup(true);
-                                setError('');
-                            }}
+                            onClick={handlePrepareSetup}
+                            disabled={isPreparingSetup}
                             style={{
                                 width: '100%',
                                 maxWidth: '320px',
@@ -183,23 +216,21 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                                 borderRadius: '4px',
                                 background: 'none',
                                 color: 'var(--text-secondary)',
-                                cursor: 'pointer',
+                                cursor: isPreparingSetup ? 'not-allowed' : 'pointer',
                                 fontFamily: 'var(--font-mono)',
                                 fontSize: '0.875rem',
+                                opacity: isPreparingSetup ? 0.7 : 1,
                             }}
                         >
-                            Setup Google Authenticator
+                            {isPreparingSetup ? 'Preparing Setup...' : 'Setup Google Authenticator'}
                         </button>
                     </div>
                 )}
-                {!setupComplete && showSetup && qrUrl && (
+                {!setupComplete && showSetup && qrDataUrl && (
                     <div style={{ marginBottom: '1rem', textAlign: 'center' }}>
-                        <img src={qrUrl} alt="Google Authenticator QR setup code" style={{ width: 220, height: 220, borderRadius: '8px', margin: '0 auto 0.75rem auto' }} />
+                        <img src={qrDataUrl} alt="Google Authenticator QR setup code" style={{ width: 220, height: 220, borderRadius: '8px', margin: '0 auto 0.75rem auto' }} />
                         <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>
                             Scan once, then enter the 6-digit code below.
-                        </p>
-                        <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', marginTop: '0.5rem' }}>
-                            If QR does not load, add manually with key: {secret}
                         </p>
                     </div>
                 )}
@@ -244,6 +275,11 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                         {isSubmitting ? 'Verifying...' : 'Verify & Login'}
                     </button>
                 </form>
+                {isLoadingStatus && (
+                    <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', textAlign: 'center', fontFamily: 'var(--font-mono)', marginBottom: '1rem' }}>
+                        Loading authenticator status...
+                    </p>
+                )}
                 {error && (
                     <p style={{ color: '#D4183D', fontSize: '0.75rem', textAlign: 'center', fontFamily: 'var(--font-mono)', marginBottom: '1rem' }}>
                         {error}

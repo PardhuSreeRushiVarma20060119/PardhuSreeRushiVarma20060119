@@ -96,8 +96,11 @@ Researcher login uses a local TOTP flow:
 
 Set these values in your local `.env` (or copy from `.env.example`):
 
-- `VITE_TOTP_SECRET` (Base32 secret used by Google Authenticator)
-- `VITE_TOTP_ISSUER` (display name in authenticator app)
-- `VITE_TOTP_ACCOUNT` (account label in authenticator app)
+- `TOTP_SECRET` (server-side Base32 secret used for verification)
+- `TOTP_ISSUER` (display name in authenticator app)
+- `TOTP_ACCOUNT` (account label in authenticator app)
+- `VITE_TOTP_SETUP_URL` (defaults to `/api/totp/setup`)
+- `VITE_TOTP_STATUS_URL` (defaults to `/api/totp/status`)
+- `VITE_TOTP_VERIFY_URL` (defaults to `/api/totp/verify`)
 
-> Note: this is a client-side gate intended for personal portfolio control, not production-grade server-side authentication.
+The TOTP secret stays server-side in API routes (`/api/totp/*`) and is never exposed to the client bundle.
