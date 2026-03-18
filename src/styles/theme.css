@@ -165,6 +165,21 @@
   @supports not selector(:focus-visible) {
     *:focus {
       outline: 2px solid color-mix(in srgb, var(--text-primary) 80%, transparent);
+      box-shadow:
+        0 0 0 4px color-mix(in srgb, var(--text-primary) 28%, transparent),
+        0 10px 30px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *:focus-visible {
+      box-shadow: none;
+    }
+
+    @supports not selector(:focus-visible) {
+      *:focus {
+        box-shadow: none;
+      }
     }
   }
 
