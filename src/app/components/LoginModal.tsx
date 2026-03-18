@@ -152,6 +152,7 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
     const [isLoadingStatus, setIsLoadingStatus] = useState(true);
     const [error, setError] = useState<string>('');
     const [setupComplete, setSetupComplete] = useState(false);
+    const [regenerationPassword, setRegenerationPassword] = useState('');
 
     const extractSecretFromUri = (uri: string): string => {
         try {
@@ -256,6 +257,12 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
             }
         };
         try {
+            if (setupComplete && regenerationPassword.trim() === '') {
+                setError('Password is required to generate a new QR code.');
+                setIsPreparingSetup(false);
+                return;
+            }
+            const passwordToSend = setupComplete ? regenerationPassword : '';
             if (!resolvedSetupUrl) {
                 if (!(await prepareLocalSetup())) {
                     setError('Authenticator setup endpoint must be same-origin and configured.');
@@ -265,9 +272,21 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
             const response = await fetch(resolvedSetupUrl, {
                 method: 'GET',
                 credentials: 'include',
-                headers: { Accept: 'application/json' },
+                headers: {
+                    Accept: 'application/json',
+                    ...(passwordToSend ? { 'x-totp-qr-password': passwordToSend } : {}),
+                },
             });
             if (!response.ok) {
+                if (response.status === 401 || response.status === 403) {
+                    try {
+                        const payload = await response.json();
+                        setError(typeof payload?.error === 'string' ? payload.error : 'Password required to generate a new QR code.');
+                    } catch {
+                        setError('Password required to generate a new QR code.');
+                    }
+                    return;
+                }
                 const handled = await prepareLocalSetup();
                 if (!handled) {
                     setError('Unable to prepare authenticator setup.');
@@ -428,7 +447,7 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                 }}>
                     Google Authenticator code required
                 </p>
-                {!setupComplete && !isLoadingStatus && (
+                {!isLoadingStatus && (
                     <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>
                         <button
                             type="button"
@@ -448,8 +467,42 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                                 opacity: isPreparingSetup ? 0.7 : 1,
                             }}
                         >
-                            {isPreparingSetup ? 'Preparing Setup...' : 'Setup Google Authenticator'}
+                            {isPreparingSetup
+                                ? 'Preparing Setup...'
+                                : setupComplete
+                                    ? 'Generate New QR (password required)'
+                                    : 'Setup Google Authenticator'}
                         </button>
+                    </div>
+                )}
+                {setupComplete && (
+                    <div style={{ marginBottom: '1rem' }}>
+                        <label style={{ display: 'block', marginBottom: '0.35rem', color: 'var(--text-muted)', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>
+                            Password for new QR
+                        </label>
+                        <input
+                            type="password"
+                            value={regenerationPassword}
+                            onChange={(event) => {
+                                setRegenerationPassword(event.target.value);
+                                setError('');
+                            }}
+                            placeholder="Enter password to regenerate QR"
+                            aria-label="QR regeneration password"
+                            style={{
+                                width: '100%',
+                                padding: '0.65rem',
+                                border: '1px solid var(--border-color)',
+                                borderRadius: '4px',
+                                background: 'transparent',
+                                color: 'var(--text-primary)',
+                                fontFamily: 'var(--font-mono)',
+                                marginBottom: '0.35rem',
+                            }}
+                        />
+                        <p style={{ color: 'var(--text-muted)', fontSize: '0.7rem', margin: 0, fontFamily: 'var(--font-mono)' }}>
+                            Use the administrator-configured TOTP_QR_PASSWORD (not your authenticator code).
+                        </p>
                     </div>
                 )}
                 {!setupComplete && showSetup && qrDataUrl && (

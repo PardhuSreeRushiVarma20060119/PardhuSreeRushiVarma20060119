@@ -1,5 +1,5 @@
 import crypto from 'node:crypto';
-import { getCookieValue, shouldUseSecureCookie } from './utils.ts';
+import { getCookieValue, hasSetupCookie, shouldUseSecureCookie } from './utils.ts';
 
 interface ApiRequest {
     method?: string;
@@ -27,6 +27,8 @@ const BASE32_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
 const EPHEMERAL_SECRET_COOKIE = 'totp_ephemeral_secret';
 // 10 minutes (in seconds) to limit ephemeral fallback secret lifetime.
 const EPHEMERAL_SECRET_MAX_AGE = 600;
+const MIN_COMPARE_BUFFER_SIZE = 64;
+const MAX_PASSWORD_BYTES = 512;
 
 function encodeBase32(bytes: Buffer): string {
     let bits = 0;
@@ -50,20 +52,21 @@ function encodeBase32(bytes: Buffer): string {
     return output;
 }
 
-function resolveSecret(req: ApiRequest): { secret: string; shouldPersistEphemeralSecret: boolean } {
-    const configuredSecret = normalizeBase32(process.env.TOTP_SECRET ?? '');
-    if (configuredSecret) {
-        return { secret: configuredSecret, shouldPersistEphemeralSecret: false };
+function resolveSecret(req: ApiRequest): { secret: string; shouldPersistEphemeralSecret: boolean; configuredSecretPresent: boolean } {
+    const configuredSecretTrimmed = (process.env.TOTP_SECRET ?? '').trim();
+    const configuredSecret = normalizeBase32(configuredSecretTrimmed);
+    if (configuredSecretTrimmed) {
+        return { secret: configuredSecret, shouldPersistEphemeralSecret: false, configuredSecretPresent: true };
     }
 
     const cookieSecret = normalizeBase32(getCookieValue(req.headers.cookie, EPHEMERAL_SECRET_COOKIE));
     if (cookieSecret) {
-        return { secret: cookieSecret, shouldPersistEphemeralSecret: false };
+        return { secret: cookieSecret, shouldPersistEphemeralSecret: false, configuredSecretPresent: false };
     }
 
     // 20 random bytes (~160 bits) aligns with common TOTP secret entropy guidance.
     const generatedSecret = encodeBase32(crypto.randomBytes(20));
-    return { secret: generatedSecret, shouldPersistEphemeralSecret: true };
+    return { secret: generatedSecret, shouldPersistEphemeralSecret: true, configuredSecretPresent: false };
 }
 
 export default async function handler(req: ApiRequest, res: ApiResponse) {
@@ -72,7 +75,43 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
         return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
-    const { secret, shouldPersistEphemeralSecret } = resolveSecret(req);
+    const { secret, shouldPersistEphemeralSecret, configuredSecretPresent } = resolveSecret(req);
+    const setupCompleted = hasSetupCookie(req.headers.cookie) || configuredSecretPresent;
+    if (setupCompleted) {
+        const configuredPassword = process.env.TOTP_QR_PASSWORD;
+        if (!configuredPassword || configuredPassword.trim() === '') {
+            return res.status(403).json({ error: 'Setup already completed. Configure TOTP_QR_PASSWORD to allow QR regeneration.' });
+        }
+        const headerValue = req.headers['x-totp-qr-password'];
+        const providedPassword = Array.isArray(headerValue) ? headerValue[0] ?? '' : (headerValue ?? '');
+        if (providedPassword.trim() === '') {
+            return res.status(401).json({ error: 'Password required to generate a new QR code.' });
+        }
+        const providedBuffer = Buffer.from(providedPassword, 'utf8');
+        const configuredBuffer = Buffer.from(configuredPassword, 'utf8');
+        if (providedBuffer.length > MAX_PASSWORD_BYTES || configuredBuffer.length > MAX_PASSWORD_BYTES) {
+            return res.status(401).json({ error: 'Password required to generate a new QR code.' });
+        }
+        // Fixed comparison length adds 1 byte to include the original length without leaking user-supplied length.
+        const compareLength = Math.max(configuredBuffer.length + 1, MIN_COMPARE_BUFFER_SIZE);
+        if (providedBuffer.length > compareLength - 1) {
+            return res.status(401).json({ error: 'Password required to generate a new QR code.' });
+        }
+        const compareProvided = Buffer.alloc(compareLength);
+        const compareConfigured = Buffer.alloc(compareLength);
+        compareProvided[0] = providedBuffer.length;
+        compareConfigured[0] = configuredBuffer.length;
+        providedBuffer.copy(compareProvided, 1, 0, Math.min(providedBuffer.length, compareLength - 1));
+        configuredBuffer.copy(compareConfigured, 1, 0, Math.min(configuredBuffer.length, compareLength - 1));
+        try {
+            if (!crypto.timingSafeEqual(compareProvided, compareConfigured)) {
+                return res.status(401).json({ error: 'Password required to generate a new QR code.' });
+            }
+        } catch {
+            return res.status(401).json({ error: 'Password required to generate a new QR code.' });
+        }
+    }
+
     if (!secret) {
         return res.status(500).json({ error: 'Unable to resolve TOTP secret.' });
     }

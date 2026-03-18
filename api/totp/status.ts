@@ -1,3 +1,5 @@
+import { hasSetupCookie } from './utils.ts';
+
 interface ApiRequest {
     method?: string;
     headers?: {
@@ -10,18 +12,6 @@ interface ApiResponse {
     status: (code: number) => {
         json: (payload: Record<string, unknown>) => void;
     };
-}
-
-function hasSetupCookie(cookieHeader: string | undefined): boolean {
-    if (!cookieHeader) return false;
-    const cookies = cookieHeader.split(';');
-    for (const cookie of cookies) {
-        const [name, value] = cookie.split('=').map((part) => part.trim());
-        if (name === 'totp_setup_complete' && value === '1') {
-            return true;
-        }
-    }
-    return false;
 }
 
 export default function handler(req: ApiRequest, res: ApiResponse) {
