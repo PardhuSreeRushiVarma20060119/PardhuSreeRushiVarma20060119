@@ -31,11 +31,11 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
 
     useEffect(() => {
         if (!clientId) {
-            setError('Google auth is not configured.');
+            setError('Google auth is not configured. Set VITE_GOOGLE_CLIENT_ID in your .env file and restart the app.');
             return;
         }
         if (!hasVerificationEndpoint) {
-            setError('Google auth verification endpoint must be same-origin and configured.');
+            setError('Google auth verification endpoint must be same-origin and configured. Set VITE_GOOGLE_AUTH_VERIFY_URL (e.g. /api/auth/google/verify).');
             return;
         }
 

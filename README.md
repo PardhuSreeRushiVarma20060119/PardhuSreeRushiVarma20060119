@@ -82,3 +82,12 @@ If my research or experiments contribute to your projects or spark ideas, you ca
 <p align="center">
   <em>"To emulate the adversary is to embody every doubt that was never tested enough."</em>
 </p>
+
+---
+
+## 🔐 Google Researcher Login Configuration
+
+If the modal shows **"Google auth is not configured"**, create a local env file from `.env.example` and set:
+
+- `VITE_GOOGLE_CLIENT_ID` to your Google OAuth client ID
+- `VITE_GOOGLE_AUTH_VERIFY_URL` to your same-origin verification endpoint (example: `/api/auth/google/verify`)
