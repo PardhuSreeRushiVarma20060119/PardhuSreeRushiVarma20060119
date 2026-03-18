@@ -2,6 +2,7 @@ import crypto from 'node:crypto';
 
 const BASE32_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
 const COOKIE_MAX_AGE = 31_536_000;
+const EPHEMERAL_SECRET_COOKIE = 'totp_ephemeral_secret';
 
 interface TotpVerifyRequestBody {
     code?: string;
@@ -28,6 +29,26 @@ interface ApiResponse {
 
 function normalizeBase32(value: string): string {
     return value.trim().toUpperCase().replace(/\s+/g, '').replace(/=+$/g, '');
+}
+
+function getCookieValue(cookieHeader: string | undefined, name: string): string {
+    if (!cookieHeader) return '';
+    const cookies = cookieHeader.split(';');
+    for (const cookie of cookies) {
+        const [cookieName, ...valueParts] = cookie.split('=');
+        if (cookieName?.trim() === name) {
+            return valueParts.join('=').trim();
+        }
+    }
+    return '';
+}
+
+function resolveSecret(headers: Record<string, string | undefined>): string {
+    const configuredSecret = normalizeBase32(process.env.TOTP_SECRET ?? '');
+    if (configuredSecret) {
+        return configuredSecret;
+    }
+    return normalizeBase32(getCookieValue(headers.cookie, EPHEMERAL_SECRET_COOKIE));
 }
 
 function decodeBase32(secret: string): Buffer | null {
@@ -90,7 +111,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
         return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
-    const secret = normalizeBase32(process.env.TOTP_SECRET ?? '');
+    const secret = resolveSecret(req.headers);
     if (!secret) {
         return res.status(500).json({ error: 'TOTP server secret is not configured.' });
     }
