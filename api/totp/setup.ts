@@ -1,4 +1,3 @@
-import QRCode from 'qrcode';
 import crypto from 'node:crypto';
 import { getCookieValue, shouldUseSecureCookie } from './utils.ts';
 
@@ -82,7 +81,16 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
     const account = (process.env.TOTP_ACCOUNT || 'researcher').trim();
     const label = `${issuer}:${account}`;
     const setupUri = `otpauth://totp/${encodeURIComponent(label)}?secret=${secret}&issuer=${encodeURIComponent(issuer)}&algorithm=SHA1&digits=6&period=30`;
-    const qrDataUrl = await QRCode.toDataURL(setupUri, { width: 220, margin: 1 });
+    let qrDataUrl = '';
+
+    try {
+        const { default: QRCode } = await import('qrcode');
+        qrDataUrl = await QRCode.toDataURL(setupUri, { width: 220, margin: 1 });
+    } catch (qrError) {
+        if (process.env.NODE_ENV !== 'production') {
+            console.error('Authenticator QR generation failed; falling back to manual setup.', qrError);
+        }
+    }
 
     if (shouldPersistEphemeralSecret) {
         const secure = shouldUseSecureCookie(req);
@@ -91,5 +99,9 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
     }
 
     res.setHeader('Cache-Control', 'no-store');
-    return res.status(200).json({ qrDataUrl });
+    return res.status(200).json({
+        qrDataUrl,
+        otpauthUri: setupUri,
+        secret,
+    });
 }

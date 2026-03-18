@@ -1,4 +1,5 @@
 import { FormEvent, useEffect, useMemo, useState } from 'react';
+import QRCode from 'qrcode';
 
 export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCancel: () => void }) {
     const setupUrl = import.meta.env.VITE_TOTP_SETUP_URL ?? '/api/totp/setup';
@@ -33,9 +34,19 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
     const [isPreparingSetup, setIsPreparingSetup] = useState(false);
     const [showSetup, setShowSetup] = useState(false);
     const [qrDataUrl, setQrDataUrl] = useState('');
+    const [manualSecret, setManualSecret] = useState('');
     const [isLoadingStatus, setIsLoadingStatus] = useState(true);
     const [error, setError] = useState<string>('');
     const [setupComplete, setSetupComplete] = useState(false);
+
+    const extractSecretFromUri = (uri: string): string => {
+        try {
+            const secretParam = new URL(uri).searchParams.get('secret');
+            return (secretParam ?? '').trim();
+        } catch {
+            return '';
+        }
+    };
 
     useEffect(() => {
         let isCancelled = false;
@@ -84,6 +95,7 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
 
     const handlePrepareSetup = async () => {
         setError('');
+        setManualSecret('');
         setIsPreparingSetup(true);
         try {
             if (!resolvedSetupUrl) {
@@ -100,12 +112,37 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                 return;
             }
             const payload = await response.json();
-            if (typeof payload?.qrDataUrl !== 'string' || !payload.qrDataUrl.startsWith('data:image/')) {
-                setError('Invalid setup response from authenticator endpoint.');
+            const serverQr = typeof payload?.qrDataUrl === 'string' && payload.qrDataUrl.startsWith('data:image/') ? payload.qrDataUrl : '';
+            const otpAuthUri = typeof payload?.otpauthUri === 'string' ? payload.otpauthUri : '';
+            const providedSecret = typeof payload?.secret === 'string' ? payload.secret.trim() : '';
+
+            let resolvedQr = serverQr;
+            if (!resolvedQr && otpAuthUri) {
+                try {
+                    resolvedQr = await QRCode.toDataURL(otpAuthUri, { width: 220, margin: 1 });
+                } catch (qrError) {
+                    if (import.meta.env.DEV) {
+                        console.error('Client QR generation failed:', qrError);
+                    }
+                }
+            }
+
+            if (resolvedQr) {
+                setQrDataUrl(resolvedQr);
+                setShowSetup(true);
                 return;
             }
-            setQrDataUrl(payload.qrDataUrl);
-            setShowSetup(true);
+
+            const fallbackSecret = providedSecret || extractSecretFromUri(otpAuthUri);
+            if (fallbackSecret) {
+                setManualSecret(fallbackSecret);
+                setQrDataUrl('');
+                setShowSetup(true);
+                setError('QR code unavailable. Add the secret below to Google Authenticator.');
+                return;
+            }
+
+            setError('Invalid setup response from authenticator endpoint.');
         } catch (prepareError) {
             if (import.meta.env.DEV) {
                 console.error('Authenticator setup failed:', prepareError);
@@ -231,6 +268,28 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                         <img src={qrDataUrl} alt="Google Authenticator QR setup code" style={{ width: 220, height: 220, borderRadius: '8px', margin: '0 auto 0.75rem auto' }} />
                         <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>
                             Scan once, then enter the 6-digit code below.
+                        </p>
+                    </div>
+                )}
+                {!setupComplete && showSetup && !qrDataUrl && manualSecret && (
+                    <div style={{ marginBottom: '1rem', textAlign: 'center' }}>
+                        <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.85rem', marginBottom: '0.5rem' }}>
+                            QR unavailable. Add this secret manually in Google Authenticator:
+                        </p>
+                        <div style={{
+                            display: 'inline-block',
+                            padding: '0.75rem 1rem',
+                            border: '1px solid var(--border-color)',
+                            borderRadius: '6px',
+                            fontFamily: 'var(--font-mono)',
+                            letterSpacing: '0.08em',
+                            color: 'var(--text-primary)',
+                            background: 'rgba(255,255,255,0.02)'
+                        }}>
+                            {manualSecret}
+                        </div>
+                        <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', marginTop: '0.5rem' }}>
+                            Use a 6-digit time-based (TOTP) entry.
                         </p>
                     </div>
                 )}
