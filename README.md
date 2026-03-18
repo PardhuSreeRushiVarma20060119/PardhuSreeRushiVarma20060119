@@ -85,9 +85,19 @@ If my research or experiments contribute to your projects or spark ideas, you ca
 
 ---
 
-## 🔐 Google Researcher Login Configuration
+## 🔐 Researcher Login (Google Authenticator) Configuration
 
-If the modal shows **"Google auth is not configured"**, create a local env file from `.env.example` and set:
+Researcher login uses a local TOTP flow:
 
-- `VITE_GOOGLE_CLIENT_ID` to your Google OAuth client ID
-- `VITE_GOOGLE_AUTH_VERIFY_URL` to your same-origin verification endpoint (example: `/api/auth/google/verify`)
+- On first login, click **Setup Google Authenticator**
+- Scan the QR in Google Authenticator
+- Enter the 6-digit code to complete setup and login
+- On future logins, only the authenticator code is required
+
+Set these values in your local `.env` (or copy from `.env.example`):
+
+- `VITE_TOTP_SECRET` (Base32 secret used by Google Authenticator)
+- `VITE_TOTP_ISSUER` (display name in authenticator app)
+- `VITE_TOTP_ACCOUNT` (account label in authenticator app)
+
+> Note: this is a client-side gate intended for personal portfolio control, not production-grade server-side authentication.

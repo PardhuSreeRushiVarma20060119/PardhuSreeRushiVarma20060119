@@ -592,7 +592,7 @@ export default function App() {
                   onClick={() => setShowLogin(true)}
                   style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '0.75rem', cursor: 'pointer', fontFamily: 'var(--font-mono)' }}
                 >
-                RESEARCHER LOGIN (GOOGLE)
+                RESEARCHER LOGIN
                 </button>
               )}
             </div>

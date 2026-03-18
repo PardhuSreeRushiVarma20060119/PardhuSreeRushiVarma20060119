@@ -1,106 +1,130 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { FormEvent, useMemo, useState } from 'react';
 
-declare global {
-    interface Window {
-        google?: {
-            accounts: {
-                id: {
-                    initialize: (config: { client_id: string; callback: (response: { credential?: string }) => void }) => void;
-                    renderButton: (parent: HTMLElement, options: Record<string, unknown>) => void;
-                };
-            };
-        };
+const SETUP_COMPLETE_KEY = 'researcher_totp_setup_complete';
+const BASE32_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+
+function normalizeBase32(value: string): string {
+    return value.trim().toUpperCase().replace(/\s+/g, '').replace(/=+$/g, '');
+}
+
+function decodeBase32(secret: string): Uint8Array | null {
+    const normalized = normalizeBase32(secret);
+    if (!normalized) return null;
+
+    let bits = 0;
+    let value = 0;
+    const output: number[] = [];
+
+    for (const char of normalized) {
+        const index = BASE32_ALPHABET.indexOf(char);
+        if (index < 0) return null;
+        value = (value << 5) | index;
+        bits += 5;
+        if (bits >= 8) {
+            bits -= 8;
+            output.push((value >> bits) & 0xff);
+        }
     }
+
+    return output.length > 0 ? new Uint8Array(output) : null;
+}
+
+async function generateTotpCode(secretBytes: Uint8Array, timeStep: number): Promise<string> {
+    if (!crypto?.subtle) {
+        throw new Error('Web Crypto API unavailable');
+    }
+
+    const counterBytes = new Uint8Array(8);
+    let counter = timeStep;
+    for (let i = 7; i >= 0; i--) {
+        counterBytes[i] = counter & 0xff;
+        counter = Math.floor(counter / 256);
+    }
+
+    const key = await crypto.subtle.importKey('raw', secretBytes, { name: 'HMAC', hash: 'SHA-1' }, false, ['sign']);
+    const signature = new Uint8Array(await crypto.subtle.sign('HMAC', key, counterBytes));
+    const offset = signature[signature.length - 1] & 0x0f;
+    const binary =
+        ((signature[offset] & 0x7f) << 24) |
+        ((signature[offset + 1] & 0xff) << 16) |
+        ((signature[offset + 2] & 0xff) << 8) |
+        (signature[offset + 3] & 0xff);
+    return (binary % 1_000_000).toString().padStart(6, '0');
+}
+
+async function verifyTotp(secret: string, inputCode: string): Promise<boolean> {
+    const normalizedCode = inputCode.trim();
+    if (!/^\d{6}$/.test(normalizedCode)) return false;
+
+    const secretBytes = decodeBase32(secret);
+    if (!secretBytes) return false;
+
+    const currentStep = Math.floor(Date.now() / 1000 / 30);
+    for (const drift of [-1, 0, 1]) {
+        const expected = await generateTotpCode(secretBytes, currentStep + drift);
+        if (expected === normalizedCode) return true;
+    }
+    return false;
 }
 
 export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCancel: () => void }) {
-    const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-    const verifyUrl = import.meta.env.VITE_GOOGLE_AUTH_VERIFY_URL;
-    const resolvedVerifyUrl = useMemo(() => {
-        if (!verifyUrl) return null;
-        try {
-            const parsed = new URL(verifyUrl, window.location.origin);
-            return parsed.origin === window.location.origin ? parsed.toString() : null;
-        } catch {
-            return null;
-        }
-    }, [verifyUrl]);
-    const hasVerificationEndpoint = useMemo(() => Boolean(resolvedVerifyUrl), [resolvedVerifyUrl]);
-    const buttonRef = useRef<HTMLDivElement>(null);
+    const secret = normalizeBase32(import.meta.env.VITE_TOTP_SECRET ?? '');
+    const issuer = (import.meta.env.VITE_TOTP_ISSUER ?? 'Researcher Portfolio').trim() || 'Researcher Portfolio';
+    const account = (import.meta.env.VITE_TOTP_ACCOUNT ?? 'researcher').trim() || 'researcher';
+    const [code, setCode] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showSetup, setShowSetup] = useState(false);
     const [error, setError] = useState<string>('');
+    const [setupComplete, setSetupComplete] = useState<boolean>(() => {
+        if (typeof window === 'undefined') return false;
+        return window.localStorage.getItem(SETUP_COMPLETE_KEY) === 'true';
+    });
 
-    useEffect(() => {
-        if (!clientId) {
-            setError('Google auth is not configured. Set VITE_GOOGLE_CLIENT_ID in your .env file and restart the app.');
+    const setupUri = useMemo(() => {
+        if (!secret) return null;
+        const label = `${issuer}:${account}`;
+        return `otpauth://totp/${encodeURIComponent(label)}?secret=${secret}&issuer=${encodeURIComponent(issuer)}&algorithm=SHA1&digits=6&period=30`;
+    }, [account, issuer, secret]);
+
+    const qrUrl = useMemo(() => {
+        if (!setupUri) return null;
+        return `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(setupUri)}`;
+    }, [setupUri]);
+
+    const handleSubmit = async (event: FormEvent) => {
+        event.preventDefault();
+        setError('');
+
+        if (!secret) {
+            setError('Authenticator is not configured. Set VITE_TOTP_SECRET in your .env file.');
             return;
         }
-        if (!hasVerificationEndpoint) {
-            setError('Google auth verification endpoint must be same-origin and configured. Set VITE_GOOGLE_AUTH_VERIFY_URL (e.g. /api/auth/google/verify).');
-            return;
-        }
-
-        const initButton = () => {
-            if (!window.google?.accounts?.id || !buttonRef.current) return;
-            window.google.accounts.id.initialize({
-                client_id: clientId,
-                callback: async (response) => {
-                    if (!response.credential) {
-                        setError('Google login failed. Please retry.');
-                        return;
-                    }
-
-                    try {
-                        const verificationResponse = await fetch(resolvedVerifyUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            credentials: 'include',
-                            body: JSON.stringify({ credential: response.credential }),
-                        });
-                        if (!verificationResponse.ok) {
-                            setError('Unable to verify Google sign-in.');
-                            return;
-                        }
-                        const verification = await verificationResponse.json();
-                        if (verification?.authorized !== true) {
-                            setError('Unauthorized Google account.');
-                            return;
-                        }
-                        onLogin();
-                    } catch (error) {
-                        if (import.meta.env.DEV) {
-                            console.error('Google sign-in verification failed:', error);
-                        }
-                        setError('Unable to verify Google sign-in.');
-                        return;
-                    }
-                },
-            });
-            buttonRef.current.replaceChildren();
-            window.google.accounts.id.renderButton(buttonRef.current, {
-                theme: 'outline',
-                size: 'large',
-                text: 'continue_with',
-                shape: 'pill',
-                width: 320,
-            });
-        };
-
-        const scriptId = 'google-gsi-client';
-        const existing = document.getElementById(scriptId) as HTMLScriptElement | null;
-        if (existing) {
-            if (window.google?.accounts?.id) initButton();
+        if (!setupComplete && !showSetup) {
+            setError('First-time setup required. Click Setup to generate your Google Authenticator QR code.');
             return;
         }
 
-        const script = document.createElement('script');
-        script.id = scriptId;
-        script.src = 'https://accounts.google.com/gsi/client';
-        script.async = true;
-        script.defer = true;
-        script.onload = initButton;
-        script.onerror = () => setError('Could not load Google auth script.');
-        document.head.appendChild(script);
-    }, [clientId, hasVerificationEndpoint, onLogin, resolvedVerifyUrl]);
+        setIsSubmitting(true);
+        try {
+            const valid = await verifyTotp(secret, code);
+            if (!valid) {
+                setError('Invalid authenticator code. Please try again.');
+                return;
+            }
+            if (!setupComplete) {
+                window.localStorage.setItem(SETUP_COMPLETE_KEY, 'true');
+                setSetupComplete(true);
+            }
+            onLogin();
+        } catch (submitError) {
+            if (import.meta.env.DEV) {
+                console.error('Authenticator verification failed:', submitError);
+            }
+            setError('Unable to verify authenticator code.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <div style={{
@@ -141,11 +165,85 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                     marginBottom: '1.25rem',
                     fontFamily: 'var(--font-mono)'
                 }}>
-                    Google account sign-in only
+                    Google Authenticator code required
                 </p>
-                <div className="flex justify-center mb-4">
-                    <div ref={buttonRef} />
-                </div>
+                {!setupComplete && (
+                    <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setShowSetup(true);
+                                setError('');
+                            }}
+                            style={{
+                                width: '100%',
+                                maxWidth: '320px',
+                                padding: '0.75rem',
+                                border: '1px solid var(--border-color)',
+                                borderRadius: '4px',
+                                background: 'none',
+                                color: 'var(--text-secondary)',
+                                cursor: 'pointer',
+                                fontFamily: 'var(--font-mono)',
+                                fontSize: '0.875rem',
+                            }}
+                        >
+                            Setup Google Authenticator
+                        </button>
+                    </div>
+                )}
+                {!setupComplete && showSetup && qrUrl && (
+                    <div style={{ marginBottom: '1rem', textAlign: 'center' }}>
+                        <img src={qrUrl} alt="Google Authenticator QR setup code" style={{ width: 220, height: 220, borderRadius: '8px', margin: '0 auto 0.75rem auto' }} />
+                        <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem' }}>
+                            Scan once, then enter the 6-digit code below.
+                        </p>
+                        <p style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', marginTop: '0.5rem' }}>
+                            If QR does not load, add manually with key: {secret}
+                        </p>
+                    </div>
+                )}
+                <form onSubmit={handleSubmit} style={{ marginBottom: '1rem' }}>
+                    <input
+                        type="text"
+                        inputMode="numeric"
+                        maxLength={6}
+                        value={code}
+                        onChange={(event) => {
+                            setCode(event.target.value.replace(/\D/g, '').slice(0, 6));
+                            setError('');
+                        }}
+                        placeholder="Enter 6-digit code"
+                        aria-label="Authenticator code"
+                        style={{
+                            width: '100%',
+                            padding: '0.75rem',
+                            border: '1px solid var(--border-color)',
+                            borderRadius: '4px',
+                            background: 'transparent',
+                            color: 'var(--text-primary)',
+                            fontFamily: 'var(--font-mono)',
+                            marginBottom: '0.75rem',
+                        }}
+                    />
+                    <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        style={{
+                            width: '100%',
+                            padding: '0.75rem',
+                            border: '1px solid var(--border-color)',
+                            borderRadius: '4px',
+                            background: 'none',
+                            color: 'var(--text-secondary)',
+                            cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                            fontFamily: 'var(--font-mono)',
+                            opacity: isSubmitting ? 0.7 : 1,
+                        }}
+                    >
+                        {isSubmitting ? 'Verifying...' : 'Verify & Login'}
+                    </button>
+                </form>
                 {error && (
                     <p style={{ color: '#D4183D', fontSize: '0.75rem', textAlign: 'center', fontFamily: 'var(--font-mono)', marginBottom: '1rem' }}>
                         {error}
