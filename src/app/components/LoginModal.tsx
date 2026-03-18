@@ -152,6 +152,7 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
     const [isLoadingStatus, setIsLoadingStatus] = useState(true);
     const [error, setError] = useState<string>('');
     const [setupComplete, setSetupComplete] = useState(false);
+    const [regenerationPassword, setRegenerationPassword] = useState('');
 
     const extractSecretFromUri = (uri: string): string => {
         try {
@@ -222,15 +223,6 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
         setIsPreparingSetup(true);
         const issuer = (import.meta.env.VITE_TOTP_ISSUER || 'Researcher Portfolio').toString().trim() || 'Researcher Portfolio';
         const account = (import.meta.env.VITE_TOTP_ACCOUNT || 'researcher').toString().trim() || 'researcher';
-        const requirePasswordIfCompleted = (): string | null => {
-            if (!setupComplete) return '';
-            const provided = window.prompt('Enter password to generate a new authenticator QR code:') ?? '';
-            if (!provided.trim()) {
-                setError('Password is required to generate a new QR code.');
-                return null;
-            }
-            return provided;
-        };
         const prepareLocalSetup = async () => {
             try {
                 const secret = loadLocalSecret() || generateLocalSecret();
@@ -265,10 +257,12 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
             }
         };
         try {
-            const regenerationPassword = requirePasswordIfCompleted();
-            if (regenerationPassword === null) {
+            if (setupComplete && regenerationPassword.trim() === '') {
+                setError('Password is required to generate a new QR code.');
+                setIsPreparingSetup(false);
                 return;
             }
+            const passwordToSend = setupComplete ? regenerationPassword : '';
             if (!resolvedSetupUrl) {
                 if (!(await prepareLocalSetup())) {
                     setError('Authenticator setup endpoint must be same-origin and configured.');
@@ -280,7 +274,7 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                 credentials: 'include',
                 headers: {
                     Accept: 'application/json',
-                    ...(regenerationPassword ? { 'x-totp-qr-password': regenerationPassword } : {}),
+                    ...(passwordToSend ? { 'x-totp-qr-password': passwordToSend } : {}),
                 },
             });
             if (!response.ok) {
@@ -479,6 +473,36 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                                     ? 'Generate New QR (password required)'
                                     : 'Setup Google Authenticator'}
                         </button>
+                    </div>
+                )}
+                {setupComplete && (
+                    <div style={{ marginBottom: '1rem' }}>
+                        <label style={{ display: 'block', marginBottom: '0.35rem', color: 'var(--text-muted)', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>
+                            Password for new QR
+                        </label>
+                        <input
+                            type="password"
+                            value={regenerationPassword}
+                            onChange={(event) => {
+                                setRegenerationPassword(event.target.value);
+                                setError('');
+                            }}
+                            placeholder="Enter password to regenerate QR"
+                            aria-label="QR regeneration password"
+                            style={{
+                                width: '100%',
+                                padding: '0.65rem',
+                                border: '1px solid var(--border-color)',
+                                borderRadius: '4px',
+                                background: 'transparent',
+                                color: 'var(--text-primary)',
+                                fontFamily: 'var(--font-mono)',
+                                marginBottom: '0.35rem',
+                            }}
+                        />
+                        <p style={{ color: 'var(--text-muted)', fontSize: '0.7rem', margin: 0, fontFamily: 'var(--font-mono)' }}>
+                            Use the administrator-configured TOTP_QR_PASSWORD (not your authenticator code).
+                        </p>
                     </div>
                 )}
                 {!setupComplete && showSetup && qrDataUrl && (
