@@ -7,6 +7,12 @@ import { LoginModal } from './components/LoginModal';
 import { EditModal } from './components/EditModal';
 import initialData from '../data/portfolioData.json';
 
+type ProfileLink = {
+  label: string;
+  href: string;
+  download?: string;
+};
+
 export default function App() {
   const [activeSection, setActiveSection] = useState('');
   const [data, setData] = useState(() => {
@@ -232,10 +238,18 @@ export default function App() {
               <span>{data.profile.location}</span>
               <span>•</span>
               <span style={{ color: 'var(--text-muted)' }}>{data.profile.email}</span>
-              {data.profile.links.map((link: any, i: number) => (
+              {data.profile.links.map((link: ProfileLink, i: number) => (
                 <span key={i} style={{ display: 'contents' }}>
                   <span>•</span>
-                  <a href={link.href} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>{link.label}</a>
+                  <a
+                    href={link.href}
+                    target={link.download ? undefined : "_blank"}
+                    rel={link.download ? undefined : "noopener noreferrer"}
+                    download={link.download}
+                    style={{ color: 'var(--text-muted)', textDecoration: 'none' }}
+                  >
+                    {link.label}
+                  </a>
                 </span>
               ))}
             </div>

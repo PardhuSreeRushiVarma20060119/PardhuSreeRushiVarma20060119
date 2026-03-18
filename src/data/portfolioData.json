@@ -1,5 +1,5 @@
 {
-    "version": "1.0.7",
+    "version": "1.0.8",
     "profile": {
         "name": "Pardhu Sri Rushi Varma Konduru",
         "title": "Cybersecurity & ML Security Researcher",
@@ -23,6 +23,11 @@
             {
                 "label": "Resume",
                 "href": "/resume/pardhu.pdf"
+            },
+            {
+                "label": "Download Resume",
+                "href": "/resume/pardhu.pdf",
+                "download": "pardhu.pdf"
             }
         ]
     },
