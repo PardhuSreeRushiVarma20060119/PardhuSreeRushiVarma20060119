@@ -145,7 +145,17 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  *:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px color-mix(in srgb, var(--text-secondary) 32%, transparent),
+      0 10px 30px rgba(0, 0, 0, 0.12);
+    transition: box-shadow var(--t-border) ease, transform var(--t-target-transform) ease;
   }
 
   body {
