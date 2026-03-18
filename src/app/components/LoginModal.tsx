@@ -1,6 +1,120 @@
 import { FormEvent, useEffect, useMemo, useState } from 'react';
 import QRCode from 'qrcode';
 
+const BASE32_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+const LOCAL_SECRET_KEY = 'totp_local_secret';
+const LOCAL_SETUP_FLAG = 'totp_local_setup_complete';
+
+function normalizeBase32(value: string): string {
+    return value.trim().toUpperCase().replace(/\s+/g, '').replace(/=+$/g, '');
+}
+
+function encodeBase32(bytes: Uint8Array): string {
+    let bits = 0;
+    let value = 0;
+    let output = '';
+
+    for (const byte of bytes) {
+        value = (value << 8) | byte;
+        bits += 8;
+
+        while (bits >= 5) {
+            output += BASE32_ALPHABET[(value >> (bits - 5)) & 31];
+            bits -= 5;
+        }
+    }
+
+    if (bits > 0) {
+        output += BASE32_ALPHABET[(value << (5 - bits)) & 31];
+    }
+
+    return output;
+}
+
+function decodeBase32(secret: string): Uint8Array | null {
+    const normalized = normalizeBase32(secret);
+    if (!normalized) return null;
+
+    let bits = 0;
+    let current = 0;
+    const bytes: number[] = [];
+
+    for (const char of normalized) {
+        const index = BASE32_ALPHABET.indexOf(char);
+        if (index < 0) return null;
+        current = (current << 5) | index;
+        bits += 5;
+        if (bits >= 8) {
+            bits -= 8;
+            bytes.push((current >> bits) & 0xff);
+        }
+    }
+
+    return bytes.length ? new Uint8Array(bytes) : null;
+}
+
+async function generateTotpCodeBrowser(secretBytes: Uint8Array, timeStep: number): Promise<string> {
+    const counter = new ArrayBuffer(8);
+    const view = new DataView(counter);
+    // high 4 bytes remain 0
+    view.setUint32(4, timeStep, false);
+
+    const key = await crypto.subtle.importKey('raw', secretBytes, { name: 'HMAC', hash: 'SHA-1' }, false, ['sign']);
+    const signature = new Uint8Array(await crypto.subtle.sign('HMAC', key, counter));
+    const offset = signature[signature.length - 1] & 0x0f;
+    const binary =
+        ((signature[offset] & 0x7f) << 24) |
+        ((signature[offset + 1] & 0xff) << 16) |
+        ((signature[offset + 2] & 0xff) << 8) |
+        (signature[offset + 3] & 0xff);
+
+    return (binary % 1_000_000).toString().padStart(6, '0');
+}
+
+async function verifyTotpBrowser(secret: string, code: string): Promise<boolean> {
+    if (!/^\d{6}$/.test(code)) return false;
+    const secretBytes = decodeBase32(secret);
+    if (!secretBytes || typeof crypto?.subtle?.sign !== 'function') return false;
+
+    const currentStep = Math.floor(Date.now() / 1000 / 30);
+    for (const drift of [-1, 0, 1]) {
+        const expected = await generateTotpCodeBrowser(secretBytes, currentStep + drift);
+        if (expected === code) return true;
+    }
+    return false;
+}
+
+function loadLocalSecret(): string {
+    if (typeof localStorage === 'undefined') return '';
+    return normalizeBase32(localStorage.getItem(LOCAL_SECRET_KEY) ?? '');
+}
+
+function persistLocalSecret(secret: string) {
+    if (typeof localStorage === 'undefined') return;
+    localStorage.setItem(LOCAL_SECRET_KEY, normalizeBase32(secret));
+}
+
+function markLocalSetupComplete() {
+    if (typeof localStorage === 'undefined') return;
+    localStorage.setItem(LOCAL_SETUP_FLAG, '1');
+}
+
+function clearLocalSetupComplete() {
+    if (typeof localStorage === 'undefined') return;
+    localStorage.removeItem(LOCAL_SETUP_FLAG);
+}
+
+function isLocalSetupComplete(): boolean {
+    if (typeof localStorage === 'undefined') return false;
+    return localStorage.getItem(LOCAL_SETUP_FLAG) === '1';
+}
+
+function generateLocalSecret(): string {
+    const buffer = new Uint8Array(20);
+    crypto.getRandomValues(buffer);
+    return encodeBase32(buffer);
+}
+
 export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCancel: () => void }) {
     const setupUrl = import.meta.env.VITE_TOTP_SETUP_URL ?? '/api/totp/setup';
     const statusUrl = import.meta.env.VITE_TOTP_STATUS_URL ?? '/api/totp/status';
@@ -50,12 +164,21 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
 
     useEffect(() => {
         let isCancelled = false;
+        const applyLocalStatusFallback = () => {
+            const hasLocalSecret = loadLocalSecret() !== '';
+            const completed = isLocalSetupComplete();
+            if (hasLocalSecret && completed) {
+                setSetupComplete(true);
+                return true;
+            }
+            return false;
+        };
         const loadStatus = async () => {
             if (!resolvedStatusUrl) {
-                if (!isCancelled) {
+                if (!isCancelled && !applyLocalStatusFallback()) {
                     setError('Authenticator status endpoint must be same-origin and configured.');
-                    setIsLoadingStatus(false);
                 }
+                setIsLoadingStatus(false);
                 return;
             }
             try {
@@ -64,21 +187,21 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                     credentials: 'include',
                     headers: { Accept: 'application/json' },
                 });
-                if (!response.ok) {
+                if (response.ok) {
+                    const payload = await response.json();
                     if (!isCancelled) {
-                        setError('Unable to load authenticator setup status.');
+                        setSetupComplete(payload?.setupComplete === true);
                     }
                     return;
                 }
-                const payload = await response.json();
-                if (!isCancelled) {
-                    setSetupComplete(payload?.setupComplete === true);
+                if (!isCancelled && !applyLocalStatusFallback()) {
+                    setError('Unable to load authenticator setup status.');
                 }
             } catch (statusError) {
                 if (import.meta.env.DEV) {
                     console.error('Authenticator status load failed:', statusError);
                 }
-                if (!isCancelled) {
+                if (!isCancelled && !applyLocalStatusFallback()) {
                     setError('Unable to load authenticator setup status.');
                 }
             } finally {
@@ -97,9 +220,46 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
         setError('');
         setManualSecret('');
         setIsPreparingSetup(true);
+        const issuer = (import.meta.env.VITE_TOTP_ISSUER || 'Researcher Portfolio').toString().trim() || 'Researcher Portfolio';
+        const account = (import.meta.env.VITE_TOTP_ACCOUNT || 'researcher').toString().trim() || 'researcher';
+        const prepareLocalSetup = async () => {
+            try {
+                const secret = loadLocalSecret() || generateLocalSecret();
+                persistLocalSecret(secret);
+                clearLocalSetupComplete();
+                const label = `${issuer}:${account}`;
+                const otpauthUri = `otpauth://totp/${encodeURIComponent(label)}?secret=${secret}&issuer=${encodeURIComponent(issuer)}&algorithm=SHA1&digits=6&period=30`;
+                let resolvedQr = '';
+                try {
+                    resolvedQr = await QRCode.toDataURL(otpauthUri, { width: 220, margin: 1 });
+                } catch (qrError) {
+                    if (import.meta.env.DEV) {
+                        console.error('Local QR generation failed:', qrError);
+                    }
+                }
+                if (resolvedQr) {
+                    setQrDataUrl(resolvedQr);
+                    setManualSecret('');
+                    setShowSetup(true);
+                    return true;
+                }
+                setManualSecret(secret);
+                setQrDataUrl('');
+                setShowSetup(true);
+                setError('QR code unavailable. Add the secret below to Google Authenticator.');
+                return true;
+            } catch (fallbackError) {
+                if (import.meta.env.DEV) {
+                    console.error('Local authenticator setup failed:', fallbackError);
+                }
+                return false;
+            }
+        };
         try {
             if (!resolvedSetupUrl) {
-                setError('Authenticator setup endpoint must be same-origin and configured.');
+                if (!(await prepareLocalSetup())) {
+                    setError('Authenticator setup endpoint must be same-origin and configured.');
+                }
                 return;
             }
             const response = await fetch(resolvedSetupUrl, {
@@ -108,7 +268,10 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                 headers: { Accept: 'application/json' },
             });
             if (!response.ok) {
-                setError('Unable to prepare authenticator setup.');
+                const handled = await prepareLocalSetup();
+                if (!handled) {
+                    setError('Unable to prepare authenticator setup.');
+                }
                 return;
             }
             const payload = await response.json();
@@ -147,7 +310,10 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
             if (import.meta.env.DEV) {
                 console.error('Authenticator setup failed:', prepareError);
             }
-            setError('Unable to prepare authenticator setup.');
+            const handled = await prepareLocalSetup();
+            if (!handled) {
+                setError('Unable to prepare authenticator setup.');
+            }
         } finally {
             setIsPreparingSetup(false);
         }
@@ -162,35 +328,58 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
             setError('Enter a valid 6-digit authenticator code.');
             return;
         }
-        if (!resolvedVerifyUrl) {
-            setError('Authenticator verification endpoint must be same-origin and configured.');
-            return;
-        }
         setIsSubmitting(true);
         try {
-            const response = await fetch(resolvedVerifyUrl, {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                },
-                body: JSON.stringify({ code: normalizedCode }),
-            });
-            if (!response.ok) {
+            let serverFailed = false;
+            if (resolvedVerifyUrl) {
+                const response = await fetch(resolvedVerifyUrl, {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
+                    body: JSON.stringify({ code: normalizedCode }),
+                });
+                if (!response.ok) {
+                    serverFailed = true;
+                } else {
+                    const payload = await response.json();
+                    if (payload?.authorized !== true) {
+                        setError('Invalid authenticator code. Please try again.');
+                        return;
+                    }
+                    markLocalSetupComplete();
+                    setSetupComplete(true);
+                    onLogin();
+                    return;
+                }
+            } else {
+                serverFailed = true;
+            }
+
+            if (serverFailed) {
+                const fallbackSecret = loadLocalSecret();
+                const localAuthorized = fallbackSecret ? await verifyTotpBrowser(fallbackSecret, normalizedCode) : false;
+                if (localAuthorized) {
+                    markLocalSetupComplete();
+                    setSetupComplete(true);
+                    onLogin();
+                    return;
+                }
                 setError('Unable to verify authenticator code.');
-                return;
             }
-            const payload = await response.json();
-            if (payload?.authorized !== true) {
-                setError('Invalid authenticator code. Please try again.');
-                return;
-            }
-            setSetupComplete(true);
-            onLogin();
         } catch (submitError) {
             if (import.meta.env.DEV) {
                 console.error('Authenticator verification failed:', submitError);
+            }
+            const fallbackSecret = loadLocalSecret();
+            const localAuthorized = fallbackSecret ? await verifyTotpBrowser(fallbackSecret, normalizedCode) : false;
+            if (localAuthorized) {
+                markLocalSetupComplete();
+                setSetupComplete(true);
+                onLogin();
+                return;
             }
             setError('Unable to verify authenticator code.');
         } finally {
