@@ -13,6 +13,19 @@ type ProfileLink = {
   download?: string;
 };
 
+const isSafeHref = (href: string) => {
+  if (href.startsWith('/') || href.startsWith('#')) return true;
+  try {
+    const parsed = new URL(href);
+    return ['http:', 'https:', 'mailto:'].includes(parsed.protocol);
+  } catch {
+    return false;
+  }
+};
+
+const getSafeHref = (href: string) => (isSafeHref(href) ? href : '#');
+const isLocalPdfPath = (href: string) => /^\/(?!\/).+\.pdf(?:[?#].*)?$/i.test(href);
+
 export default function App() {
   const [activeSection, setActiveSection] = useState('');
   const [data, setData] = useState(() => {
@@ -239,18 +252,27 @@ export default function App() {
               <span>•</span>
               <span style={{ color: 'var(--text-muted)' }}>{data.profile.email}</span>
               {data.profile.links.map((link: ProfileLink, i: number) => (
-                <span key={i} style={{ display: 'contents' }}>
-                  <span>•</span>
-                  <a
-                    href={link.href}
-                    target={link.download ? undefined : "_blank"}
-                    rel={link.download ? undefined : "noopener noreferrer"}
-                    download={link.download}
-                    style={{ color: 'var(--text-muted)', textDecoration: 'none' }}
-                  >
-                    {link.label}
-                  </a>
-                </span>
+                (() => {
+                  const safeHref = getSafeHref(link.href);
+                  const safeDownload = Boolean(link.download) && isLocalPdfPath(safeHref);
+                  const isPdfLink = isLocalPdfPath(safeHref);
+                  return (
+                    <span key={i} style={{ display: 'contents' }}>
+                      <span>•</span>
+                      <a
+                        href={safeHref}
+                        target={safeDownload ? undefined : "_blank"}
+                        rel={safeDownload ? undefined : "noopener noreferrer"}
+                        download={safeDownload ? link.download : undefined}
+                        type={isPdfLink ? "application/pdf" : undefined}
+                        referrerPolicy={isPdfLink ? "no-referrer" : undefined}
+                        style={{ color: 'var(--text-muted)', textDecoration: 'none' }}
+                      >
+                        {link.label}
+                      </a>
+                    </span>
+                  );
+                })()
               ))}
             </div>
           </div>
@@ -394,7 +416,7 @@ export default function App() {
                   <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--text-muted)', marginBottom: '0.75rem' }}>{pub.metadata}</p>
                   <p style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '0.75rem' }}>{pub.abstract}</p>
                   <div style={{ display: 'flex', gap: '1rem' }}>
-                    {pub.links.map((link: any, i: number) => <a key={i} href={link.href} className="text-muted no-underline hover:text-accent hover:underline text-[15px]">{link.label}</a>)}
+                    {pub.links.map((link: any, i: number) => <a key={i} href={getSafeHref(link.href)} className="text-muted no-underline hover:text-accent hover:underline text-[15px]">{link.label}</a>)}
                   </div>
                 </div>
               ))}
@@ -454,7 +476,7 @@ export default function App() {
                     <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>{system.description}</p>
                     {system.repoUrl && (
                       <a
-                        href={system.repoUrl}
+                        href={getSafeHref(system.repoUrl)}
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--accent-color)' }}
@@ -523,7 +545,7 @@ export default function App() {
                     </div>
                   )}
                   <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.125rem', fontWeight: 700, marginBottom: '0.25rem' }}>
-                    <a href={note.href} style={{ color: 'white' }} className="no-underline hover:text-accent hover:underline">{note.title}</a>
+                    <a href={getSafeHref(note.href)} style={{ color: 'white' }} className="no-underline hover:text-accent hover:underline">{note.title}</a>
                   </h3>
                   <p style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>{note.description}</p>
                   <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>{note.date}</p>
@@ -549,7 +571,7 @@ export default function App() {
               ) : data.contact.collaborationText}
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginBottom: '3rem' }}>
-              {data.contact.links.map((link: any, i: number) => <a key={i} href={link.href} style={{ color: 'var(--text-muted)' }} className="no-underline hover:text-accent hover:underline">{link.label}</a>)}
+              {data.contact.links.map((link: any, i: number) => <a key={i} href={getSafeHref(link.href)} style={{ color: 'var(--text-muted)' }} className="no-underline hover:text-accent hover:underline">{link.label}</a>)}
             </div>
             <div style={{ border: '1px solid var(--border-color)', padding: '2rem', borderRadius: '2px', maxWidth: '700px' }}>
               {editMode ? (
@@ -569,14 +591,14 @@ export default function App() {
               <span>{data.profile.location}</span>
             </div>
             {!isAdmin && (
-              <button
-                onClick={() => setShowLogin(true)}
-                style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '0.75rem', cursor: 'pointer', fontFamily: 'var(--font-mono)' }}
-              >
-                RESEARCHER LOGIN
-              </button>
-            )}
-          </div>
+                <button
+                  onClick={() => setShowLogin(true)}
+                  style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '0.75rem', cursor: 'pointer', fontFamily: 'var(--font-mono)' }}
+                >
+                RESEARCHER LOGIN (GOOGLE)
+                </button>
+              )}
+            </div>
         </footer>
       </div>
 
