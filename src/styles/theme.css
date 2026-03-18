@@ -156,17 +156,17 @@
   }
 
   *:focus-visible {
-    outline: 3px solid color-mix(in srgb, var(--text-primary) 80%, transparent);
+    outline: 4px solid var(--focus-ring-color);
     box-shadow:
-      0 0 0 4px color-mix(in srgb, var(--text-primary) 40%, transparent),
+      0 0 0 4px var(--focus-ring-glow),
       0 10px 30px rgba(0, 0, 0, 0.12);
   }
 
   @supports not selector(:focus-visible) {
     *:focus {
-      outline: 3px solid color-mix(in srgb, var(--text-primary) 80%, transparent);
+      outline: 4px solid var(--focus-ring-color);
       box-shadow:
-        0 0 0 4px color-mix(in srgb, var(--text-primary) 40%, transparent),
+        0 0 0 4px var(--focus-ring-glow),
         0 10px 30px rgba(0, 0, 0, 0.12);
     }
   }
@@ -263,6 +263,8 @@
   --t-target-transform: 220ms;
   --t-target-border: 200ms;
   --t-target-filter: 160ms;
+  --focus-ring-color: color-mix(in srgb, var(--text-primary) 80%, transparent);
+  --focus-ring-glow: color-mix(in srgb, var(--text-primary) 40%, transparent);
 }
 
 .intent-shell {
