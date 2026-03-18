@@ -1,6 +1,30 @@
 import crypto from 'node:crypto';
 
 const BASE32_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+const COOKIE_MAX_AGE = 31_536_000;
+
+interface TotpVerifyRequestBody {
+    code?: string;
+}
+
+interface ApiRequest {
+    method?: string;
+    body?: TotpVerifyRequestBody | string;
+    headers: Record<string, string | undefined>;
+    socket?: {
+        encrypted?: boolean;
+    };
+    connection?: {
+        encrypted?: boolean;
+    };
+}
+
+interface ApiResponse {
+    setHeader: (name: string, value: string) => void;
+    status: (code: number) => {
+        json: (payload: Record<string, unknown>) => void;
+    };
+}
 
 function normalizeBase32(value: string): string {
     return value.trim().toUpperCase().replace(/\s+/g, '').replace(/=+$/g, '');
@@ -60,7 +84,7 @@ function verifyTotp(secret: string, code: string): boolean {
     return false;
 }
 
-export default async function handler(req: any, res: any) {
+export default async function handler(req: ApiRequest, res: ApiResponse) {
     if (req.method !== 'POST') {
         res.setHeader('Allow', 'POST');
         return res.status(405).json({ error: 'Method Not Allowed' });
@@ -71,13 +95,21 @@ export default async function handler(req: any, res: any) {
         return res.status(500).json({ error: 'TOTP server secret is not configured.' });
     }
 
-    const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body ?? {});
+    let body: TotpVerifyRequestBody;
+    try {
+        body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body ?? {});
+    } catch {
+        return res.status(400).json({ error: 'Invalid JSON body.' });
+    }
     const code = typeof body?.code === 'string' ? body.code.trim() : '';
     const authorized = verifyTotp(secret, code);
 
     if (authorized) {
-        const secure = req.headers['x-forwarded-proto'] === 'https';
-        const cookie = `totp_setup_complete=1; Path=/; HttpOnly; SameSite=Lax${secure ? '; Secure' : ''}; Max-Age=31536000`;
+        const secure =
+            req.headers['x-forwarded-proto'] === 'https' ||
+            req.socket?.encrypted === true ||
+            req.connection?.encrypted === true;
+        const cookie = `totp_setup_complete=1; Path=/; HttpOnly; SameSite=Lax${secure ? '; Secure' : ''}; Max-Age=${COOKIE_MAX_AGE}`;
         res.setHeader('Set-Cookie', cookie);
     }
 

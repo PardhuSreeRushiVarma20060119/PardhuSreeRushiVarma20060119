@@ -241,7 +241,7 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                         maxLength={6}
                         value={code}
                         onChange={(event) => {
-                            setCode(event.target.value.replace(/\D/g, '').slice(0, 6));
+                            setCode(event.target.value.replace(/\D/g, ''));
                             setError('');
                         }}
                         placeholder="Enter 6-digit code"
