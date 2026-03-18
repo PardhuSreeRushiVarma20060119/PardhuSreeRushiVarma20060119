@@ -146,14 +146,19 @@
 @layer base {
   * {
     @apply border-border;
-    outline: none;
+    outline-color: transparent;
+    outline-offset: 3px;
     -webkit-tap-highlight-color: transparent;
   }
 
+  *:focus {
+    outline: 2px solid color-mix(in srgb, var(--text-primary) 55%, transparent);
+  }
+
   *:focus-visible {
-    outline: none;
+    outline: 2px solid color-mix(in srgb, var(--text-primary) 65%, transparent);
     box-shadow:
-      0 0 0 2px color-mix(in srgb, var(--text-secondary) 32%, transparent),
+      0 0 0 4px color-mix(in srgb, var(--text-primary) 22%, transparent),
       0 10px 30px rgba(0, 0, 0, 0.12);
     transition: box-shadow var(--t-border) ease, transform var(--t-target-transform) ease;
   }
