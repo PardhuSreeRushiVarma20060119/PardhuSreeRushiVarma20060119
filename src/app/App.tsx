@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Analytics } from "@vercel/analytics/react"
 import { BackgroundVectors } from './components/BackgroundVectors';
 import { SystemDiagrams } from './components/SystemDiagrams';
@@ -6,6 +6,7 @@ import { AdminBar } from './components/AdminBar';
 import { LoginModal } from './components/LoginModal';
 import { EditModal } from './components/EditModal';
 import initialData from '../data/portfolioData.json';
+import { useIntentSignals } from './hooks/useIntentSignals';
 
 type ProfileLink = {
   label: string;
@@ -25,6 +26,17 @@ const isSafeHref = (href: string) => {
 
 const getSafeHref = (href: string) => (isSafeHref(href) ? href : '#');
 const isLocalPdfPath = (href: string) => /^\/(?:[^/]+\/)*[^/]+\.pdf(?:[?#].*)?$/i.test(href);
+const makeGroupId = (prefix: string, value: string, fallback: number | string) => {
+  const slug = value
+    ? value
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .slice(0, 32)
+    : '';
+  const finalId = slug ? `${slug}-${fallback}` : String(fallback);
+  return `${prefix}-${finalId}`;
+};
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('');
@@ -50,6 +62,8 @@ export default function App() {
   const [editMode, setEditMode] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [editingItem, setEditingItem] = useState<{ title: string; data: any; fields: any[]; path: string; index?: number } | null>(null);
+  const trackedSections = useMemo(() => ['hero', 'about', 'research', 'publications', 'systems', 'notes', 'contact'], []);
+  const { adaptiveLabels } = useIntentSignals(trackedSections);
 
   useEffect(() => {
     localStorage.setItem('portfolio_cms_data', JSON.stringify(data));
@@ -135,7 +149,7 @@ export default function App() {
   };
 
   return (
-    <div style={{
+    <div className="intent-shell" style={{
       backgroundColor: 'var(--bg-primary)',
       color: 'var(--text-primary)',
       fontFamily: 'var(--font-body)',
@@ -163,15 +177,17 @@ export default function App() {
             <div className="hidden md:flex gap-8">
               {[
                 { id: 'about', label: 'Research' },
-                { id: 'publications', label: 'Publications' },
-                { id: 'systems', label: 'Systems' },
-                { id: 'notes', label: 'Notes' },
+                { id: 'publications', label: adaptiveLabels.publications },
+                { id: 'systems', label: adaptiveLabels.systems },
+                { id: 'notes', label: adaptiveLabels.notes },
                 { id: 'contact', label: 'Contact' }
               ].map(({ id, label }) => (
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
                   className="transition-all"
+                  data-intent-target
+                  data-attention-group="nav"
                   style={{
                     color: activeSection === id ? 'var(--accent-color)' : 'var(--text-primary)',
                     textDecoration: activeSection === id ? 'underline' : 'none',
@@ -190,7 +206,7 @@ export default function App() {
         </nav>
 
         {/* Hero Section */}
-        <section className="min-h-[75vh] flex items-center">
+        <section id="hero" className="min-h-[75vh] flex items-center" data-section-id="hero">
           <div className="max-w-[1200px] mx-auto px-6 md:px-12 lg:px-20 py-20 w-full">
             <h1 style={{
               fontFamily: 'var(--font-heading)',
@@ -208,7 +224,7 @@ export default function App() {
                 />
               ) : data.profile.name}
             </h1>
-            <div style={{
+            <div className="intent-rich-text" style={{
               fontSize: 'clamp(1.25rem, 2vw, 1.5rem)',
               color: 'var(--text-secondary)',
               marginBottom: '2rem',
@@ -223,7 +239,7 @@ export default function App() {
                 <>{data.profile.title}<br />{data.profile.subtitle}</>
               )}
             </div>
-            <div style={{
+            <div className="intent-rich-text" style={{
               fontSize: '1.125rem',
               color: 'var(--text-secondary)',
               maxWidth: '700px',
@@ -240,7 +256,7 @@ export default function App() {
               ) : data.profile.bio}
             </div>
             <div style={{ height: '1px', backgroundColor: 'var(--border-color)', marginBottom: '2rem', maxWidth: '800px' }} />
-            <div style={{
+            <div className="intent-rich-text" style={{
               fontFamily: 'var(--font-mono)',
               fontSize: '0.875rem',
               color: 'var(--text-muted)',
@@ -275,7 +291,7 @@ export default function App() {
           </div>
         </section>
         {/* About Section */}
-        <section id="about" style={{ paddingTop: '120px', paddingBottom: '120px', borderTop: '1px solid var(--border-color)' }}>
+        <section id="about" data-section-id="about" className="intent-section" style={{ paddingTop: 'calc(120px * var(--breathing-space))', paddingBottom: 'calc(120px * var(--breathing-space))', borderTop: '1px solid var(--border-color)' }}>
           <div className="max-w-[1200px] mx-auto px-6 md:px-12 lg:px-20">
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--accent-color)', marginBottom: '2rem', letterSpacing: '0.05em' }}>01 — ABOUT</div>
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', fontWeight: 700, marginBottom: '2.5rem' }}>{data.about.title}</h2>
@@ -294,7 +310,7 @@ export default function App() {
                       }}
                     />
                   ) : (
-                    <p style={{ fontSize: '1.125rem', lineHeight: 1.6, color: 'var(--text-secondary)' }}>{p}</p>
+                    <p className="intent-rich-text" style={{ fontSize: '1.125rem', lineHeight: 1.6, color: 'var(--text-secondary)' }}>{p}</p>
                   )}
                 </div>
               ))}
@@ -303,7 +319,7 @@ export default function App() {
         </section>
 
         {/* Research Areas */}
-        <section id="research" style={{ paddingTop: '120px', paddingBottom: '120px', borderTop: '1px solid var(--border-color)' }}>
+        <section id="research" data-section-id="research" className="intent-section" style={{ paddingTop: 'calc(120px * var(--breathing-space))', paddingBottom: 'calc(120px * var(--breathing-space))', borderTop: '1px solid var(--border-color)' }}>
           <div className="max-w-[1200px] mx-auto px-6 md:px-12 lg:px-20">
             <div className="flex justify-between items-center mb-8">
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--accent-color)', letterSpacing: '0.05em' }}>02 — RESEARCH</div>
@@ -325,9 +341,12 @@ export default function App() {
                 >+ ADD NEW</button>
               )}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 intent-grid" style={{ gap: 'calc(1.5rem * var(--breathing-space))' }}>
               {data.researchAreas.map((area: any, index: number) => (
                 <div key={index}
+                  className="intent-card"
+                  data-intent-target
+                  data-attention-group="research"
                   style={{ backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border-color)', padding: '1.5rem', borderRadius: '8px', position: 'relative' }}>
                   {editMode && (
                     <div className="absolute top-2 right-2 flex gap-2">
@@ -353,9 +372,9 @@ export default function App() {
                     </div>
                   )}
                   <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem' }}>{area.title}</h3>
-                  <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>{area.subtitle}</p>
-                  <p style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', marginBottom: '1rem', lineHeight: 1.5 }}>{area.description}</p>
-                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-muted)' }}>{area.keywords}</p>
+                  <p className="intent-rich-text" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>{area.subtitle}</p>
+                  <p className="intent-rich-text" style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', marginBottom: '1rem', lineHeight: 1.5 }}>{area.description}</p>
+                  <p className="intent-rich-text" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-muted)' }}>{area.keywords}</p>
                 </div>
               ))}
             </div>
@@ -363,10 +382,10 @@ export default function App() {
         </section>
 
         {/* Publications */}
-        <section id="publications" style={{ paddingTop: '120px', paddingBottom: '120px', borderTop: '1px solid var(--border-color)' }}>
+        <section id="publications" data-section-id="publications" className="intent-section" style={{ paddingTop: 'calc(120px * var(--breathing-space))', paddingBottom: 'calc(120px * var(--breathing-space))', borderTop: '1px solid var(--border-color)' }}>
           <div className="max-w-[1200px] mx-auto px-6 md:px-12 lg:px-20">
             <div className="flex justify-between items-center mb-8">
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--accent-color)', letterSpacing: '0.05em' }}>03 — PUBLICATIONS</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--accent-color)', letterSpacing: '0.05em' }}>03 — {adaptiveLabels.publications.toUpperCase()}</div>
               {editMode && (
                 <button
                   onClick={() => setEditingItem({
@@ -384,9 +403,14 @@ export default function App() {
                 >+ ADD NEW</button>
               )}
             </div>
-            <div className="space-y-8">
+            <div className="space-y-8 intent-grid" style={{ rowGap: 'calc(2rem * var(--breathing-space))' }}>
               {data.publications.map((pub: any, index: number) => (
-                <div key={index} style={{ paddingBottom: '2rem', position: 'relative' }}>
+                <div
+                  key={index}
+                  className="intent-card"
+                  data-intent-target
+                  data-attention-group={makeGroupId('pub', pub.title, index)}
+                  style={{ paddingBottom: '2rem', position: 'relative' }}>
                   {editMode && (
                     <div className="absolute top-0 right-0 flex gap-2">
                       <button
@@ -410,10 +434,10 @@ export default function App() {
                     </div>
                   )}
                   <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem', lineHeight: 1.3 }}>{pub.title}</h3>
-                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--text-muted)', marginBottom: '0.75rem' }}>{pub.metadata}</p>
-                  <p style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '0.75rem' }}>{pub.abstract}</p>
+                  <p className="intent-rich-text" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--text-muted)', marginBottom: '0.75rem' }}>{pub.metadata}</p>
+                  <p className="intent-rich-text" style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '0.75rem' }}>{pub.abstract}</p>
                   <div style={{ display: 'flex', gap: '1rem' }}>
-                    {pub.links.map((link: any, i: number) => <a key={i} href={getSafeHref(link.href)} className="text-muted no-underline hover:text-accent hover:underline text-[15px]">{link.label}</a>)}
+                    {pub.links.map((link: any, i: number) => <a key={i} href={getSafeHref(link.href)} data-intent-target data-attention-group={makeGroupId('pub', pub.title, index)} className="text-muted no-underline hover:text-accent hover:underline text-[15px]">{link.label}</a>)}
                   </div>
                 </div>
               ))}
@@ -422,10 +446,10 @@ export default function App() {
         </section>
 
         {/* Systems Section */}
-        <section id="systems" style={{ paddingTop: '120px', paddingBottom: '120px', borderTop: '1px solid var(--border-color)' }}>
+        <section id="systems" data-section-id="systems" className="intent-section" style={{ paddingTop: 'calc(120px * var(--breathing-space))', paddingBottom: 'calc(120px * var(--breathing-space))', borderTop: '1px solid var(--border-color)' }}>
           <div className="max-w-[1200px] mx-auto px-6 md:px-12 lg:px-20">
             <div className="flex justify-between items-center mb-12">
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--accent-color)', letterSpacing: '0.05em' }}>04 — SYSTEMS</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--accent-color)', letterSpacing: '0.05em' }}>04 — {adaptiveLabels.systems.toUpperCase()}</div>
               {editMode && (
                 <button
                   onClick={() => setEditingItem({
@@ -443,9 +467,13 @@ export default function App() {
                 >+ ADD NEW</button>
               )}
             </div>
-            <div className="space-y-16">
+            <div className="space-y-16 intent-grid" style={{ rowGap: 'calc(4rem * var(--breathing-space))' }}>
               {data.systems.map((system: any, index: number) => (
-                <div key={index} className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative">
+                <div
+                  key={index}
+                  className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative intent-card"
+                  data-intent-target
+                  data-attention-group={makeGroupId('system', system.name, index)}>
                   {editMode && (
                     <div className="absolute top-0 right-0 flex gap-2 z-10">
                       <button
@@ -468,7 +496,7 @@ export default function App() {
                       >DEL</button>
                     </div>
                   )}
-                  <div>
+                  <div className="intent-rich-text">
                     <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.5rem', fontWeight: 700, marginBottom: '1rem' }}>{system.name}</h3>
                     <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>{system.description}</p>
                     {system.repoUrl && (
@@ -476,6 +504,8 @@ export default function App() {
                         href={getSafeHref(system.repoUrl)}
                         target="_blank"
                         rel="noopener noreferrer"
+                        data-intent-target
+                        data-attention-group={makeGroupId('system', system.name, index)}
                         style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--accent-color)' }}
                         className="no-underline hover:underline flex items-center gap-2"
                       >
@@ -495,10 +525,10 @@ export default function App() {
         </section>
 
         {/* Notes Section */}
-        <section id="notes" style={{ paddingTop: '120px', paddingBottom: '120px', borderTop: '1px solid var(--border-color)' }}>
+        <section id="notes" data-section-id="notes" className="intent-section" style={{ paddingTop: 'calc(120px * var(--breathing-space))', paddingBottom: 'calc(120px * var(--breathing-space))', borderTop: '1px solid var(--border-color)' }}>
           <div className="max-w-[1200px] mx-auto px-6 md:px-12 lg:px-20">
             <div className="flex justify-between items-center mb-8">
-              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--accent-color)', letterSpacing: '0.05em' }}>05 — NOTES</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--accent-color)', letterSpacing: '0.05em' }}>05 — {adaptiveLabels.notes.toUpperCase()}</div>
               {editMode && (
                 <button
                   onClick={() => setEditingItem({
@@ -516,9 +546,14 @@ export default function App() {
                 >+ ADD NEW</button>
               )}
             </div>
-            <div className="space-y-6">
+            <div className="space-y-6 intent-grid" style={{ rowGap: 'calc(1.5rem * var(--breathing-space))' }}>
               {data.notes.map((note: any, index: number) => (
-                <div key={index} style={{ paddingBottom: '1rem', position: 'relative' }}>
+                <div
+                  key={index}
+                  className="intent-card"
+                  data-intent-target
+                  data-attention-group={makeGroupId('note', note.title, index)}
+                  style={{ paddingBottom: '1rem', position: 'relative' }}>
                   {editMode && (
                     <div className="absolute top-0 right-0 flex gap-2">
                       <button
@@ -542,10 +577,10 @@ export default function App() {
                     </div>
                   )}
                   <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: '1.125rem', fontWeight: 700, marginBottom: '0.25rem' }}>
-                    <a href={getSafeHref(note.href)} style={{ color: 'white' }} className="no-underline hover:text-accent hover:underline">{note.title}</a>
+                    <a href={getSafeHref(note.href)} data-intent-target data-attention-group={makeGroupId('note', note.title, index)} style={{ color: 'white' }} className="no-underline hover:text-accent hover:underline">{note.title}</a>
                   </h3>
-                  <p style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>{note.description}</p>
-                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>{note.date}</p>
+                  <p className="intent-rich-text" style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>{note.description}</p>
+                  <p className="intent-rich-text" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>{note.date}</p>
                 </div>
               ))}
             </div>
@@ -553,11 +588,11 @@ export default function App() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" style={{ paddingTop: '120px', paddingBottom: '120px', borderTop: '1px solid var(--border-color)' }}>
+        <section id="contact" data-section-id="contact" className="intent-section" style={{ paddingTop: 'calc(120px * var(--breathing-space))', paddingBottom: 'calc(120px * var(--breathing-space))', borderTop: '1px solid var(--border-color)' }}>
           <div className="max-w-[1200px] mx-auto px-6 md:px-12 lg:px-20">
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--accent-color)', marginBottom: '2rem', letterSpacing: '0.05em' }}>06 — CONTACT</div>
             <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '2rem', fontWeight: 700, marginBottom: '1.5rem' }}>Research Collaboration</h2>
-            <div style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '2rem', maxWidth: '700px' }}>
+            <div className="intent-rich-text" style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '2rem', maxWidth: '700px' }}>
               {editMode ? (
                 <textarea
                   className="bg-transparent border border-dashed border-accent w-full outline-none p-2"
@@ -568,7 +603,7 @@ export default function App() {
               ) : data.contact.collaborationText}
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginBottom: '3rem' }}>
-              {data.contact.links.map((link: any, i: number) => <a key={i} href={getSafeHref(link.href)} style={{ color: 'var(--text-muted)' }} className="no-underline hover:text-accent hover:underline">{link.label}</a>)}
+              {data.contact.links.map((link: any, i: number) => <a key={i} href={getSafeHref(link.href)} data-intent-target data-attention-group="contact" style={{ color: 'var(--text-muted)' }} className="no-underline hover:text-accent hover:underline">{link.label}</a>)}
             </div>
             <div style={{ border: '1px solid var(--border-color)', padding: '2rem', borderRadius: '2px', maxWidth: '700px' }}>
               {editMode ? (
