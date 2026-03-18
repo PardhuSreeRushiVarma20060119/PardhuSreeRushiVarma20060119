@@ -160,7 +160,6 @@
     box-shadow:
       0 0 0 4px color-mix(in srgb, var(--text-primary) 22%, transparent),
       0 10px 30px rgba(0, 0, 0, 0.12);
-    transition: box-shadow var(--t-border) ease;
   }
 
   @supports not selector(:focus-visible) {
