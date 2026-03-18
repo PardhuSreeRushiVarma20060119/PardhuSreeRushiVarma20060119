@@ -102,5 +102,6 @@ Set these values in your local `.env` (or copy from `.env.example`):
 - `VITE_TOTP_SETUP_URL` (defaults to `/api/totp/setup`)
 - `VITE_TOTP_STATUS_URL` (defaults to `/api/totp/status`)
 - `VITE_TOTP_VERIFY_URL` (defaults to `/api/totp/verify`)
+- If the API endpoints are unavailable (for example on static hosting), the login flow will fall back to a browser-generated secret stored locally for that session. For stable cross-device behaviour use server endpoints with `TOTP_SECRET`.
 
 When `TOTP_SECRET` is not configured, setup now falls back to a short-lived server-set HTTP-only cookie secret so QR provisioning and verification still work for that browser session. For stable long-term login behavior across browsers/devices, configure `TOTP_SECRET`.
