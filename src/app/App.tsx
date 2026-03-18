@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Analytics } from "@vercel/analytics/react"
-import { BackgroundVectors } from './components/BackgroundVectors';
 import { SystemDiagrams } from './components/SystemDiagrams';
 import { AdminBar } from './components/AdminBar';
 import { LoginModal } from './components/LoginModal';
@@ -157,8 +156,6 @@ export default function App() {
       position: 'relative',
       paddingBottom: isAdmin ? '80px' : '0'
     }}>
-      <BackgroundVectors />
-
       <div style={{ position: 'relative', zIndex: 1 }}>
         {/* Navigation */}
         <nav className="sticky top-0 z-50" style={{

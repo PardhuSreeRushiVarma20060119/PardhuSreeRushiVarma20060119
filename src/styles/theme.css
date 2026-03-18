@@ -275,7 +275,7 @@
 .intent-shell {
   isolation: isolate;
   transition: filter var(--t-filter-ms) linear, transform var(--t-transform-ms) ease;
-  filter: blur(var(--motion-blur)) saturate(calc(0.9 + var(--focus-clarity) * 0.15));
+  filter: saturate(calc(0.9 + var(--focus-clarity) * 0.15));
 }
 
 .intent-shell::before,
@@ -339,7 +339,7 @@
 
 .intent-card {
   transform: translateZ(0) scale(calc(1 + var(--predictive-reveal)));
-  filter: saturate(calc(0.9 + var(--focus-clarity) * 0.15)) blur(calc(var(--motion-blur, 0px) * 0.15));
+  filter: saturate(calc(0.9 + var(--focus-clarity) * 0.15));
   box-shadow: 0 0 0 transparent;
 }
 
