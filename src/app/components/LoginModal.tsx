@@ -222,6 +222,15 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
         setIsPreparingSetup(true);
         const issuer = (import.meta.env.VITE_TOTP_ISSUER || 'Researcher Portfolio').toString().trim() || 'Researcher Portfolio';
         const account = (import.meta.env.VITE_TOTP_ACCOUNT || 'researcher').toString().trim() || 'researcher';
+        const requirePasswordIfCompleted = (): string | null => {
+            if (!setupComplete) return '';
+            const provided = window.prompt('Enter password to generate a new authenticator QR code:') ?? '';
+            if (!provided.trim()) {
+                setError('Password is required to generate a new QR code.');
+                return null;
+            }
+            return provided;
+        };
         const prepareLocalSetup = async () => {
             try {
                 const secret = loadLocalSecret() || generateLocalSecret();
@@ -256,6 +265,10 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
             }
         };
         try {
+            const regenerationPassword = requirePasswordIfCompleted();
+            if (regenerationPassword === null) {
+                return;
+            }
             if (!resolvedSetupUrl) {
                 if (!(await prepareLocalSetup())) {
                     setError('Authenticator setup endpoint must be same-origin and configured.');
@@ -265,9 +278,21 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
             const response = await fetch(resolvedSetupUrl, {
                 method: 'GET',
                 credentials: 'include',
-                headers: { Accept: 'application/json' },
+                headers: {
+                    Accept: 'application/json',
+                    ...(regenerationPassword ? { 'x-totp-qr-password': regenerationPassword } : {}),
+                },
             });
             if (!response.ok) {
+                if (response.status === 401 || response.status === 403) {
+                    try {
+                        const payload = await response.json();
+                        setError(typeof payload?.error === 'string' ? payload.error : 'Password required to generate a new QR code.');
+                    } catch {
+                        setError('Password required to generate a new QR code.');
+                    }
+                    return;
+                }
                 const handled = await prepareLocalSetup();
                 if (!handled) {
                     setError('Unable to prepare authenticator setup.');
@@ -428,7 +453,7 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                 }}>
                     Google Authenticator code required
                 </p>
-                {!setupComplete && !isLoadingStatus && (
+                {!isLoadingStatus && (
                     <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>
                         <button
                             type="button"
@@ -448,7 +473,11 @@ export function LoginModal({ onLogin, onCancel }: { onLogin: () => void; onCance
                                 opacity: isPreparingSetup ? 0.7 : 1,
                             }}
                         >
-                            {isPreparingSetup ? 'Preparing Setup...' : 'Setup Google Authenticator'}
+                            {isPreparingSetup
+                                ? 'Preparing Setup...'
+                                : setupComplete
+                                    ? 'Generate New QR (password required)'
+                                    : 'Setup Google Authenticator'}
                         </button>
                     </div>
                 )}

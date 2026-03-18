@@ -1,5 +1,5 @@
 import crypto from 'node:crypto';
-import { getCookieValue, shouldUseSecureCookie } from './utils.ts';
+import { getCookieValue, hasSetupCookie, shouldUseSecureCookie } from './utils.ts';
 
 interface ApiRequest {
     method?: string;
@@ -70,6 +70,19 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
     if (req.method !== 'GET') {
         res.setHeader('Allow', 'GET');
         return res.status(405).json({ error: 'Method Not Allowed' });
+    }
+
+    const configuredSecret = normalizeBase32(process.env.TOTP_SECRET ?? '');
+    const setupCompleted = hasSetupCookie(req.headers.cookie) || !!configuredSecret;
+    if (setupCompleted) {
+        const configuredPassword = process.env.TOTP_QR_PASSWORD;
+        if (!configuredPassword) {
+            return res.status(403).json({ error: 'Setup already completed. Configure TOTP_QR_PASSWORD to allow QR regeneration.' });
+        }
+        const providedPassword = (req.headers['x-totp-qr-password'] ?? '').toString();
+        if (providedPassword !== configuredPassword) {
+            return res.status(401).json({ error: 'Password required to generate a new QR code.' });
+        }
     }
 
     const { secret, shouldPersistEphemeralSecret } = resolveSecret(req);

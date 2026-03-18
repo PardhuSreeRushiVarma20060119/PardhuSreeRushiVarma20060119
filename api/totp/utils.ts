@@ -27,3 +27,15 @@ export function shouldUseSecureCookie(req: CookieHeaderRequest): boolean {
     const forwardedHttps = trustedProxyHeaders && typeof forwardedProto === 'string' && forwardedProto.toLowerCase() === 'https';
     return req.socket?.encrypted === true || req.connection?.encrypted === true || forwardedHttps;
 }
+
+export function hasSetupCookie(cookieHeader: string | undefined): boolean {
+    if (!cookieHeader) return false;
+    const cookies = cookieHeader.split(';');
+    for (const cookie of cookies) {
+        const [name, value] = cookie.split('=').map((part) => part.trim());
+        if (name === 'totp_setup_complete' && value === '1') {
+            return true;
+        }
+    }
+    return false;
+}
