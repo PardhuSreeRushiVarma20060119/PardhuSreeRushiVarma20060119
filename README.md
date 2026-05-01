@@ -1,24 +1,29 @@
 # Hi, I'm PardhuVarma!
 
-I am a 3rd-year cybersecurity student with strong research interests in CyberSecurity, Adversarial AI, Systems Security Research, and Robust Machine Learning. My research focus involves understanding attacker–defender dynamics within intelligent systems and analyzing and constraining AI behavior under adversarial influence through runtime-governed architectures.
+I am an independent researcher and third-year cybersecurity student working at the intersection of machine learning, AI security, and adaptive systems.
 
-I explore areas such as adversarial ML attacks and defenses, cyber-physical threat modeling, robust learning architectures, and the reliability of AI-enabled systems in real-world settings. I’m particularly drawn to research at the intersection of AI, systems security, and cyber-physical infrastructures, reflecting a broader interest in designing intelligent, resilient security systems.
+My research focuses on how learning systems behave under adversarial pressure and long-term adaptation. I study attacker–defender dynamics in machine learning models and investigate how architectural design choices influence robustness, controllability, and recoverability.
 
-I aim to pursue advanced research at CISPA – Helmholtz Center for Information Security / Saarland University, and eventually a PhD or long-term research career in AI security and systems security research. My primary interests lie in trustworthy and robust machine learning, runtime-governed intelligent systems, and adversarial resilience, with particular motivation drawn from high-stakes domains such as cyber-physical infrastructures, autonomous systems, intelligent swarms, and next-generation defense architectures.
+My recent work introduces Reversible Neural Adaptation (RLAE), a structural paradigm that separates behavioral learning from model identity, enabling deterministic rollback and addressing irreversible behavioral drift in weight-based adaptation. This work formalizes concepts such as structural irreversibility, recoverability, and behavioral divergence, supported by empirical evaluation across adaptation regimes and model scales.
 
-I am actively strengthening my academic foundation in AI, security, and systems engineering, and remain committed to advancing through rigorous study, research immersion, and scientifically grounded exploration.
-  
+In parallel, I am building a strong foundation in statistical machine learning and applied mathematics—particularly probability theory, optimization, and information theory—and connecting these principles directly to my research. I explore how learning dynamics, distributional shifts, and parameter-space geometry influence behavioral stability, reversibility, and robustness in adaptive neural systems.
+
+My research interests include statistical and robust machine learning, adversarial machine learning, structural robustness of adaptive models, AI safety and controllability, and runtime-governed modular learning systems.
+
+I am particularly interested in the structural properties of adaptive learning systems—how learning mechanisms introduce irreversible changes, and how mathematically grounded architectures and runtime constraints can enable reversible, controllable, and governable intelligence.
+
+My goal is to contribute to the design of trustworthy machine learning systems that remain stable, interpretable, and controllable under continuous adaptation.
+
 ---
 
 ## 🔬 Research Interests
 
-- **Agentic Swarm Intelligence** — autonomous defense agents, role-switching, emergent coordination  
-- **AI Runtime Security** — kill-switches, governance modules, safety-critical constraints  
-- **Adversarial Machine Learning** — robustness, poisoning/evasion, red-team AI  
-- **RL-LoRA Behaviour Systems** — modular behavioural LoRA patches, dynamic skill composition  
-- **Cyber-Physical & CPS Security** — secure sensing, anomaly detection, physical-world adversaries  
-- **Distributed Systems for AI** — Kubernetes-orchestrated agents, fault-tolerant multi-agent infrastructure  
-- **Trustworthy ML** — explainability, uncertainty, distribution shifts  
+- **Agentic Swarm Intelligence** — autonomous defense agents, role-switching, emergent coordination.   
+- **Adversarial Machine Learning** — robustness, poisoning/evasion, red-team AI, adversarial experiments.
+- **Reversible Behavioral Learning** — low-rank adaptation, adapter-based fine-tuning, modular parameter updates, rollback.
+- **Cyber-Physical & CPS Security** — secure sensing, anomaly detection, physical-world adversaries.  
+- **Distributed Systems for AI** — Kubernetes-orchestrated agents, fault-tolerant multi-agent infrastructure.  
+- **Trustworthy ML** — explainability, uncertainty, distribution shifts.  
 
 ---
 
