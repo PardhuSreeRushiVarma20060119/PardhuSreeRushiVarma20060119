@@ -24,13 +24,12 @@ I am actively strengthening my academic foundation in AI, security, and systems 
 
 ## 🧪 What I’m Working On
 
-- **Building AADS** — Agentic AI Defense Swarms with safe governance and swarm-level autonomy  
-- **Developing the REVA4 Runtime** — RL-LoRA behavioural runtime for modular, controllable AI behaviours  
-- **Engineering runtime safety systems in Rust** — kill-switches, isolation layers, fault boundaries  
-- **Creating distributed multi-agent runtimes in Go/K8s** — CRDs, gossip systems, orchestration logic  
+- **Building AADS** — Agentic AI Defense Swarms with safe governance and swarm-level autonomy. 
+- **Engineering runtime safety systems in Rust** — kill-switches, isolation layers, fault boundaries.  
+- **Creating distributed multi-agent runtimes in Go/K8s** — CRDs, gossip systems, orchestration logic. 
 - **Designing adversarial stress-tests** for MARL agents and behavioural LoRA modules.
-- **Prototyping GNIM** — cyber-geospatial intelligence mapping and RF-aware situational awareness  
-- **Writing research papers** in AI/ML Experiments & AI Security etc.
+- **Prototyping GNIM** — cyber-geospatial intelligence mapping system.
+- **Writing research papers** around ML Experiments & AI Security etc.
 - **"On the Structural Limitations of Weight-Based Neural Adaptation and the Role of Reversible Behavioral Learning"** : [arXiv](https://arxiv.org/abs/2603.02934)
 - **"The Formal Theory Of Reversible Behavioral Learning: Path Functionals & Behavioral Geometry"** : under-construction...
 
@@ -38,16 +37,14 @@ I am actively strengthening my academic foundation in AI, security, and systems 
 
 ## 🎯 Long-Term Goals
 
-To contribute foundational work in:
+To contribute foundational/hobby work in:
 
-- Safe Autonomous Systems 
-- Systems Security Research
-- Agentic AI Runtime Design  
-- Swarm Intelligence for Cyber Defense  
-- High-assurance ML and Runtime Safety  
-- Secure Cyber-Physical Intelligence  
+- Machine Learning Research around Learning Adaptations.
+- Applied Agentic AI, and security systems around it.
+- Secure Cyber-Physical Security Research & Development.
+- Adversarial Experiments etc.  
 
-I am particularly interested in pursuing research pathways & research careers at institutes like CISPA, Max Planck, or Helmholtz, leading toward an MSc + PhD focused on AI Security & Research Development and CPS.
+I am particularly interested in pursuing research pathways & research careers, heading toward an MSc + PhD focused on AI Security & ML Research Development and CPS.
 
 ---
 
