@@ -32,7 +32,7 @@ I am actively strengthening my academic foundation in AI, security, and systems 
 - **Prototyping GNIM** — cyber-geospatial intelligence mapping and RF-aware situational awareness  
 - **Writing research papers** in AI/ML Experiments & AI Security etc.
 - **"On the Structural Limitations of Weight-Based Neural Adaptation and the Role of Reversible Behavioral Learning"** : [arXiv](https://arxiv.org/abs/2603.02934)
-- **"The Formal Theory Of Reversible Behavioral Learning: Path Functionals & Behavioral Geometry"** : ongoing-work..
+- **"The Formal Theory Of Reversible Behavioral Learning: Path Functionals & Behavioral Geometry"** : under-construction...
 
 ---
 
