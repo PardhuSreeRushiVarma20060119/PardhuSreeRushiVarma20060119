@@ -1,42 +1,45 @@
 # Hi, I'm PardhuVarma!
 
-I am an independent researcher and third-year cybersecurity student working at the intersection of machine learning, AI security, and adaptive systems.
+I am an independent researcher and third-year cybersecurity student working across machine learning, systems, and distributed architectures.
 
-My research focuses on how learning systems behave under adversarial pressure and long-term adaptation. I study attacker–defender dynamics in machine learning models and investigate how architectural design choices influence robustness, controllability, and recoverability.
+My work focuses on how intelligent systems behave under adversarial pressure, long-term adaptation, and real-world deployment constraints. I study attacker–defender dynamics in learning systems while also exploring the systems-level realities that shape them — runtime environments, distributed coordination, and failure modes.
 
-My recent work introduces Reversible Neural Adaptation (RLAE), a structural paradigm that separates behavioral learning from model identity, enabling deterministic rollback and addressing irreversible behavioral drift in weight-based adaptation. This work formalizes concepts such as structural irreversibility, recoverability, and behavioral divergence, supported by empirical evaluation across adaptation regimes and model scales.
+My recent work introduces Reversible Neural Adaptation (RLAE), a structural paradigm that separates behavioral learning from model identity, enabling deterministic rollback and addressing irreversible behavioral drift in weight-based systems. This work formalizes concepts such as structural irreversibility, recoverability, and behavioral divergence.
 
-In parallel, I am building a strong foundation in statistical machine learning and applied mathematics—particularly probability theory, optimization, and information theory—and connecting these principles directly to my research. I explore how learning dynamics, distributional shifts, and parameter-space geometry influence behavioral stability, reversibility, and robustness in adaptive neural systems. My research interests include statistical and robust machine learning, adversarial machine learning, structural robustness of adaptive models, AI safety and controllability, and runtime-governed modular learning systems.
+Alongside this, I design and build systems that host and stress these ideas in practice — from kernel-level thinking and runtime safety to distributed multi-agent infrastructures. My work spans AI security, adversarial machine learning, and the engineering of controllable, observable, and fault-tolerant systems.
 
-I am particularly interested in the structural properties of adaptive learning systems—how learning mechanisms introduce irreversible changes, and how mathematically grounded architectures and runtime constraints can enable reversible, controllable, and governable intelligence.
+I am particularly interested in the intersection of:
+- learning dynamics under adversarial conditions  
+- systems and runtime constraints shaping intelligence  
+- distributed autonomous agents and coordination  
+- safety, control, and recoverability in adaptive systems  
 
-My goal is to contribute to the design of trustworthy machine learning systems that remain stable, interpretable, and controllable under continuous adaptation.
+My goal is to contribute to the design of systems that are not only intelligent, but **structurally reliable, observable, and governable** — from model behavior to system runtime.
 
 ---
 
 ## 🧪 What I’m Working On
 
-- **Building AADS** — Agentic AI Defense Swarms with safe governance and swarm-level autonomy. 
-- **Engineering runtime safety systems in Rust** — kill-switches, isolation layers, fault boundaries.  
-- **Creating distributed multi-agent runtimes in Go/K8s** — CRDs, gossip systems, orchestration logic. 
-- **Designing adversarial stress-tests** for MARL agents and behavioural LoRA modules.
-- **Prototyping GNIM** — cyber-geospatial intelligence mapping system.
-- **Writing research papers** around ML Experiments & AI Security etc.
-- **"On the Structural Limitations of Weight-Based Neural Adaptation and the Role of Reversible Behavioral Learning"** : [arXiv](https://arxiv.org/abs/2603.02934)
-- **"The Formal Theory Of Reversible Behavioral Learning: Path Functionals & Behavioral Geometry"** : under-construction...
+- **Building AADS** — Agentic AI Defense Swarms with safe governance and swarm-level autonomy  
+- **Engineering runtime safety systems in Rust** — kill-switches, isolation layers, fault boundaries  
+- **Designing distributed agent runtimes in Go/K8s** — CRDs, orchestration, gossip protocols  
+- **Adversarial stress-testing** MARL agents and behavioral LoRA modules  
+- **Prototyping GNIM** — cyber-geospatial intelligence mapping system  
+- **Researching RLAE / reversible learning systems**  
+- Papers:
+  - *On the Structural Limitations of Weight-Based Neural Adaptation...* — arXiv  
+  - *Formal Theory of Reversible Behavioral Learning* — in progress  
 
 ---
 
-## 🎯 Long-Term Goals
+## 🎯 Long-Term Direction
 
-To contribute foundational/hobby work in:
+- Machine Learning (adaptive & robust systems)  
+- Systems & Distributed Architectures  
+- AI Security & Adversarial ML  
+- Cyber-Physical & Autonomous Systems  
 
-- Machine Learning Research around Learning Adaptations.
-- Applied Agentic AI, and security systems around it.
-- Secure Cyber-Physical Security Research & Development.
-- Adversarial Experiments etc.  
-
-I am particularly interested in pursuing research pathways & research careers, heading toward an MSc + PhD focused on AI Security & ML Research Development and CPS.
+Aiming toward MSc → PhD focused on ML Research & Security, Systems & Adaptive Intelligence.
 
 ---
 
