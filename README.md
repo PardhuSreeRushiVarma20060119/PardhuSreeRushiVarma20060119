@@ -27,7 +27,7 @@ My goal is to contribute to the design of systems that are not only intelligent,
 - **Prototyping GNIM** — cyber-geospatial intelligence mapping system  
 - **Researching RLAE / reversible learning systems**  
 - Papers:
-  - *On the Structural Limitations of Weight-Based Neural Adaptation...* — arXiv  
+  - *On the Structural Limitations of Weight-Based Neural Adaptation...* — [arXiv](https://arxiv.org/abs/2603.02934)  
   - *Formal Theory of Reversible Behavioral Learning* — in progress  
 
 ---
