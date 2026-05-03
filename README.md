@@ -73,5 +73,5 @@ If my research or experiments contribute to your projects or spark ideas, you ca
 ---
 
 <p align="center">
-  <em>"Curiosity is a Double-edged Sword, Be a Thanos & Use It well, or a Moron & get killed"</em>
+  <em>"We are merely vessels of a greater curiosity"</em>
 </p>
