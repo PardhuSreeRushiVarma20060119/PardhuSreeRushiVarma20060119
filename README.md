@@ -73,5 +73,5 @@ If my research or experiments contribute to your projects or spark ideas, you ca
 ---
 
 <p align="center">
-  <em>"To emulate the adversary is to embody every doubt that was never tested enough."</em>
+  <em>"Curiosity is a Double-edged Sword, Be a Thanos & Use It well, or a Moron & get killed"</em>
 </p>
