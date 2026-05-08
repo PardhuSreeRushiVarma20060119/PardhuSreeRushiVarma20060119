@@ -28,8 +28,8 @@ My goal is to contribute to the design of systems that are not only intelligent,
 - **Researching RLAE / reversible learning systems**  
 - Papers:
   - *On the Structural Limitations of Weight-Based Neural Adaptation...* — [arXiv](https://arxiv.org/abs/2603.02934)  
-  - *Formal Theory of Reversible Behavioral Learning* — in progress
-  - *Temporal & Adaptive Dynamics of Latent Behavioral Structures in Low Dimensional Statistical Manifolds* — in progress...*
+  - *Formal Theory of Reversible Behavioral Learning...* — in progress
+  - *Temporal & Adaptive Dynamics of Latent Behavioral...* — in progress
 
 ---
 
