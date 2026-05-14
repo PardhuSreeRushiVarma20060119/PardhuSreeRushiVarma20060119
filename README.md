@@ -6,7 +6,7 @@ My work focuses on how intelligent systems behave under adversarial pressure, lo
 
 My recent work introduces Reversible Neural Adaptation (RLAE), a structural paradigm that separates behavioral learning from model identity, enabling deterministic rollback and addressing irreversible behavioral drift in weight-based systems. This work formalizes concepts such as structural irreversibility, recoverability, and behavioral divergence.
 
-Alongside this, I design and build systems that host and stress these ideas in practice — from kernel-level thinking and runtime safety to distributed multi-agent infrastructures. My work spans AI security, adversarial machine learning, and the engineering of controllable, observable, and fault-tolerant systems.
+Alongside this, I design and build systems that host and stress these ideas in practice — from kernel-level thinking and runtime safety to distributed multi-agent infrastructures. My work spans AI security, adversarial & statistical machine learning, and the engineering of controllable, observable, and fault-tolerant systems.
 
 I am particularly interested in the intersection of:
 - learning dynamics under adversarial conditions  
