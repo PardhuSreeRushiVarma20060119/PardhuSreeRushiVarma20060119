@@ -1,5 +1,5 @@
 {
-    "version": "1.0.11",
+    "version": "1.0.12",
     "profile": {
         "name": "Pardhu Sri Rushi Varma Konduru",
         "title": "Independent ML Researcher in Reversible Neural Adaptation and Statistical Machine Learning",
@@ -115,7 +115,7 @@
     ],
     "notes": [],
     "contact": {
-        "collaborationText": "Open to research collaboration, academic discussion, and systems-oriented AI security dialogue. Aspiring toward graduate research at CISPA, Max Planck, or Helmholtz centers. Interested in AI safety, adversarial resilience, and runtime-governed systems.",
+        "collaborationText": "Open to research collaboration and academic discussion. Focused on contributing to machine learning research and advancing the field through robust, trustworthy, and adaptive systems.",
         "links": [
             {
                 "label": "pardhuvarma.cs [at] gmail [dot] com",
