@@ -1,8 +1,8 @@
 {
-    "version": "1.0.9",
+    "version": "1.0.10",
     "profile": {
         "name": "Pardhu Sri Rushi Varma Konduru",
-        "title": "Independent ML Researcher | RLAE | Reversible Neural Adaptations | Stat.ML & Cybersecurity",
+        "title": "Independent ML Researcher in Reversible Neural Adaptation, Statistical Machine Learning, and Cybersecurity",
         "subtitle": "",
         "location": "Hyderabad, India",
         "email": "pardhuvarma.cs [at] gmail [dot] com",
@@ -47,19 +47,19 @@
             "title": "Reversible Behavioral Learning",
             "subtitle": "Structural Identity Preservation",
             "description": "Reversible Behavioral Learning (RBL) is a structurally separated adaptation paradigm where adaptive behaviors are encoded in removable behavioral parameterizations while the core identity parameters remain frozen, enabling deterministic rollback and exact recoverability through explicit behavioral unloading.",
-            "keywords": "reversibility • identity preservation • recoverability"
+            "keywords": "reversibility \u2022 identity preservation \u2022 recoverability"
         },
         {
             "title": "Latent Behavioral State Machines",
             "subtitle": "Statistical Learning & Behavioral Manifolds",
             "description": "Investigating the manifold geometry of adaptive agent telemetry through statistical learning, latent state-space modeling, regime separability, and behavioral dynamics in evolving autonomous systems.",
-            "keywords": "latent manifolds • statistical learning • regime separability • behavioral telemetry"
+            "keywords": "latent manifolds \u2022 statistical learning \u2022 regime separability \u2022 behavioral telemetry"
         }
     ],
     "publications": [
         {
             "title": "On the Structural Limitations of Weight-Based Neural Adaptation and the Role of Reversible Behavioral Learning",
-            "metadata": "Preprint • arXiv: arXiv:2603.02934 • DOI: 10.5281/zenodo.18761938, 10.48550/arXiv.2603.02934 • 2026 • AI Safety / Machine Learning",
+            "metadata": "Preprint \u2022 arXiv: arXiv:2603.02934 \u2022 DOI: 10.5281/zenodo.18761938, 10.48550/arXiv.2603.02934 \u2022 2026 \u2022 AI Safety / Machine Learning",
             "abstract": "Modern neural models are typically adapted by updating parameters through fine-tuning or alignment. While effective for task performance, such updates can degrade reasoning, overwrite capabilities, or alter functional identity. We examine this as structural irreversibility and propose reversible adaptation frameworks that isolate learned behaviors from core parameters, enabling deterministic rollback with measurable recoverability guarantees.",
             "links": [
                 {

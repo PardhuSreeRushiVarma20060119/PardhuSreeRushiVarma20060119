@@ -220,7 +220,12 @@ export default function App() {
                   <input className="bg-transparent border-b border-dashed border-accent w-full outline-none" value={data.profile.subtitle} onChange={(e) => handleUpdateText('profile.subtitle', e.target.value)} />
                 </>
               ) : (
-                <>{data.profile.title}<br />{data.profile.subtitle}</>
+                <><span style={{
+                    display: "inline-block",
+                    fontWeight: 600,
+                    color: "var(--text-primary)",
+                    letterSpacing: "0.01em"
+                  }}>{data.profile.title}</span>{data.profile.subtitle ? <><br /><span>{data.profile.subtitle}</span></> : null}</>
               )}
             </div>
             <div style={{
