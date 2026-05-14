@@ -135,10 +135,12 @@ export default function App() {
   };
 
   const profileTitleStyle = {
-    display: 'inline-block',
-    fontWeight: 600,
+    display: 'block',
+    fontWeight: 400,
+    fontStyle: 'italic',
     color: 'var(--text-primary)',
-    letterSpacing: '0.01em'
+    letterSpacing: '0.01em',
+    maxWidth: '40ch'
   };
 
   return (
