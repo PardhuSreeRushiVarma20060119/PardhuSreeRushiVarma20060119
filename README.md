@@ -20,11 +20,9 @@ My goal is to contribute to the design of systems that are not only intelligent,
 
 ## 🧪 What I’m Working On
 
-- **Building AADS** — Agentic AI Defense Swarms with safe governance and swarm-level autonomy  
 - **Engineering runtime safety systems in Rust** — kill-switches, isolation layers, fault boundaries  
 - **Designing distributed agent runtimes in Go/K8s** — CRDs, orchestration, gossip protocols  
 - **Adversarial stress-testing** MARL agents and behavioral LoRA modules  
-- **Prototyping GNIM** — cyber-geospatial intelligence mapping system  
 - **Researching RLAE / reversible learning systems**  
 - Papers:
   - *On the Structural Limitations of Weight-Based Neural Adaptation...* — [arXiv](https://arxiv.org/abs/2603.02934)  
