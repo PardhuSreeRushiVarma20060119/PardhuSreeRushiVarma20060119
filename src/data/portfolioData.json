@@ -1,8 +1,8 @@
 {
-    "version": "1.0.10",
+    "version": "1.0.11",
     "profile": {
         "name": "Pardhu Sri Rushi Varma Konduru",
-        "title": "Independent ML Researcher in Reversible Neural Adaptation, Statistical Machine Learning, and Cybersecurity",
+        "title": "Independent ML Researcher in Reversible Neural Adaptation and Statistical Machine Learning",
         "subtitle": "",
         "location": "Hyderabad, India",
         "email": "pardhuvarma.cs [at] gmail [dot] com",
@@ -34,7 +34,7 @@
     "about": {
         "title": "Research Philosophy",
         "paragraphs": [
-            "I am an independent researcher and third-year cybersecurity student working at the intersection of machine learning, AI security, and adaptive systems.",
+            "I am an independent researcher and final-year cybersecurity undergrad working at the intersection of machine learning, AI security, and adaptive systems.",
             "My research focuses on how learning systems behave under adversarial pressure and long-term adaptation. I study attacker-defender dynamics in machine learning models and investigate how architectural design choices influence robustness, controllability, and recoverability.",
             "My recent work introduces Reversible Neural Adaptation (RLAE), a structural paradigm that separates behavioral learning from model identity, enabling deterministic rollback and addressing irreversible behavioral drift in weight-based adaptation. This work formalizes concepts such as structural irreversibility, recoverability, and behavioral divergence, supported by empirical evaluation across adaptation regimes and model scales.",
             "In parallel, I am building a strong foundation in statistical machine learning and applied mathematics-particularly probability theory, optimization, and information theory-and connecting these principles directly to my research. I explore how learning dynamics, distributional shifts, and parameter-space geometry influence behavioral stability, reversibility, and robustness in adaptive neural systems.",
