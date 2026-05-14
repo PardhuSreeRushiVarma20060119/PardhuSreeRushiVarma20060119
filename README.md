@@ -1,6 +1,6 @@
 # Hi, I'm PardhuVarma!
 
-I am an independent researcher and third-year cybersecurity student working across machine learning, systems, and distributed architectures.
+I am an independent researcher and final-year cybersecurity student working across machine learning research, systems, and distributed architectures.
 
 My work focuses on how intelligent systems behave under adversarial pressure, long-term adaptation, and real-world deployment constraints. I study attacker–defender dynamics in learning systems while also exploring the systems-level realities that shape them — runtime environments, distributed coordination, and failure modes.
 
