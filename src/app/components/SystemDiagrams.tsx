@@ -105,47 +105,113 @@ export function SystemDiagrams({ name }: { name: string }) {
                     </svg>
                 );
             case 'GNIM':
+            case 'LBSM':
                 return (
                     <svg viewBox="0 0 400 240" className="w-full h-full opacity-60">
-                        {/* Geospatial Grid */}
+                        {/* Statistical manifold grid */}
                         <defs>
-                            <pattern id="gnim-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                            <pattern id="lbsm-grid" width="40" height="40" patternUnits="userSpaceOnUse">
                                 <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--border-color)" strokeWidth="0.2" />
                             </pattern>
                         </defs>
-                        <rect width="400" height="240" fill="url(#gnim-grid)" />
+                        <rect width="400" height="240" fill="url(#lbsm-grid)" />
 
-                        {/* Nodes and Flows */}
+                        {/* Behavioral attractor basins */}
                         {[
-                            { x: 100, y: 80 }, { x: 300, y: 60 }, { x: 250, y: 160 }, { x: 120, y: 180 }
+                            { cx: 110, cy: 145, rx: 55, ry: 35, label: 'STABLE', delay: 0 },
+                            { cx: 200, cy: 92, rx: 52, ry: 30, label: 'ADAPTIVE', delay: 0.5 },
+                            { cx: 292, cy: 145, rx: 60, ry: 36, label: 'EXPLORATORY', delay: 1 }
+                        ].map((basin) => (
+                            <motion.g key={basin.label}>
+                                <motion.ellipse
+                                    animate={{ scale: [1, 1.04, 1], opacity: [0.2, 0.35, 0.2] }}
+                                    transition={{ duration: 3, repeat: Infinity, delay: basin.delay }}
+                                    cx={basin.cx}
+                                    cy={basin.cy}
+                                    rx={basin.rx}
+                                    ry={basin.ry}
+                                    fill="rgba(45, 91, 255, 0.08)"
+                                    stroke="var(--accent-color)"
+                                    strokeWidth="0.4"
+                                />
+                                <text
+                                    x={basin.cx}
+                                    y={basin.cy}
+                                    textAnchor="middle"
+                                    fill="var(--text-muted)"
+                                    fontSize="6"
+                                    fontFamily="var(--font-mono)"
+                                >
+                                    {basin.label}
+                                </text>
+                            </motion.g>
+                        ))}
+
+                        {/* Transitional manifold bridge */}
+                        <motion.path
+                            animate={{
+                                d: [
+                                    'M105,145 C145,95 175,75 205,94 C235,115 255,135 295,145',
+                                    'M105,145 C148,105 178,70 205,94 C232,118 258,128 295,145'
+                                ]
+                            }}
+                            transition={{ duration: 4, repeat: Infinity, repeatType: 'reverse' }}
+                            d="M105,145 C145,95 175,75 205,94 C235,115 255,135 295,145"
+                            fill="none"
+                            stroke="var(--accent-color)"
+                            strokeWidth="0.8"
+                            strokeDasharray="3 3"
+                        />
+
+                        {/* Latent telemetry nodes */}
+                        {[
+                            { x: 90, y: 140 },
+                            { x: 145, y: 112 },
+                            { x: 205, y: 94 },
+                            { x: 250, y: 120 },
+                            { x: 310, y: 148 }
                         ].map((node, i) => (
-                            <g key={i}>
-                                <circle cx={node.x} cy={node.y} r="3" fill="var(--accent-color)" />
+                            <g key={`${node.x}-${node.y}`}>
+                                <circle cx={node.x} cy={node.y} r="2.5" fill="var(--accent-color)" />
                                 <motion.circle
-                                    animate={{ r: [3, 15], opacity: [0.6, 0] }}
-                                    transition={{ duration: 2, repeat: Infinity }}
-                                    cx={node.x} cy={node.y} fill="var(--accent-color)"
+                                    animate={{ r: [2.5, 10], opacity: [0.5, 0] }}
+                                    transition={{ duration: 2.2, repeat: Infinity, delay: i * 0.25 }}
+                                    cx={node.x}
+                                    cy={node.y}
+                                    fill="var(--accent-color)"
                                 />
                             </g>
                         ))}
 
+                        {/* Temporal trajectory */}
                         <motion.path
-                            animate={{ strokeDashoffset: [400, 0] }}
-                            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                            d="M100,80 L300,60 L250,160 L120,180 Z"
+                            animate={{ strokeDashoffset: [0, -180] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+                            d="M75,160 C110,120 150,115 178,102 S240,88 285,120 S325,160 340,128"
                             fill="none"
-                            stroke="var(--accent-color)"
-                            strokeWidth="0.5"
-                            strokeDasharray="4 4"
+                            stroke="var(--text-secondary)"
+                            strokeWidth="0.7"
+                            strokeDasharray="5 7"
+                        />
+                        <motion.circle
+                            animate={{
+                                cx: [75, 110, 150, 178, 225, 285, 340],
+                                cy: [160, 120, 115, 102, 92, 120, 128],
+                                opacity: [0.4, 1, 1, 1, 1, 1, 0.4]
+                            }}
+                            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                            r="4"
+                            fill="#D4183D"
                         />
 
-                        {/* Anomaly Zone */}
+                        {/* Unstable drift zone */}
                         <motion.circle
-                            animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.3, 0.1] }}
+                            animate={{ scale: [1, 1.15, 1], opacity: [0.08, 0.22, 0.08] }}
                             transition={{ duration: 3, repeat: Infinity }}
-                            cx="200" cy="120" r="40" fill="#D4183D"
+                            cx="324" cy="74" r="26" fill="#D4183D"
                         />
-                        <text x="200" y="125" textAnchor="middle" fill="#D4183D" fontSize="8" fontFamily="var(--font-mono)">THREAT ZONE</text>
+                        <text x="324" y="77" textAnchor="middle" fill="#D4183D" fontSize="5" fontFamily="var(--font-mono)">DRIFT</text>
+                        <text x="200" y="220" textAnchor="middle" fill="var(--accent-color)" fontSize="7" fontFamily="var(--font-mono)" letterSpacing="0.18em">LATENT BEHAVIORAL MANIFOLDS</text>
                     </svg>
                 );
             case 'OpenLoRA':

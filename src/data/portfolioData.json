@@ -1,9 +1,9 @@
 {
-    "version": "1.0.8",
+    "version": "1.0.9",
     "profile": {
         "name": "Pardhu Sri Rushi Varma Konduru",
-        "title": "Cybersecurity & ML Security Researcher",
-        "subtitle": "Runtime-Governed Intelligence Systems",
+        "title": "Independent ML Researcher | RLAE | Reversible Neural Adaptations | Stat.ML & Cybersecurity",
+        "subtitle": "",
         "location": "Hyderabad, India",
         "email": "pardhuvarma.cs [at] gmail [dot] com",
         "bio": "Exploring adversarial AI, systems security, and runtime-governed architectures. Building modular, reversible, and compositionally safe intelligence systems for adversarial resilience.",
@@ -34,49 +34,26 @@
     "about": {
         "title": "Research Philosophy",
         "paragraphs": [
-            "I am a cybersecurity-oriented systems and machine learning researcher interested in the foundations of autonomous intelligence.",
-            "My work is driven by a core concern: how to design adaptive systems that remain structurally accountable. I am particularly interested in reinforcement learning, runtime control, and the intersection of security principles with machine intelligence.",
-            "I approach intelligence as a governed process rather than a static artifact. This perspective leads me to think in terms of modularity, authority separation, invariant enforcement, and reversibility. I am drawn to architectures where behavior can evolve without compromising oversight, and where autonomy is bounded by explicit control mechanisms.",
-            "My background in cybersecurity strongly shapes how I think about AI systems — prioritizing failure modes, attack surfaces, lifecycle control, and containment before capability. I am motivated by building systems that are not only intelligent, but architecturally disciplined.",
-            "In the long term, I aim to contribute to research at the intersection of secure systems and adaptive intelligence, where formal rigor and real-world constraints shape the future of autonomous technologies."
+            "I am an independent researcher and third-year cybersecurity student working at the intersection of machine learning, AI security, and adaptive systems.",
+            "My research focuses on how learning systems behave under adversarial pressure and long-term adaptation. I study attacker-defender dynamics in machine learning models and investigate how architectural design choices influence robustness, controllability, and recoverability.",
+            "My recent work introduces Reversible Neural Adaptation (RLAE), a structural paradigm that separates behavioral learning from model identity, enabling deterministic rollback and addressing irreversible behavioral drift in weight-based adaptation. This work formalizes concepts such as structural irreversibility, recoverability, and behavioral divergence, supported by empirical evaluation across adaptation regimes and model scales.",
+            "In parallel, I am building a strong foundation in statistical machine learning and applied mathematics-particularly probability theory, optimization, and information theory-and connecting these principles directly to my research. I explore how learning dynamics, distributional shifts, and parameter-space geometry influence behavioral stability, reversibility, and robustness in adaptive neural systems.",
+            "My research interests include statistical and robust machine learning, adversarial machine learning, structural robustness of adaptive models, AI safety and controllability, and runtime-governed modular learning systems.",
+            "My goal is to contribute to the design of trustworthy machine learning systems that remain stable, interpretable, and controllable under continuous adaptation."
         ]
     },
     "researchAreas": [
         {
             "title": "Reversible Behavioral Learning",
             "subtitle": "Structural Identity Preservation",
-            "description": "Investigating parameter isolation techniques that enable deterministic rollback without model identity corruption or capability degradation.",
+            "description": "Reversible Behavioral Learning (RBL) is a structurally separated adaptation paradigm where adaptive behaviors are encoded in removable behavioral parameterizations while the core identity parameters remain frozen, enabling deterministic rollback and exact recoverability through explicit behavioral unloading.",
             "keywords": "reversibility • identity preservation • recoverability"
         },
         {
-            "title": "Adversarial AI Security",
-            "subtitle": "Red-Team ML & Robustness",
-            "description": "Exploring attack-defense dynamics in intelligent systems through adversarial stress-testing, poisoning attacks, and evasion techniques.",
-            "keywords": "adversarial ml • red-teaming • robustness testing"
-        },
-        {
-            "title": "Runtime Governance",
-            "subtitle": "Safe AI Control Mechanisms",
-            "description": "Designing kill-switches, constraint layers, and runtime safety systems for high-stakes autonomous agents and swarm intelligence.",
-            "keywords": "runtime safety • kill-switches • governance protocols"
-        },
-        {
-            "title": "Agentic Swarm Intelligence",
-            "subtitle": "Distributed Defense Systems",
-            "description": "Autonomous multi-agent coordination for cyber defense with role-switching, emergent behavior, and collective decision-making.",
-            "keywords": "swarm agents • distributed systems • autonomous defense"
-        },
-        {
-            "title": "RL-LoRA Behavior Systems",
-            "subtitle": "Modular Skill Composition",
-            "description": "Dynamic behavioral patching through low-rank adaptation modules that enable compositional skill assembly and runtime reconfiguration.",
-            "keywords": "low-rank adaptation • behavioral modules • skill composition"
-        },
-        {
-            "title": "Cyber-Physical Security",
-            "subtitle": "CPS Threat Modeling",
-            "description": "Secure sensing, anomaly detection, and adversarial resilience in physical-world AI-enabled systems and cyber-physical infrastructures.",
-            "keywords": "cps security • threat modeling • physical adversaries"
+            "title": "Latent Behavioral State Machines",
+            "subtitle": "Statistical Learning & Behavioral Manifolds",
+            "description": "Investigating the manifold geometry of adaptive agent telemetry through statistical learning, latent state-space modeling, regime separability, and behavioral dynamics in evolving autonomous systems.",
+            "keywords": "latent manifolds • statistical learning • regime separability • behavioral telemetry"
         }
     ],
     "publications": [
@@ -118,28 +95,16 @@
     ],
     "systems": [
         {
-            "name": "AADS",
-            "description": "Agentic AI Defense Swarms with safe governance and swarm-level autonomy. Multi-agent system designed for autonomous cyber defense operations with role-switching capabilities, emergent coordination, and runtime safety constraints. Built with distributed architecture and fault-tolerant infrastructure.",
-            "diagram": true,
-            "repoUrl": "https://github.com/PardhuSreeRushiVarma20060119/AADS"
-        },
-        {
             "name": "RLAE (REVA4)",
             "description": "Runtime-Governed Intelligence Systems for modular, reversible, and compositionally safe behaviors. Enables dynamic loading of behavioral LoRA patches with deterministic rollback capabilities. Implements behavioral governance and runtime safety constraints for adversarial resilience.",
             "diagram": true,
             "repoUrl": "https://github.com/PardhuSreeRushiVarma20060119/rlae-research"
         },
         {
-            "name": "GNIM",
-            "description": "Geospatial Network Imaging & Mapping: A software-defined spatial intelligence framework for coordinate-aware network observability. Fuses logical network behavior with physical deployment context, enabling dynamic visualization of traffic patterns, anomaly density, and zone-level activity.",
+            "name": "LBSM",
+            "description": "Latent Behavioral State Machines: A statistical learning and behavioral manifold research framework for modeling adaptive agent telemetry. Explores latent state-space geometry, regime separability, behavioral transitions, and manifold dynamics in evolving autonomous systems through dimensionality reduction, clustering, and telemetry-driven analysis.",
             "diagram": true,
-            "repoUrl": "https://github.com/PardhuSreeRushiVarma20060119/GNIM"
-        },
-        {
-            "name": "OpenLoRA",
-            "description": "Open-source framework for streamlined LLM fine-tuning using Low-Rank Adaptation. Transforms local environments into intelligent, self-adaptive LoRA training infrastructure with Prometheus monitoring and Grafana visualization. Features dataset synthesis and evaluation engines.",
-            "diagram": true,
-            "repoUrl": "https://github.com/PardhuSreeRushiVarma20060119/OpenLoRA"
+            "repoUrl": "https://github.com/PardhuSreeRushiVarma20060119/lbsm-research"
         },
         {
             "name": "Project Ouroboros",
