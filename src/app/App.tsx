@@ -134,6 +134,13 @@ export default function App() {
     link.click();
   };
 
+  const profileTitleStyle = {
+    display: 'inline-block',
+    fontWeight: 600,
+    color: 'var(--text-primary)',
+    letterSpacing: '0.01em'
+  };
+
   return (
     <div style={{
       backgroundColor: 'var(--bg-primary)',
@@ -220,7 +227,10 @@ export default function App() {
                   <input className="bg-transparent border-b border-dashed border-accent w-full outline-none" value={data.profile.subtitle} onChange={(e) => handleUpdateText('profile.subtitle', e.target.value)} />
                 </>
               ) : (
-                <>{data.profile.title}<br />{data.profile.subtitle}</>
+                <>
+                  <span style={profileTitleStyle}>{data.profile.title}</span>
+                  {data.profile.subtitle && <span style={{ display: 'block' }}>{data.profile.subtitle}</span>}
+                </>
               )}
             </div>
             <div style={{
