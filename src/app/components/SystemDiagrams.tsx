@@ -104,7 +104,6 @@ export function SystemDiagrams({ name }: { name: string }) {
                         <text x="310" y="123" fill="#D4183D" fontSize="6" fontFamily="var(--font-mono)">ROLLBACK</text>
                     </svg>
                 );
-            case 'GNIM':
             case 'LBSM':
                 return (
                     <svg viewBox="0 0 400 240" className="w-full h-full opacity-60">
@@ -171,7 +170,7 @@ export function SystemDiagrams({ name }: { name: string }) {
                             { x: 250, y: 120 },
                             { x: 310, y: 148 }
                         ].map((node, i) => (
-                            <g key={`${node.x}-${node.y}`}>
+                            <g key={i}>
                                 <circle cx={node.x} cy={node.y} r="2.5" fill="var(--accent-color)" />
                                 <motion.circle
                                     animate={{ r: [2.5, 10], opacity: [0.5, 0] }}
