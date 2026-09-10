@@ -2,7 +2,7 @@
 
 I'm an independent researcher and final-year cybersecurity undergraduate fascinated by machine learning, AI safety, adaptive systems, and, of course, **Linux**.
 
-Most days you'll find me reading research papers, building something in Rust or Go, or tweaking my Arch Linux setup (I use Arch, btw.). I've always enjoyed understanding how things work—from machine learning models and operating systems to compilers, kernels, and package managers. If it's open source, there's a good chance I'll end up reading the code sooner or later.
+Most days you'll find me reading research papers, building something in Rust or Go, or tweaking my Arch Linux setup (I use Arch, btw.) or creating/designing exploit challenges for CTF events, referred as **"ZenRage"**. I've always enjoyed understanding how things work—from machine learning models and operating systems to compilers, kernels, and package managers. If it's open source, there's a good chance I'll end up reading the code sooner or later.
 
 That curiosity is probably why I like to think the world is open source. People say curiosity killed the cat. I like to think it just forgot to make a backup. Curiosity gave us Linux, open source, and countless people spending their weekends fixing bugs in software they'll never own—not because they had to, but because they genuinely wanted to understand how it worked... and how much better it could be with one more tweak. its all part of the game, maybe that's what drew me to research in the first place. Understanding how things work—and wondering how they could work even better. 
 
